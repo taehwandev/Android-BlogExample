@@ -1,3 +1,54 @@
 <resources>
-    <string name="app_name">2016-04-07-BottomSheet</string>
+    <string name="app_name">BlogExample</string>
+    <string name="title_activity_map_bottom_sheet">Map</string>
+    <string name="bottom_sheet_example">BottomSheet Example</string>
+    <string name="bottom_sheet_example_message">The Design Support Library provides implementations of
+        many patterns of material design.
+        This release allows developers to easily add bottom sheets to their app.
+        \n\n
+        By attaching a BottomSheetBehavior to a child View of a CoordinatorLayout (i.e., adding app:layout_behavior="android.support.design.widget.BottomSheetBehavior"), you\’ll automatically get the appropriate touch detection to transition between five state:
+        \n\n
+        STATE_COLLAPSED: this collapsed state is the default and shows just a portion of the layout along the bottom. The height can be controlled with the app:behavior_peekHeight attribute (defaults to 0)
+        STATE_DRAGGING: the intermediate state while the user is directly dragging the bottom sheet up or down
+        STATE_SETTLING: that brief time between when the View is released and settling into its final position
+        STATE_EXPANDED: the fully expanded state of the bottom sheet, where either the whole bottom sheet is visible (if its height is less than the containing CoordinatorLayout) or the entire CoordinatorLayout is filled
+        STATE_HIDDEN: disabled by default (and enabled with the app:behavior_hideable attribute), enabling this allows users to swipe down on the bottom sheet to completely hide the bottom sheet
+        Keep in mind that scrolling containers in your bottom sheet must support nested scrolling (for example, NestedScrollView, RecyclerView, or ListView/ScrollView on API 21+).
+        \n\n
+        If you\’d like to receive callbacks of state changes, you can add a BottomSheetCallback:
+
+        \n\n\n
+        The Design Support Library provides implementations of
+        many patterns of material design.
+        This release allows developers to easily add bottom sheets to their app.
+        \n\n
+        By attaching a BottomSheetBehavior to a child View of a CoordinatorLayout (i.e., adding app:layout_behavior="android.support.design.widget.BottomSheetBehavior"), you\’ll automatically get the appropriate touch detection to transition between five state:
+        \n\n
+        STATE_COLLAPSED: this collapsed state is the default and shows just a portion of the layout along the bottom. The height can be controlled with the app:behavior_peekHeight attribute (defaults to 0)
+        STATE_DRAGGING: the intermediate state while the user is directly dragging the bottom sheet up or down
+        STATE_SETTLING: that brief time between when the View is released and settling into its final position
+        STATE_EXPANDED: the fully expanded state of the bottom sheet, where either the whole bottom sheet is visible (if its height is less than the containing CoordinatorLayout) or the entire CoordinatorLayout is filled
+        STATE_HIDDEN: disabled by default (and enabled with the app:behavior_hideable attribute), enabling this allows users to swipe down on the bottom sheet to completely hide the bottom sheet
+        Keep in mind that scrolling containers in your bottom sheet must support nested scrolling (for example, NestedScrollView, RecyclerView, or ListView/ScrollView on API 21+).
+        \n\n
+        If you\’d like to receive callbacks of state changes, you can add a BottomSheetCallback:
+
+        \n\n
+        The Design Support Library provides implementations of
+        many patterns of material design.
+        This release allows developers to easily add bottom sheets to their app.
+        \n\n
+        By attaching a BottomSheetBehavior to a child View of a CoordinatorLayout (i.e., adding app:layout_behavior="android.support.design.widget.BottomSheetBehavior"), you\’ll automatically get the appropriate touch detection to transition between five state:
+        \n\n
+        STATE_COLLAPSED: this collapsed state is the default and shows just a portion of the layout along the bottom. The height can be controlled with the app:behavior_peekHeight attribute (defaults to 0)
+        STATE_DRAGGING: the intermediate state while the user is directly dragging the bottom sheet up or down
+        STATE_SETTLING: that brief time between when the View is released and settling into its final position
+        STATE_EXPANDED: the fully expanded state of the bottom sheet, where either the whole bottom sheet is visible (if its height is less than the containing CoordinatorLayout) or the entire CoordinatorLayout is filled
+        STATE_HIDDEN: disabled by default (and enabled with the app:behavior_hideable attribute), enabling this allows users to swipe down on the bottom sheet to completely hide the bottom sheet
+        Keep in mind that scrolling containers in your bottom sheet must support nested scrolling (for example, NestedScrollView, RecyclerView, or ListView/ScrollView on API 21+).
+        \n\n
+        If you\’d like to receive callbacks of state changes, you can add a BottomSheetCallback:
+    </string>
+    <string name="bottom_sheet_title">Android Support Library 23.2</string>
+    <string name="bottom_sheet_message">When talking about the Android Support Library, it is important to realize this isn’t one monolithic library, but a whole collection of libraries that seek to provide backward-compatible versions of APIs, as well as offer unique features without requiring the latest platform version. Version 23.2 adds a few new support libraries as well as new features to many of the existing libraries.</string>
 </resources>

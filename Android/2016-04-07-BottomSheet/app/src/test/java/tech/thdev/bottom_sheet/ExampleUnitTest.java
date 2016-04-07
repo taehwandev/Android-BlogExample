@@ -1,4 +1,4 @@
-package tech.thdev.a2016_04_07_bottomsheet;
+package tech.thdev.bottom_sheet;
 
 import org.junit.Test;
 
