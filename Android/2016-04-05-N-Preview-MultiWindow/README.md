@@ -5,11 +5,10 @@ Android N Preview Multi-Window example
 # API
 
 - [Multi-Window Support](http://developer.android.com/preview/features/multi-window.html)
+- [ButterKnife](http://jakewharton.github.io/butterknife/)
 
 
 # API License
-
-[ButterKnife](http://jakewharton.github.io/butterknife/)
 
 Copyright 2013 Jake Wharton
 
