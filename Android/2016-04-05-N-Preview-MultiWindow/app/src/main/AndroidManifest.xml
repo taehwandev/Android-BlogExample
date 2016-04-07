@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="tech.thdev.a2016_04_05_n_preview_multiwindow">
+    package="tech.thdev.multiwindow">
 
     <application
         android:allowBackup="true"
@@ -8,6 +8,40 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+        <!-- Multi window support example -->
+        <activity
+            android:name=".MultiWindowActivity"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
+            android:resizeableActivity="true"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Multi window freeform mode example -->
+        <activity
+            android:name=".FreeformModeActivity"
+            android:resizeableActivity="true"
+            android:theme="@style/AppTheme.NoActionBar">
+            <layout
+                android:defaultHeight="500dp"
+                android:defaultWidth="600dp"
+                android:gravity="top|end"
+                android:minimalSize="450dp" />
+        </activity>
+
+        <!-- MultiWindowTransparent example -->
+        <activity
+            android:name=".MultiWindowTransparentActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- Transparent activity example -->
+        <activity
+            android:name=".TransparentActivity"
+            android:resizeableActivity="true"
+            android:theme="@android:style/Theme.Translucent" />
     </application>
 
 </manifest>

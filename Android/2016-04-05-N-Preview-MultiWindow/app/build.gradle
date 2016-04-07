@@ -9,7 +9,7 @@ android {
         minSdkVersion 'N'
         targetSdkVersion 'N'
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.0"
     }
     buildTypes {
         release {
@@ -23,4 +23,7 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:24.0.0-alpha1'
+    compile 'com.android.support:design:24.0.0-alpha1'
+    compile 'com.android.support:recyclerview-v7:23.2.1'
+    compile 'com.jakewharton:butterknife:7.0.1'
 }

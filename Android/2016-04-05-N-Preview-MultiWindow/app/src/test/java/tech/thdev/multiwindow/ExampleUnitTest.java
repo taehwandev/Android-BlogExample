@@ -1,4 +1,4 @@
-package tech.thdev.a2016_04_05_n_preview_multiwindow;
+package tech.thdev.multiwindow;
 
 import org.junit.Test;
 
