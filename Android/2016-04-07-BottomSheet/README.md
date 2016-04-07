@@ -5,10 +5,9 @@ Android BottomSheet example
 
 - [Android Support Library 23.2 - BottomSheet](http://android-developers.blogspot.kr/2016/02/android-support-library-232.html)
 - [BottomSheet design](https://www.google.com/design/spec/components/bottom-sheets.html#bottom-sheets-behavior)
+- [ButterKnife](http://jakewharton.github.io/butterknife/)
 
 # API License
-
-[ButterKnife](http://jakewharton.github.io/butterknife/)
 
 Copyright 2013 Jake Wharton
 
