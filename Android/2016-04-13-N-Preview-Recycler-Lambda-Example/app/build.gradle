@@ -1,0 +1,45 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 'android-N'
+    buildToolsVersion "24.0.0 rc2"
+
+    defaultConfig {
+        applicationId "tech.thdev.recycler_lambda_example"
+        minSdkVersion 'N'
+        targetSdkVersion 'N'
+        versionCode 1
+        versionName "1.0"
+        jackOptions {
+            enabled true
+        }
+    }
+
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:24.0.0-alpha1'
+    compile 'com.android.support:design:24.0.0-alpha1'
+    compile 'com.android.support:recyclerview-v7:24.0.0-alpha1'
+
+    // Retrofit
+    compile 'com.squareup.retrofit2:retrofit:2.0.1'
+    compile "com.squareup.retrofit2:adapter-rxjava:2.0.1"
+    compile "com.squareup.retrofit2:converter-gson:2.0.1"
+
+    // Image loader
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+}
