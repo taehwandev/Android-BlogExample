@@ -2,14 +2,14 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 'android-N'
-    buildToolsVersion "24.0.0 rc2"
+    buildToolsVersion "24.0.0 rc3"
 
     defaultConfig {
         applicationId "tech.thdev.recycler_lambda_example"
         minSdkVersion 'N'
         targetSdkVersion 'N'
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.1"
         jackOptions {
             enabled true
         }

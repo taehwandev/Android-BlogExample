@@ -1,6 +1,7 @@
 package tech.thdev.recycler_lambda_example;
 
 import android.os.Bundle;
+import android.support.annotation.DrawableRes;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -14,8 +15,13 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import tech.thdev.recycler_lambda_example.adapter.ImageViewRecyclerAdapter;
+import tech.thdev.recycler_lambda_example.presenter.MainPresenter;
+import tech.thdev.recycler_lambda_example.presenter.MainPresenterImpl;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements MainPresenter.View {
+
+    private FloatingActionButton fab;
+    private MainPresenter mainPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +30,10 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        mainPresenter = new MainPresenterImpl(this);
+
+
+        fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(view -> {
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
@@ -40,11 +49,7 @@ public class MainActivity extends AppCompatActivity {
         ImageViewRecyclerAdapter adapter = new ImageViewRecyclerAdapter(this);
         adapter.setItemList(imageList);
         adapter.setOnTouchLongClickListener((Image, position) -> {
-            Snackbar.make(fab, "LongClickEvent", Snackbar.LENGTH_SHORT).show();
-//            BottomSheetBehavior bottomSheetBehavior = BottomSheetBehavior.from(rlBottomSheet);
-//            bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-//            bottomSheetBehavior.setHideable(true);
-
+            mainPresenter.onImageItemLongClick(R.drawable.sample_image);
             return true;
         });
 
@@ -72,5 +77,14 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void showFlickerImageBottomSheet(@DrawableRes int resource) {
+        Snackbar.make(fab, "LongClickEvent", Snackbar.LENGTH_SHORT).show();
+
+//        BottomSheetBehavior bottomSheetBehavior = BottomSheetBehavior.from(rlBottomSheet);
+//        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+//        bottomSheetBehavior.setHideable(true);
     }
 }
