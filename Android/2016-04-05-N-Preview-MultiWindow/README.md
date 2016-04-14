@@ -1,6 +1,10 @@
 # Android N Preview Multi-Window Example
 [![License](https://img.shields.io/hexpm/l/plug.svg)]()
 
+Android N Multi-Window example
+
+Blog link [Android N 멀티윈도우 - 어떻게 대응해야 할까?](http://thdev.tech/Android-Multi-Window-Example-One/)
+
 ## Requirements
 - Android Studio 2.1 Beta
 - Target Sdk Version : N
