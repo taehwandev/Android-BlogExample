@@ -29,7 +29,13 @@
                 android:defaultHeight="500dp"
                 android:defaultWidth="600dp"
                 android:gravity="top|end"
-                android:minimalSize="450dp" />
+                android:minimalHeight="450dp"
+                android:minimalWidth="300dp" />
+
+            <!-- Preview 2 change -->
+            <!-- Remove API Name : android:minimalSize -->
+            <!-- Add API Name : android:minimalWidth -->
+            <!-- Add API Name : android:minimalHeight -->
         </activity>
 
         <!-- MultiWindowTransparent example -->

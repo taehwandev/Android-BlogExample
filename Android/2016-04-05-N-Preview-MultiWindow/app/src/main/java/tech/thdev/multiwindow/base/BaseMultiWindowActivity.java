@@ -24,6 +24,11 @@ import tech.thdev.multiwindow.adapter.MultiWindowAdapter;
  * Created by Tae-hwan on 4/6/16.
  * <p/>
  * Multi Window Base activity
+ * <p/>
+ * Preview 2 Change log
+ * * API Name change list
+ * - inMultiWindow -> isInMultiWindowMode
+ * - onMultiWindowChanged -> onMultiWindowModeChanged
  */
 public abstract class BaseMultiWindowActivity extends BaseActivity {
 
@@ -38,7 +43,7 @@ public abstract class BaseMultiWindowActivity extends BaseActivity {
         recyclerView.setAdapter(multiWindowAdapter);
 
         if (multiWindowAdapter != null) {
-            multiWindowAdapter.addItem("onCreate() inMultiWindow " + inMultiWindow(), true);
+            multiWindowAdapter.addItem("onCreate() isInMultiWindowMode " + isInMultiWindowMode(), true);
         }
     }
 
@@ -53,9 +58,9 @@ public abstract class BaseMultiWindowActivity extends BaseActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_multi_window:
-                // TODO Android N Preview 1 is not running.
-                onMultiWindowChanged(!inMultiWindow());
-                Toast.makeText(this, "MultiWindow " + inMultiWindow(), Toast.LENGTH_SHORT).show();
+                // TODO Android N Preview 2 is not walking.
+                onMultiWindowModeChanged(!isInMultiWindowMode());
+                Toast.makeText(this, "MultiWindow " + isInMultiWindowMode(), Toast.LENGTH_SHORT).show();
                 return true;
 
             default:
@@ -68,7 +73,7 @@ public abstract class BaseMultiWindowActivity extends BaseActivity {
         super.onResume();
 
         if (multiWindowAdapter != null) {
-            multiWindowAdapter.addItem("onResume() inMultiWindow " + inMultiWindow(), true);
+            multiWindowAdapter.addItem("onResume() isInMultiWindowMode " + isInMultiWindowMode(), true);
         }
     }
 
@@ -77,7 +82,7 @@ public abstract class BaseMultiWindowActivity extends BaseActivity {
         super.onPause();
 
         if (multiWindowAdapter != null) {
-            multiWindowAdapter.addItem("onPause() inMultiWindow " + inMultiWindow(), true);
+            multiWindowAdapter.addItem("onPause() isInMultiWindowMode " + isInMultiWindowMode(), true);
         }
     }
 
@@ -86,7 +91,7 @@ public abstract class BaseMultiWindowActivity extends BaseActivity {
         super.onStart();
 
         if (multiWindowAdapter != null) {
-            multiWindowAdapter.addItem("onStart() inMultiWindow " + inMultiWindow(), true);
+            multiWindowAdapter.addItem("onStart() isInMultiWindowMode " + isInMultiWindowMode(), true);
         }
     }
 
@@ -95,7 +100,7 @@ public abstract class BaseMultiWindowActivity extends BaseActivity {
         super.onStop();
 
         if (multiWindowAdapter != null) {
-            multiWindowAdapter.addItem("onStop() inMultiWindow " + inMultiWindow(), true);
+            multiWindowAdapter.addItem("onStop() isInMultiWindowMode " + isInMultiWindowMode(), true);
         }
     }
 
@@ -103,7 +108,7 @@ public abstract class BaseMultiWindowActivity extends BaseActivity {
     protected void onDestroy() {
         super.onDestroy();
 
-        Log.d("TAG", "onDestroy() inMultiWindow " + inMultiWindow());
+        Log.d("TAG", "onDestroy() isInMultiWindowMode " + isInMultiWindowMode());
     }
 
     @OnClick(R.id.btn_freeform_mode_example)
@@ -134,7 +139,7 @@ public abstract class BaseMultiWindowActivity extends BaseActivity {
 
         }
         if (multiWindowAdapter != null) {
-            multiWindowAdapter.addItem("onConfigurationChanged() inMultiWindow " + inMultiWindow() + ", newConfig " + newConfig.orientation, true);
+            multiWindowAdapter.addItem("onConfigurationChanged() isInMultiWindowMode " + isInMultiWindowMode() + ", newConfig " + newConfig.orientation, true);
         }
     }
 }
