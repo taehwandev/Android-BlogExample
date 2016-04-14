@@ -20,6 +20,11 @@ AndroidManifest.xml change
 - Add API Name : android:minimalWidth
                  android:minimalHeight
 
+## Android Studio 2.1 Beta bug
+Android Studio 2.1 Beta bug...
+![build_bug_as_2_1_beta_01.png](/images/build_bug_as_2_1_beta_01.png)
+
+
 ## API
 
 - [Multi-Window Support](http://developer.android.com/preview/features/multi-window.html)
