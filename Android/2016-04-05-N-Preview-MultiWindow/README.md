@@ -21,7 +21,7 @@ AndroidManifest.xml change
                  android:minimalHeight
 
 ## Android Studio 2.1 Beta
-
+new API not found...
 ![build_bug_as_2_1_beta_01.png](https://raw.githubusercontent.com/taehwandev/BlogExample/master/Android/2016-04-05-N-Preview-MultiWindow/images/build_bug_as_2_1_beta_01.png)
 
 Cache clean.
