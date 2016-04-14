@@ -22,6 +22,7 @@ AndroidManifest.xml change
 
 ## Android Studio 2.1 Beta bug
 Android Studio 2.1 Beta bug...
+
 ![build_bug_as_2_1_beta_01.png](https://raw.githubusercontent.com/taehwandev/BlogExample/master/Android/2016-04-05-N-Preview-MultiWindow/images/build_bug_as_2_1_beta_01.png)
 
 
