@@ -3,6 +3,7 @@ package tech.thdev.recycler_lambda_example;
 import android.os.Bundle;
 import android.support.annotation.DrawableRes;
 import android.support.design.widget.BottomSheetBehavior;
+import android.support.design.widget.BottomSheetDialog;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +11,8 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -23,6 +26,9 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Vie
     private FloatingActionButton fab;
     private MainPresenter mainPresenter;
 
+//    private BottomSheetBehavior behavior;
+//    private View bottomSheet;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,16 +38,18 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Vie
 
         mainPresenter = new MainPresenterImpl(this);
 
+//        bottomSheet = findViewById(R.id.rl_bottom_sheet);
+//        behavior = BottomSheetBehavior.from(bottomSheet);
 
         fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(view -> {
+        fab.setOnClickListener(view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show();
-        });
+                    .setAction("Action", null).show()
+        );
 
-        findViewById(R.id.btn_on_click).setOnClickListener(view -> {
-            Snackbar.make(view, "Lambda with your own action", Snackbar.LENGTH_SHORT).show();
-        });
+        findViewById(R.id.btn_on_click).setOnClickListener(view ->
+            Snackbar.make(view, "Lambda with your own action", Snackbar.LENGTH_SHORT).show()
+        );
 
         ArrayList<Image> imageList = new ArrayList<>();
         imageList.add(new Image(R.drawable.sample_image));
@@ -81,10 +89,13 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Vie
 
     @Override
     public void showFlickerImageBottomSheet(@DrawableRes int resource) {
-        Snackbar.make(fab, "LongClickEvent", Snackbar.LENGTH_SHORT).show();
+        BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
+        View view = getLayoutInflater().inflate(R.layout.bottom_sheet_image_view, null);
 
-//        BottomSheetBehavior bottomSheetBehavior = BottomSheetBehavior.from(rlBottomSheet);
-//        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-//        bottomSheetBehavior.setHideable(true);
+        ImageView imageView = (ImageView) view.findViewById(R.id.image);
+        imageView.setImageResource(resource);
+
+        bottomSheetDialog.setContentView(view);
+        bottomSheetDialog.show();
     }
 }
