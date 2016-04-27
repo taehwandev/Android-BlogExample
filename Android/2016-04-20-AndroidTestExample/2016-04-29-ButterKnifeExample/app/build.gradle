@@ -1,0 +1,45 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
+
+android {
+    dexOptions {
+        incremental true
+        // Runtime cpu count
+        maxProcessCount Runtime.getRuntime().availableProcessors()
+        javaMaxHeapSize "2g"
+        dexInProcess true
+    }
+
+    compileSdkVersion 23
+    buildToolsVersion "23.0.3"
+
+    defaultConfig {
+        applicationId "tech.thdev.butter_knife_example"
+        minSdkVersion 16
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    ext {
+        support_library = '23.3.0'
+        butter_knife = '8.0.0'
+    }
+
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+    compile "com.android.support:appcompat-v7:${support_library}"
+    compile "com.android.support:design:${support_library}"
+    compile "com.android.support:recyclerview-v7:${support_library}"
+
+    compile "com.jakewharton:butterknife:${butter_knife}"
+    apt "com.jakewharton:butterknife-compiler:${butter_knife}"
+}
