@@ -4,7 +4,6 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.RelativeLayout;
@@ -37,6 +36,7 @@ public class RadioRecyclerViewActivity extends BaseActivity implements OnRecycle
     FloatingActionButton floatingActionButton;
 
     private float tmpBottomSlideOffset;
+    private BottomSheetBehavior bottomSheetBehavior;
 
     private RadioPresenter radioPresenter;
 
@@ -47,6 +47,33 @@ public class RadioRecyclerViewActivity extends BaseActivity implements OnRecycle
 
     @Override
     protected void onCreate() {
+        bottomSheetBehavior = BottomSheetBehavior.from(rlBottomSheet);
+        bottomSheetBehavior.setPeekHeight((int) TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP, 200.f, getResources().getDisplayMetrics()));
+        bottomSheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
+            @Override
+            public void onStateChanged(@NonNull View bottomSheet, int newState) {
+
+            }
+
+            @Override
+            public void onSlide(@NonNull View bottomSheet, float slideOffset) {
+                if (slideOffset > 0.8) {
+                    if (tmpBottomSlideOffset > slideOffset) {
+                        floatingActionButton.show();
+
+                    } else {
+                        floatingActionButton.hide();
+                    }
+
+                } else {
+                    floatingActionButton.show();
+                }
+
+                tmpBottomSlideOffset = slideOffset;
+            }
+        });
+
         RadioRecyclerAdapter radioRecyclerAdapter = new RadioRecyclerAdapter(this);
         radioRecyclerAdapter.setOnRecyclerItemClickListener(this);
 
@@ -66,39 +93,7 @@ public class RadioRecyclerViewActivity extends BaseActivity implements OnRecycle
     @Override
     public void showBottomSheet(RadioItem item) {
         tvBottomSheetMessage.setText(item.name);
-        BottomSheetBehavior bottomSheetBehavior = BottomSheetBehavior.from(rlBottomSheet);
-        bottomSheetBehavior.setPeekHeight((int) TypedValue.applyDimension(
-                TypedValue.COMPLEX_UNIT_DIP, 200.f, getResources().getDisplayMetrics()));
         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-
-        bottomSheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
-            @Override
-            public void onStateChanged(@NonNull View bottomSheet, int newState) {
-
-            }
-
-            @Override
-            public void onSlide(@NonNull View bottomSheet, float slideOffset) {
-                Log.d("TAG", "slideOffset : " + slideOffset + ", mTmpSlidOffset : " + tmpBottomSlideOffset);
-                if (slideOffset > 0.8) {
-                    if (tmpBottomSlideOffset > slideOffset) {
-                        floatingActionButton.show();
-
-                    } else {
-                        floatingActionButton.hide();
-                    }
-
-                } else if (slideOffset < -0.7) {
-                    if (tmpBottomSlideOffset < slideOffset) {
-                        floatingActionButton.show();
-
-                    } else {
-                        floatingActionButton.hide();
-                    }
-                }
-                tmpBottomSlideOffset = slideOffset;
-            }
-        });
     }
 
     /**
