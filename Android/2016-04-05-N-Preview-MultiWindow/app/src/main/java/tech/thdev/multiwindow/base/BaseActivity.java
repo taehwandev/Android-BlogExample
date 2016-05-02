@@ -1,12 +1,13 @@
 package tech.thdev.multiwindow.base;
 
 import android.os.Bundle;
+import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import tech.thdev.multiwindow.R;
 
@@ -15,38 +16,40 @@ import tech.thdev.multiwindow.R;
  */
 public abstract class BaseActivity extends AppCompatActivity {
 
-    @Nullable @Bind(R.id.toolbar)
-    Toolbar toolBar;
+    @Nullable
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView();
+        setContentView(getLayoutRes());
+
         ButterKnife.bind(this);
+
         setToolBar();
         onCreate();
     }
 
+    /**
+     * ToolBar init
+     */
     protected void setToolBar() {
-        if (toolBar != null) {
+        if (toolbar != null) {
             if (getToolbarTitle() > 0) {
-                toolBar.setTitle(getToolbarTitle());
+                toolbar.setTitle(getToolbarTitle());
             }
-            setSupportActionBar(toolBar);
+            setSupportActionBar(toolbar);
         }
     }
 
-    protected abstract void setContentView();
-
-    protected abstract void onCreate();
-
-    protected @StringRes int getToolbarTitle() {
+    @StringRes
+    protected int getToolbarTitle() {
         return 0;
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        ButterKnife.unbind(this);
-    }
+    @LayoutRes
+    protected abstract int getLayoutRes();
+
+    protected abstract void onCreate();
 }

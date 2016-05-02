@@ -8,8 +8,8 @@ import tech.thdev.multiwindow.base.BaseMultiWindowActivity;
 public class MultiWindowActivity extends BaseMultiWindowActivity {
 
     @Override
-    protected void setContentView() {
-        setContentView(R.layout.activity_multi_window);
+    protected int getLayoutRes() {
+        return R.layout.activity_multi_window;
     }
 
     @Override

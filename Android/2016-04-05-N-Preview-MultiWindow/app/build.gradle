@@ -1,6 +1,15 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
 
 android {
+    dexOptions {
+        incremental true
+        // Runtime cpu count
+        maxProcessCount Runtime.getRuntime().availableProcessors()
+        javaMaxHeapSize "2g"
+        dexInProcess true
+    }
+
     compileSdkVersion 'android-N'
     buildToolsVersion "24.0.0 rc3"
 
@@ -8,8 +17,8 @@ android {
         applicationId "tech.thdev.multiwindow"
         minSdkVersion 'N'
         targetSdkVersion 'N'
-        versionCode 2
-        versionName "1.0.1"
+        versionCode 3
+        versionName "1.0.2"
     }
     buildTypes {
         release {
@@ -20,10 +29,17 @@ android {
 }
 
 dependencies {
+    ext {
+        support_library = '24.0.0-alpha1'
+        butter_knife = '8.0.1'
+    }
+
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:24.0.0-alpha1'
-    compile 'com.android.support:design:24.0.0-alpha1'
-    compile 'com.android.support:recyclerview-v7:24.0.0-alpha1'
-    compile 'com.jakewharton:butterknife:7.0.1'
+    compile "com.android.support:appcompat-v7:${support_library}"
+    compile "com.android.support:design:${support_library}"
+    compile "com.android.support:recyclerview-v7:${support_library}"
+
+    compile "com.jakewharton:butterknife:${butter_knife}"
+    apt "com.jakewharton:butterknife-compiler:${butter_knife}"
 }

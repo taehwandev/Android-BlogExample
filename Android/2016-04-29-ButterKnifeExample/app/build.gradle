@@ -31,7 +31,7 @@ android {
 dependencies {
     ext {
         support_library = '23.3.0'
-        butter_knife = '8.0.0'
+        butter_knife = '8.0.1'
     }
 
     compile fileTree(dir: 'libs', include: ['*.jar'])

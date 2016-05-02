@@ -6,7 +6,7 @@ import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.LinearLayout;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.OnClick;
 import tech.thdev.multiwindow.base.BaseMultiWindowActivity;
 
@@ -15,12 +15,12 @@ import tech.thdev.multiwindow.base.BaseMultiWindowActivity;
  */
 public class MultiWindowTransparentActivity extends BaseMultiWindowActivity {
 
-    @Bind(R.id.ll_transparent_view)
+    @BindView(R.id.ll_transparent_view)
     LinearLayout llTransparentView;
 
     @Override
-    protected void setContentView() {
-        setContentView(R.layout.activity_multi_window);
+    protected int getLayoutRes() {
+        return R.layout.activity_multi_window;
     }
 
     @Override

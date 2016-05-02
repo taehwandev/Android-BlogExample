@@ -12,13 +12,15 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.OnClick;
 import tech.thdev.multiwindow.FreeformModeActivity;
 import tech.thdev.multiwindow.MultiWindowActivity;
 import tech.thdev.multiwindow.MultiWindowTransparentActivity;
 import tech.thdev.multiwindow.R;
 import tech.thdev.multiwindow.adapter.MultiWindowAdapter;
+import tech.thdev.multiwindow.presenter.MultiWindowPresenter;
+import tech.thdev.multiwindow.presenter.view.MultiWindowPresenterView;
 
 /**
  * Created by Tae-hwan on 4/6/16.
@@ -30,21 +32,21 @@ import tech.thdev.multiwindow.adapter.MultiWindowAdapter;
  * - inMultiWindow -> isInMultiWindowMode
  * - onMultiWindowChanged -> onMultiWindowModeChanged
  */
-public abstract class BaseMultiWindowActivity extends BaseActivity {
+public abstract class BaseMultiWindowActivity extends BaseActivity implements MultiWindowPresenterView {
 
-    @Bind(R.id.recycler_view)
+    @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
 
-    private MultiWindowAdapter multiWindowAdapter;
+    protected MultiWindowPresenter multiWindowPresenter;
 
     @Override
     protected void onCreate() {
-        multiWindowAdapter = new MultiWindowAdapter(this, new ArrayList<String>());
+        MultiWindowAdapter multiWindowAdapter = new MultiWindowAdapter(this);
         recyclerView.setAdapter(multiWindowAdapter);
 
-        if (multiWindowAdapter != null) {
-            multiWindowAdapter.addItem("onCreate() isInMultiWindowMode " + isInMultiWindowMode(), true);
-        }
+        multiWindowPresenter = new MultiWindowPresenter(this, multiWindowAdapter);
+
+        addItem("onCreate() isInMultiWindowMode " + isInMultiWindowMode());
     }
 
     @Override
@@ -58,7 +60,6 @@ public abstract class BaseMultiWindowActivity extends BaseActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_multi_window:
-                // TODO Android N Preview 2 is not walking.
                 onMultiWindowModeChanged(!isInMultiWindowMode());
                 Toast.makeText(this, "MultiWindow " + isInMultiWindowMode(), Toast.LENGTH_SHORT).show();
                 return true;
@@ -72,17 +73,15 @@ public abstract class BaseMultiWindowActivity extends BaseActivity {
     protected void onResume() {
         super.onResume();
 
-        if (multiWindowAdapter != null) {
-            multiWindowAdapter.addItem("onResume() isInMultiWindowMode " + isInMultiWindowMode(), true);
-        }
+        addItem("onResume() isInMultiWindowMode " + isInMultiWindowMode());
     }
 
     @Override
     protected void onPause() {
         super.onPause();
 
-        if (multiWindowAdapter != null) {
-            multiWindowAdapter.addItem("onPause() isInMultiWindowMode " + isInMultiWindowMode(), true);
+        if (multiWindowPresenter != null) {
+            multiWindowPresenter.addItem("onPause() isInMultiWindowMode " + isInMultiWindowMode());
         }
     }
 
@@ -90,18 +89,14 @@ public abstract class BaseMultiWindowActivity extends BaseActivity {
     protected void onStart() {
         super.onStart();
 
-        if (multiWindowAdapter != null) {
-            multiWindowAdapter.addItem("onStart() isInMultiWindowMode " + isInMultiWindowMode(), true);
-        }
+        addItem("onStart() isInMultiWindowMode " + isInMultiWindowMode());
     }
 
     @Override
     protected void onStop() {
         super.onStop();
 
-        if (multiWindowAdapter != null) {
-            multiWindowAdapter.addItem("onStop() isInMultiWindowMode " + isInMultiWindowMode(), true);
-        }
+        addItem("onStop() isInMultiWindowMode " + isInMultiWindowMode());
     }
 
     @Override
@@ -138,8 +133,18 @@ public abstract class BaseMultiWindowActivity extends BaseActivity {
         if (newConfig.orientation == Configuration.SCREENLAYOUT_SIZE_SMALL) {
 
         }
-        if (multiWindowAdapter != null) {
-            multiWindowAdapter.addItem("onConfigurationChanged() isInMultiWindowMode " + isInMultiWindowMode() + ", newConfig " + newConfig.orientation, true);
+
+        addItem("onConfigurationChanged() isInMultiWindowMode " + isInMultiWindowMode() + ", newConfig " + newConfig.orientation);
+    }
+
+    private void addItem(String name) {
+        if (multiWindowPresenter != null) {
+            multiWindowPresenter.addItem(name);
         }
+    }
+
+    @Override
+    public void onItemAdded(int size) {
+        recyclerView.scrollToPosition(size - 1);
     }
 }

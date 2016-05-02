@@ -1,50 +1,35 @@
 package tech.thdev.multiwindow.adapter;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
-import java.util.ArrayList;
-
-import tech.thdev.multiwindow.adapter.holder.MultiWindowHolder;
+import tech.thdev.multiwindow.adapter.holder.MultiWindowViewHolder;
+import tech.thdev.multiwindow.adapter.model.MultiWindowDataModel;
+import tech.thdev.multiwindow.base.adapter.BaseRecyclerAdapter;
+import tech.thdev.multiwindow.base.adapter.view.BaseRecyclerViewHolder;
 
 
 /**
  * Created by taehwankwon on 4/4/16.
  */
-public class MultiWindowAdapter extends RecyclerView.Adapter<MultiWindowHolder> {
+public class MultiWindowAdapter extends BaseRecyclerAdapter<String> implements MultiWindowDataModel {
 
-    private ArrayList<String> itemList;
-
-    private Context context;
-
-    public MultiWindowAdapter(Context context, ArrayList<String> itemList) {
-        this.context = context;
-        this.itemList = itemList;
+    public MultiWindowAdapter(Context context) {
+        super(context);
     }
 
     @Override
-    public MultiWindowHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new MultiWindowHolder(context, parent);
+    public BaseRecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        return new MultiWindowViewHolder(parent, this);
     }
 
     @Override
-    public void onBindViewHolder(MultiWindowHolder holder, int position) {
-        holder.onBindViewHolder(itemList.get(position), position);
+    public void add(String name) {
+        addItem(name);
     }
 
     @Override
-    public int getItemCount() {
-        return itemList != null ? itemList.size() : 0;
-    }
-
-    public void addItem(String item, boolean isNotify) {
-        if (itemList != null) {
-            itemList.add(0, item);
-        }
-
-        if (isNotify) {
-            notifyItemInserted(0);
-        }
+    public int getSize() {
+        return getItemCount();
     }
 }
