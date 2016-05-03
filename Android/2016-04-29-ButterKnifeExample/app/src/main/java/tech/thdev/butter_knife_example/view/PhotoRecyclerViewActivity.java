@@ -3,25 +3,31 @@ package tech.thdev.butter_knife_example.view;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.TypedValue;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 
 import butterknife.BindView;
 import tech.thdev.butter_knife_example.R;
-import tech.thdev.butter_knife_example.adapter.RadioRecyclerAdapter;
+import tech.thdev.butter_knife_example.adapter.PhotoRecyclerAdapter;
 import tech.thdev.butter_knife_example.base.BaseActivity;
-import tech.thdev.butter_knife_example.bean.RadioItem;
 import tech.thdev.butter_knife_example.listener.OnRecyclerItemClickListener;
-import tech.thdev.butter_knife_example.presenter.RadioPresenter;
-import tech.thdev.butter_knife_example.presenter.view.RadioPresenterView;
+import tech.thdev.butter_knife_example.network.RetrofitPhoto;
+import tech.thdev.butter_knife_example.network.domain.Photo;
+import tech.thdev.butter_knife_example.presenter.PhotoPresenter;
+import tech.thdev.butter_knife_example.presenter.view.PhotoPresenterView;
 
 /**
- * Created by Tae-hwan on 4/26/16.
+ * Created by Tae-hwan on 5/3/16.
  */
-public class RadioRecyclerViewActivity extends BaseActivity implements OnRecyclerItemClickListener, RadioPresenterView {
+public class PhotoRecyclerViewActivity extends BaseActivity implements PhotoPresenterView {
+
+    private static final int DEFAULT_PAGE = 1;
 
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
@@ -29,20 +35,21 @@ public class RadioRecyclerViewActivity extends BaseActivity implements OnRecycle
     @BindView(R.id.rl_bottom_sheet)
     RelativeLayout rlBottomSheet;
 
-    @BindView(R.id.tv_message)
-    TextView tvBottomSheetMessage;
+    @BindView(R.id.image)
+    ImageView imageView;
 
     @BindView(R.id.fab)
     FloatingActionButton floatingActionButton;
 
+    protected PhotoPresenter photoPresenter;
+    protected PhotoRecyclerAdapter adapter;
+
     private float tmpBottomSlideOffset;
     private BottomSheetBehavior bottomSheetBehavior;
 
-    private RadioPresenter radioPresenter;
-
     @Override
     protected int getLayoutRes() {
-        return R.layout.activity_recycler_view;
+        return R.layout.activity_photo_recycler_view;
     }
 
     @Override
@@ -74,34 +81,34 @@ public class RadioRecyclerViewActivity extends BaseActivity implements OnRecycle
             }
         });
 
-        RadioRecyclerAdapter radioRecyclerAdapter = new RadioRecyclerAdapter(this);
-        radioRecyclerAdapter.setOnRecyclerItemClickListener(this);
+        adapter = new PhotoRecyclerAdapter(this);
+        adapter.setOnRecyclerItemClickListener(new OnRecyclerItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                photoPresenter.photoItemClick(position);
+            }
+        });
 
-        recyclerView.setAdapter(radioRecyclerAdapter);
+        photoPresenter = new PhotoPresenter(this, RetrofitPhoto.getRetrofitPhoto(), adapter);
 
-        // aa
-        radioPresenter = new RadioPresenter(this, radioRecyclerAdapter);
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+        recyclerView.setAdapter(adapter);
 
-        setDummyData();
+        photoPresenter.loadPhotos(DEFAULT_PAGE);
     }
 
     @Override
-    public void onItemClick(int position) {
-        radioPresenter.onRecyclerItemClick(position);
+    public void onRefresh() {
+        adapter.notifyDataSetChanged();
     }
 
     @Override
-    public void showBottomSheet(RadioItem item) {
-        tvBottomSheetMessage.setText(item.name);
+    public void onBottomSheetShow(Photo photo) {
+        Glide.with(this)
+                .load(String.format("https://farm%s.staticflickr.com/%s/%s_%s.jpg", String.valueOf(photo.farm), photo.server, photo.id, photo.secret))
+                .centerCrop()
+                .crossFade()
+                .into(imageView);
         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-    }
-
-    /**
-     * Dummy data add
-     */
-    private void setDummyData() {
-        for (int i = 0; i < 5; i++) {
-            radioPresenter.addItem("Item " + i);
-        }
     }
 }

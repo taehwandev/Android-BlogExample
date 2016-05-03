@@ -14,32 +14,76 @@ android {
     buildToolsVersion "23.0.3"
 
     defaultConfig {
-        applicationId "tech.thdev.butter_knife_example"
+        applicationId "tech.thdev.butterKnife_example"
         minSdkVersion 16
         targetSdkVersion 23
         versionCode 1
         versionName "1.0.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
+        debug {
+            buildConfigField "String", "FLICKER_API_KEY", "\"500774e2117d8ec4e95ff659033754bd\""
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    packagingOptions.excludes = [
+            'META-INF/DEPENDENCIES',
+            'META-INF/LICENSE',
+            'META-INF/LICENSE.txt',
+            'LICENSE.txt',
+            'LICENSE',
+            'META-INF/license.txt',
+            'META-INF/NOTICE',
+            'NOTICE',
+            'asm-license.txt',
+            'META-INF/NOTICE.txt',
+            'META-INF/notice.txt',
+            'META-INF/ASL2.0'
+    ]
 }
 
 dependencies {
     ext {
-        support_library = '23.3.0'
-        butter_knife = '8.0.1'
+        supportLibVersion = '23.3.0'
+        butterKnife = '8.0.1'
+        retrofitVersion = '2.0.2'
+
+        testRunnerVersion = '0.5'
+        espressoVersion= '2.2.1'
+        dexmakerVersion = '1.4'
     }
 
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
-    compile "com.android.support:appcompat-v7:${support_library}"
-    compile "com.android.support:design:${support_library}"
-    compile "com.android.support:recyclerview-v7:${support_library}"
+    compile "com.android.support:appcompat-v7:${supportLibVersion}"
+    compile "com.android.support:design:${supportLibVersion}"
+    compile "com.android.support:recyclerview-v7:${supportLibVersion}"
 
-    compile "com.jakewharton:butterknife:${butter_knife}"
-    apt "com.jakewharton:butterknife-compiler:${butter_knife}"
+    compile "com.jakewharton:butterknife:${butterKnife}"
+    apt "com.jakewharton:butterknife-compiler:${butterKnife}"
+
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+
+    // Network
+    compile "com.squareup.retrofit2:retrofit:${retrofitVersion}"
+    compile "com.squareup.retrofit2:converter-gson:${retrofitVersion}"
+    compile 'com.squareup.okhttp3:logging-interceptor:3.0.1'
+
+    // Android Test
+    // Error:Conflict with dependency 'com.android.support:support-annotations'.
+    // Resolved versions for app (23.3.0) and test app (23.1.1) differ.
+    // See http://g.co/androidstudio/app-test-app-conflict for details.
+    androidTestCompile "com.android.support:support-annotations:${supportLibVersion}"
+    androidTestCompile "com.android.support.test:runner:${testRunnerVersion}"
+    androidTestCompile "com.android.support.test:rules:${testRunnerVersion}"
+    androidTestCompile "com.android.support.test.espresso:espresso-core:${espressoVersion}"
+    androidTestCompile "com.android.support.test.espresso:espresso-intents:${espressoVersion}"
+    androidTestCompile "com.crittercism.dexmaker:dexmaker-mockito:${dexmakerVersion}"
+    androidTestCompile 'com.jayway.awaitility:awaitility:1.7.0'
 }

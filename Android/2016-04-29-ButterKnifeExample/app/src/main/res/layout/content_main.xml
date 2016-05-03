@@ -45,4 +45,11 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/btn_two"
         android:text="@string/recycler_example_activity" />
+
+    <Button
+        android:id="@+id/btn_photo_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_recycler_ex"
+        android:text="@string/photo_recycler_example" />
 </RelativeLayout>

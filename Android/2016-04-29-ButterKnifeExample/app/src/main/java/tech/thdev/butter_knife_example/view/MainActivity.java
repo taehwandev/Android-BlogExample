@@ -73,6 +73,11 @@ public class MainActivity extends BaseActivity {
         startActivity(new Intent(this, RadioRecyclerViewActivity.class));
     }
 
+    @OnClick(R.id.btn_photo_view)
+    public void onClickPhotoView(View view) {
+        startActivity(new Intent(this, PhotoRecyclerViewActivity.class));
+    }
+
     private void showSnackbar(@StringRes int messageRes) {
         showSnackbar(getString(messageRes));
     }

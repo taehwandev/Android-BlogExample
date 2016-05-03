@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="tech.thdev.butter_knife_example">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -19,10 +21,16 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".view.TwoActivity"
+        <activity
+            android:name=".view.TwoActivity"
             android:theme="@style/AppTheme.NoActionBar" />
 
-        <activity android:name=".view.RadioRecyclerViewActivity"
+        <activity
+            android:name=".view.RadioRecyclerViewActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".view.PhotoRecyclerViewActivity"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>
 

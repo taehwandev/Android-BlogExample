@@ -26,7 +26,10 @@
 
         </android.support.design.widget.AppBarLayout>
 
-        <include layout="@layout/content_radio_recycler_view" />
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
     </LinearLayout>
 
     <!-- Bottom sheet -->
@@ -36,7 +39,7 @@
         android:layout_height="match_parent"
         android:background="@android:color/white"
         app:behavior_hideable="true"
-        app:behavior_peekHeight="200dp"
+        app:behavior_peekHeight="250dp"
         app:layout_behavior="@string/bottom_sheet_behavior">
 
         <TextView
@@ -59,13 +62,14 @@
             android:text="Radio button name"
             android:textColor="@android:color/white" />
 
-        <TextView
-            android:id="@+id/tv_message"
+        <ImageView
+            android:id="@+id/image"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_sub_title"
             android:background="@android:color/white"
-            android:padding="10dp" />
+            android:padding="10dp"
+            android:scaleType="centerInside" />
     </RelativeLayout>
 
     <android.support.design.widget.FloatingActionButton

@@ -36,7 +36,7 @@ public abstract class BaseRecyclerView<AD extends BaseRecyclerAdapter, T> extend
         return adapter;
     }
 
-    protected Context context() {
+    protected Context getContext() {
         return adapter.getContext();
     }
 }
