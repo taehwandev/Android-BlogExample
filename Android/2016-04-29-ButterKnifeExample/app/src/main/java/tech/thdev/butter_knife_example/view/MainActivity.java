@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.List;
@@ -19,6 +20,7 @@ import butterknife.OnClick;
 import butterknife.OnLongClick;
 import tech.thdev.butter_knife_example.R;
 import tech.thdev.butter_knife_example.base.BaseActivity;
+import tech.thdev.butter_knife_example.constant.Constant;
 
 public class MainActivity extends BaseActivity {
 
@@ -37,8 +39,11 @@ public class MainActivity extends BaseActivity {
     @BindView(R.id.btn_two)
     Button buttonTwo;
 
-    @BindViews({R.id.text_one, R.id.text_two})
+    @BindViews({R.id.text_one})
     List<TextView> nameViews;
+
+    @BindView(R.id.et_message)
+    EditText etMessage;
 
     @Override
     protected int getLayoutRes() {
@@ -65,7 +70,9 @@ public class MainActivity extends BaseActivity {
 
     @OnClick(R.id.btn_two)
     public void onClickBtnTwo(View view) {
-        startActivity(new Intent(this, TwoActivity.class));
+        Intent intent = new Intent(this, TwoActivity.class);
+        intent.putExtra(Constant.KEY_INTENT_MESSAGE, etMessage.getText().toString());
+        startActivity(intent);
     }
 
     @OnClick(R.id.btn_recycler_ex)

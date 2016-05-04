@@ -7,61 +7,9 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/activity_multi_window">
 
-    <LinearLayout
-        android:id="@+id/ll_button_view"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/btn_multi_window_example"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="@string/multi_window_example" />
-
-        <Button
-            android:id="@+id/btn_freeform_mode_example"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="@string/freeform_mode_example" />
-
-        <Button
-            android:id="@+id/btn_transparent_example"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="@string/multi_window_transparent_example" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/ll_transparent_view"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_below="@id/ll_button_view"
-        android:visibility="gone">
-
-        <Button
-            android:id="@+id/btn_transparent_activity"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="Show transparent activity" />
-
-        <Button
-            android:id="@+id/btn_dialog"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="Show dialog" />
-    </LinearLayout>
-
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/ll_transparent_view"
         app:layoutManager="LinearLayoutManager" />
 </RelativeLayout>

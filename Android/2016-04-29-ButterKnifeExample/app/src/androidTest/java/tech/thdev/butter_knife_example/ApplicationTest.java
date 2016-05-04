@@ -1,4 +1,4 @@
-package tech.thdev.a2016_04_29_butterknifeexample;
+package tech.thdev.butter_knife_example;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

@@ -1,6 +1,7 @@
 package tech.thdev.butter_knife_example.presenter;
 
 import android.support.test.runner.AndroidJUnit4;
+import android.util.Log;
 
 import org.junit.runner.RunWith;
 import org.mockito.invocation.InvocationOnMock;
@@ -60,11 +61,6 @@ public class PhotoPresenterTest {
 
         // then
         verify(photoPresenterView).onBottomSheetShow((Photo) any());
-
-        /* The testing thread will wait here until the UI thread releases it
-        * above with the countDown() or 5 seconds passes and it times out.
-        */
-        signal.await(5, TimeUnit.SECONDS);
     }
 
     private void loadPhotos() {
@@ -73,20 +69,26 @@ public class PhotoPresenterTest {
             @Override
             public Object answer(InvocationOnMock invocationOnMock) throws Throwable {
                 finish[0] = true;
+                Log.e("TAG", "doAnswer");
                 return invocationOnMock;
             }
         }).when(photoPresenterView).onRefresh();
 
+        Log.e("TAG", "photoLoad before");
         photoPresenter.loadPhotos(1);
+        Log.e("TAG", "photoLoad after");
 
         await().until(new Runnable() {
             @Override
             public void run() {
                 while (!finish[0]) {
+                    Log.e("TAG", "await : finish " + finish[0]);
                     verify(photoDataModel, atLeastOnce()).add((Photo) any());
                 }
-                verify(photoPresenterView).onRefresh();
             }
         });
+
+        Log.d("TAG", "onRefresh");
+        verify(photoPresenterView).onRefresh();
     }
 }

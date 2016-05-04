@@ -1,5 +1,6 @@
 package tech.thdev.butter_knife_example.view;
 
+import android.support.design.widget.BottomSheetBehavior;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
@@ -8,12 +9,9 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import tech.thdev.butter_knife_example.R;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 
-import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.assertion.ViewAssertions.matches;
-import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static com.jayway.awaitility.Awaitility.await;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -24,6 +22,9 @@ import static org.hamcrest.Matchers.greaterThan;
  */
 @RunWith(AndroidJUnit4.class)
 public class PhotoRecyclerViewActivityTest {
+
+    // create  a signal to let us know when our task is done.
+    private final CountDownLatch signal = new CountDownLatch(1);
 
     @Rule
     public ActivityTestRule<PhotoRecyclerViewActivity> rule = new ActivityTestRule<>(PhotoRecyclerViewActivity.class);
@@ -50,7 +51,7 @@ public class PhotoRecyclerViewActivityTest {
     @Test
     public void testItemLoad() throws Exception {
         if (activity.adapter != null) {
-            assertThat(activity.adapter.getSize(), is(greaterThan(100)));
+            assertThat(activity.adapter.getSize(), is(greaterThan(10)));
         }
     }
 
@@ -64,7 +65,12 @@ public class PhotoRecyclerViewActivityTest {
             }
         });
 
-        onView(withId(R.id.rl_bottom_sheet))
-                .check(matches(isDisplayed()));
+        signal.await(1, TimeUnit.SECONDS);
+
+        activity.bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+
+        signal.await(1, TimeUnit.SECONDS);
+
+        activity.bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
     }
 }

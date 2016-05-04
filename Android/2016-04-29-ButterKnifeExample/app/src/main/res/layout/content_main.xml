@@ -25,18 +25,18 @@
         android:layout_below="@id/text_one"
         android:text="Button one" />
 
-    <TextView
-        android:id="@+id/text_two"
+    <EditText
+        android:id="@+id/et_message"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/btn_one"
-        android:text="TextView two" />
+        android:text="EditText example" />
 
     <Button
         android:id="@+id/btn_two"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/text_two"
+        android:layout_below="@id/et_message"
         android:text="Button two" />
 
     <Button

@@ -45,7 +45,7 @@ public class PhotoRecyclerViewActivity extends BaseActivity implements PhotoPres
     protected PhotoRecyclerAdapter adapter;
 
     private float tmpBottomSlideOffset;
-    private BottomSheetBehavior bottomSheetBehavior;
+    protected BottomSheetBehavior bottomSheetBehavior;
 
     @Override
     protected int getLayoutRes() {
