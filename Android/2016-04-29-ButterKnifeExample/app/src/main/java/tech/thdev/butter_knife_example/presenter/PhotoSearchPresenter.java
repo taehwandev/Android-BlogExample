@@ -12,24 +12,25 @@ import tech.thdev.butter_knife_example.network.domain.Photo;
 import tech.thdev.butter_knife_example.network.domain.PhotosPageInfo;
 import tech.thdev.butter_knife_example.network.domain.RecentPhotoResponse;
 import tech.thdev.butter_knife_example.presenter.view.PhotoPresenterView;
+import tech.thdev.butter_knife_example.presenter.view.PhotoSearchPresenterView;
 
 /**
  * Created by Tae-hwan on 5/3/16.
  */
-public class PhotoPresenter extends BasePresenter<PhotoPresenterView> {
+public class PhotoSearchPresenter extends BasePresenter<PhotoSearchPresenterView> {
 
     private PhotoDataModel photoDataModel;
     private RetrofitPhoto retrofitPhoto;
 
-    public PhotoPresenter(PhotoPresenterView view, RetrofitPhoto retrofitPhoto, PhotoDataModel photoDataModel) {
+    public PhotoSearchPresenter(PhotoSearchPresenterView view, RetrofitPhoto retrofitPhoto, PhotoDataModel photoDataModel) {
         super(view);
 
         this.retrofitPhoto = retrofitPhoto;
         this.photoDataModel = photoDataModel;
     }
 
-    public void loadPhotos(final int page) {
-        Call<RecentPhotoResponse> photos = retrofitPhoto.getRecentPhoto(page);
+    public void loadSearchPhotos(int perPage, int page, String text) {
+        Call<RecentPhotoResponse> photos = retrofitPhoto.getSearchPhoto(perPage, page, text);
         photos.enqueue(new Callback<RecentPhotoResponse>() {
             @Override
             public void onResponse(Call<RecentPhotoResponse> call, Response<RecentPhotoResponse> response) {

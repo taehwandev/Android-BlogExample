@@ -6,4 +6,5 @@
     <string name="btn_one_message_long_click">One Message long click</string>
     <string name="recycler_example_activity">Recycler example activity</string>
     <string name="photo_recycler_example">Photo Recycler Example</string>
+    <string name="photo_search_recycler_example">Photo recycler search example</string>
 </resources>

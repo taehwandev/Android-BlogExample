@@ -32,6 +32,9 @@
         <activity
             android:name=".view.PhotoRecyclerViewActivity"
             android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity android:name=".view.PhotoSearchRecyclerViewActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

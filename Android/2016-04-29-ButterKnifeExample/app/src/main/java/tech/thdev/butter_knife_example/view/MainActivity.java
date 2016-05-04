@@ -85,6 +85,11 @@ public class MainActivity extends BaseActivity {
         startActivity(new Intent(this, PhotoRecyclerViewActivity.class));
     }
 
+    @OnClick(R.id.btn_photo_search_view)
+    public void onClickPhotoSearchView(View view) {
+        startActivity(new Intent(this, PhotoSearchRecyclerViewActivity.class));
+    }
+
     private void showSnackbar(@StringRes int messageRes) {
         showSnackbar(getString(messageRes));
     }

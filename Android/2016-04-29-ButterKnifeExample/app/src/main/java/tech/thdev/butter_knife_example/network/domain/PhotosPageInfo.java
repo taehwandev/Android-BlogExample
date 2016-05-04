@@ -2,7 +2,7 @@ package tech.thdev.butter_knife_example.network.domain;
 
 import java.util.List;
 
-public class Photos {
+public class PhotosPageInfo {
 
     public int page;
     public int pages;
