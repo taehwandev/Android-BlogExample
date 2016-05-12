@@ -4,7 +4,7 @@ import android.support.design.widget.BottomSheetBehavior;
 import android.view.View;
 import android.widget.RelativeLayout;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.OnClick;
 import tech.thdev.bottom_sheet.base.BaseActivity;
 
@@ -13,12 +13,12 @@ import tech.thdev.bottom_sheet.base.BaseActivity;
  */
 public class BottomSheetActivity extends BaseActivity {
 
-    @Bind(R.id.rl_bottom_sheet)
+    @BindView(R.id.rl_bottom_sheet)
     RelativeLayout rlBottomSheet;
 
     @Override
-    protected void setContentView() {
-        setContentView(R.layout.activity_bottom_sheet);
+    protected int getLayoutRes() {
+        return R.layout.activity_bottom_sheet;
     }
 
     @Override

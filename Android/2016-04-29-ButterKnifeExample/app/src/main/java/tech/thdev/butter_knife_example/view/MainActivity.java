@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.annotation.StringRes;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindString;
@@ -20,10 +22,14 @@ import butterknife.OnClick;
 import butterknife.OnLongClick;
 import tech.thdev.butter_knife_example.R;
 import tech.thdev.butter_knife_example.base.BaseActivity;
+import tech.thdev.butter_knife_example.bean.RadioItem;
 import tech.thdev.butter_knife_example.constant.Constant;
 
 public class MainActivity extends BaseActivity {
 
+    /**
+     * get String res
+     */
     @BindString(R.string.btn_one_message)
     String btnOneMessage;
 

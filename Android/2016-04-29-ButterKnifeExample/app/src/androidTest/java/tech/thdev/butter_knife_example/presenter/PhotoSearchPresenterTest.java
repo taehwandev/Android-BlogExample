@@ -30,9 +30,6 @@ import static org.mockito.Mockito.when;
 @RunWith(AndroidJUnit4.class)
 public class PhotoSearchPresenterTest {
 
-    // create  a signal to let us know when our task is done.
-    final CountDownLatch signal = new CountDownLatch(1);
-
     private PhotoSearchPresenter photoSearchPresenter;
     private PhotoSearchPresenterView photoSearchPresenterView;
     private PhotoDataModel photoDataModel;
