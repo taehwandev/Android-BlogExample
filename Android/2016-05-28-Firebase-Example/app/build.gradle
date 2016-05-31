@@ -28,6 +28,8 @@ android {
     }
 }
 
+
+
 dependencies {
     ext {
         supportLibVersion = '23.4.0'
@@ -40,6 +42,12 @@ dependencies {
     compile "com.android.support:design:${supportLibVersion}"
     compile "com.android.support:recyclerview-v7:${supportLibVersion}"
 
+    compile 'com.google.firebase:firebase-auth:9.0.1'
+    compile 'com.google.android.gms:play-services-auth:9.0.1'
+    compile 'com.google.android.gms:play-services:9.0.1'
+
     compile "com.jakewharton:butterknife:${butterKnife}"
     apt "com.jakewharton:butterknife-compiler:${butterKnife}"
 }
+
+apply plugin: 'com.google.gms.google-services'
