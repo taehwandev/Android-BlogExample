@@ -1,5 +1,6 @@
 package tech.thdev.recycler_lambda_example;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.DrawableRes;
 import android.support.design.widget.BottomSheetBehavior;
@@ -15,6 +16,11 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.appindexing.Thing;
+import com.google.android.gms.common.api.GoogleApiClient;
+
 import java.util.ArrayList;
 
 import tech.thdev.recycler_lambda_example.adapter.ImageViewRecyclerAdapter;
@@ -25,6 +31,11 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Vie
 
     private FloatingActionButton fab;
     private MainPresenter mainPresenter;
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    private GoogleApiClient client;
 
 //    private BottomSheetBehavior behavior;
 //    private View bottomSheet;
@@ -43,13 +54,14 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Vie
 
         fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show()
         );
 
-        findViewById(R.id.btn_on_click).setOnClickListener(view ->
-            Snackbar.make(view, "Lambda with your own action", Snackbar.LENGTH_SHORT).show()
-        );
+        findViewById(R.id.btn_on_click).setOnClickListener(view -> {
+            Snackbar.make(view, "Lambda with your own action", Snackbar.LENGTH_SHORT).show();
+            Toast.makeText(this, "aaa", Toast.LENGTH_SHORT).show();
+        });
 
         ArrayList<Image> imageList = new ArrayList<>();
         imageList.add(new Image(R.drawable.sample_image));
@@ -63,6 +75,9 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Vie
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         recyclerView.setAdapter(adapter);
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
     @Override
@@ -97,5 +112,41 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Vie
 
         bottomSheetDialog.setContentView(view);
         bottomSheetDialog.show();
+    }
+
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    public Action getIndexApiAction() {
+        Thing object = new Thing.Builder()
+                .setName("Main Page") // TODO: Define a title for the content shown.
+                // TODO: Make sure this auto-generated URL is correct.
+                .setUrl(Uri.parse("http://[ENTER-YOUR-URL-HERE]"))
+                .build();
+        return new Action.Builder(Action.TYPE_VIEW)
+                .setObject(object)
+                .setActionStatus(Action.STATUS_TYPE_COMPLETED)
+                .build();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client.connect();
+        AppIndex.AppIndexApi.start(client, getIndexApiAction());
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        AppIndex.AppIndexApi.end(client, getIndexApiAction());
+        client.disconnect();
     }
 }
