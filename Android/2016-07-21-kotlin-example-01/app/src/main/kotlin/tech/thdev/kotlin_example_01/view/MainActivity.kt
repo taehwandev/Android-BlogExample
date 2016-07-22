@@ -8,7 +8,9 @@ import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
 import tech.thdev.kotlin_example_01.R
+import tech.thdev.kotlin_example_01.network.RetrofitFlicker
 import tech.thdev.kotlin_example_01.util.setContentFragment
+import tech.thdev.kotlin_example_01.view.presenter.MainPresenter
 
 class MainActivity : AppCompatActivity() {
 
@@ -19,7 +21,10 @@ class MainActivity : AppCompatActivity() {
         val toolbar = findViewById(R.id.toolbar) as Toolbar
         setSupportActionBar(toolbar)
 
-        setContentFragment(R.id.frame_layout, MainFragment.instance())
+        val fragment: MainFragment = MainFragment()
+        setContentFragment(R.id.frame_layout, fragment)
+
+        MainPresenter(RetrofitFlicker()).attachView(fragment)
 
         val fab = findViewById(R.id.fab) as FloatingActionButton
         fab.setOnClickListener { Snackbar.make(it, "Replace with your own action", Snackbar.LENGTH_LONG).setAction("Action", null).show() }
