@@ -16,13 +16,13 @@ android {
     }
     buildTypes {
         debug {
-            buildConfigField "String", "FLICKER_API_KEY", "\"500774e2117d8ec4e95ff659033754bd\""
+            buildConfigField "String", "FLICKR_API_KEY", "\"500774e2117d8ec4e95ff659033754bd\""
         }
 
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            buildConfigField "String", "FLICKER_API_KEY", "\"500774e2117d8ec4e95ff659033754bd\""
+            buildConfigField "String", "FLICKR_API_KEY", "\"500774e2117d8ec4e95ff659033754bd\""
         }
     }
     sourceSets {
@@ -36,13 +36,14 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 
+    testCompile 'junit:junit:4.12'
+
     compile rootProject.ext.appCompat
     compile rootProject.ext.design
     compile rootProject.ext.recyclerView
 
     compile rootProject.ext.constraintLayout
 
-    testCompile 'junit:junit:4.12'
 
     // Kotlin
     compile rootProject.ext.kotlin
@@ -63,6 +64,7 @@ dependencies {
 
     compile rootProject.ext.glide
 }
+
 repositories {
     mavenCentral()
 }

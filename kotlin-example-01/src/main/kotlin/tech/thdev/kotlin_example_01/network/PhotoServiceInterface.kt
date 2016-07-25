@@ -11,6 +11,12 @@ import tech.thdev.kotlin_example_01.model.PhotoResponse
  */
 interface PhotoServiceInterface {
 
-    @GET("?format=json&nojsoncallback=1&method=flickr.interestingness.getList&api_key=" + BuildConfig.FLICKER_API_KEY)
-    fun getObservableFlickrPhotos(@Query("page") page: Int): Observable<PhotoResponse>
+    @GET("?method=flickr.interestingness.getList&format=json&nojsoncallback=1&api_key=" + BuildConfig.FLICKR_API_KEY)
+    fun getRecentFlickrPhotos(@Query("page") page: Int): Observable<PhotoResponse>
+
+    @GET("?method=flickr.photos.search&format=json&nojsoncallback=1&apk_key=" + BuildConfig.FLICKR_API_KEY)
+    fun getFlickrPhotosSearch(
+        @Query("page") page: Int,
+        @Query("safe_search") safeSearch: Int,
+        @Query("text") text: String): Observable<PhotoResponse>
 }

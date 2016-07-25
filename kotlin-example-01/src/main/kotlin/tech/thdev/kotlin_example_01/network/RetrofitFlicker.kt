@@ -13,6 +13,8 @@ import tech.thdev.kotlin_example_01.model.PhotoResponse
  */
 class RetrofitFlicker {
 
+    val FLICKER_URL: String = "https://api.flickr.com/services/rest/"
+
     private val photoApi: PhotoServiceInterface
 
     init {
@@ -21,15 +23,28 @@ class RetrofitFlicker {
         photoApi = retrofit.create(PhotoServiceInterface::class.java)
     }
 
-    fun getRecentPhotos(page: Int) : Observable<PhotoResponse> = photoApi.getObservableFlickrPhotos(page)
+    /**
+     * get Recent photo list
+     */
+    fun getRecentPhotos(page: Int) :
+            Observable<PhotoResponse> = photoApi.getRecentFlickrPhotos(page)
+
+    /**
+     * Search photo list
+     */
+    fun getSearchPhotos(page: Int, safeSearch: Int, text: String):
+            Observable<PhotoResponse> = photoApi.getFlickrPhotosSearch(page, safeSearch, text)
 
 
+    /**
+     * Retrofit create
+     */
     private fun create(): Retrofit {
         val interceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
         val client = OkHttpClient.Builder().addInterceptor(interceptor).build()
 
         return Retrofit.Builder()
-                .baseUrl("https://api.flickr.com/services/rest/")
+                .baseUrl(FLICKER_URL)
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())

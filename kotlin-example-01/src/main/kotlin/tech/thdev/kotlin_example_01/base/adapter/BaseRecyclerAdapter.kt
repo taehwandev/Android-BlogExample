@@ -2,7 +2,6 @@ package tech.thdev.kotlin_example_01.base.adapter
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
-import android.view.ViewGroup
 import tech.thdev.kotlin_example_01.base.model.BaseItem
 import java.util.*
 
@@ -17,11 +16,13 @@ abstract class BaseRecyclerAdapter<ITEM: BaseItem>(val context: Context) : Recyc
         holder?.onViewHolder(getItem(position), position)
     }
 
+    // ?.let { } - safe call == if (null != obj) { }
     override fun getItemViewType(position: Int): Int {
         getItem(position)?.let { return it.viewType }
         return super.getItemViewType(position)
     }
 
+    // Position >= or Position < 0 is null return
     fun getItem(position: Int): ITEM? = itemList.getOrNull(position)
 
     fun removeItem(position: Int) {

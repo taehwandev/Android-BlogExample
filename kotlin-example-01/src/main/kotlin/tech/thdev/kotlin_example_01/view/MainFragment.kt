@@ -1,16 +1,17 @@
 package tech.thdev.kotlin_example_01.view
 
+import android.app.SearchManager
+import android.content.Context
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
+import android.support.v4.view.MenuItemCompat
 import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.SearchView
 import android.support.v7.widget.StaggeredGridLayoutManager
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Toast
 import tech.thdev.kotlin_example_01.R
-import tech.thdev.kotlin_example_01.base.BaseFragment
+import tech.thdev.kotlin_example_01.base.view.BaseFragment
 import tech.thdev.kotlin_example_01.view.adapter.PhotoAdapter
 import tech.thdev.kotlin_example_01.view.presenter.MainContract
 
@@ -25,8 +26,14 @@ class MainFragment : BaseFragment<MainContract.Presenter>(), MainContract.View {
     private var adapter: PhotoAdapter? = null
     private lateinit var recyclerView: RecyclerView
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+
+    // ?.let { } = Safe calls == if (null != obj) { }
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?):
-            View? = inflater!!.inflate(R.layout.fragment_main, container, false)
+            View? = inflater?.let { it.inflate(R.layout.fragment_main, container, false) }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -59,6 +66,18 @@ class MainFragment : BaseFragment<MainContract.Presenter>(), MainContract.View {
     override fun onDestroy() {
         super.onDestroy()
         recyclerView.removeOnScrollListener(InfiniteScrollListener({ presenter()?.loadPhotos(page) }, recyclerView.layoutManager as StaggeredGridLayoutManager))
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+
+        inflater?.inflate(R.menu.menu_search, menu)
+
+        var searchView: SearchView? = MenuItemCompat.getActionView(menu?.findItem(R.id.action_search)) as SearchView
+        val searchManager: SearchManager? = activity.getSystemService(Context.SEARCH_SERVICE) as SearchManager
+
+//        searchView?.setOnQueryTextListener()
+
+        super.onCreateOptionsMenu(menu, inflater)
     }
 
     inner class InfiniteScrollListener(
