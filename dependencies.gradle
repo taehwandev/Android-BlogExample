@@ -1,0 +1,21 @@
+ext {
+    // Build SDK version
+    buildToolsVersion = '24.0.1'
+    compileSdkVersion = 24
+    targetSdkVersion = 24
+
+
+    // Dependencies version
+    supportLibraryVersion = '24.1.1'
+    butterKnifeVersion = '8.2.1'
+
+
+    // Dependencies
+    appCompat = "com.android.support:appcompat-v7:${rootProject.ext.supportLibraryVersion}"
+    recyclerView = "com.android.support:recyclerview-v7:${rootProject.ext.supportLibraryVersion}"
+    design = "com.android.support:design:${rootProject.ext.supportLibraryVersion}"
+
+    // ButterKnife
+    butterKnife = "com.jakewharton:butterknife:${rootProject.ext.butterKnifeVersion}"
+    butterKnifeCompiler = "com.jakewharton:butterknife-compiler:${rootProject.ext.butterKnifeVersion}"
+}
