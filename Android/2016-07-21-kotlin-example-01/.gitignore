@@ -1,9 +1,0 @@
-*.iml
-.gradle
-/local.properties
-/gradle.properties
-.DS_Store
-/build
-/.idea
-/captures
-.externalNativeBuild
