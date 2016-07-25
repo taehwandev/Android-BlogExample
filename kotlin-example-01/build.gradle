@@ -1,0 +1,68 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+        applicationId "tech.thdev.kotlin_example_01"
+        minSdkVersion 16
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        debug {
+            buildConfigField "String", "FLICKER_API_KEY", "\"500774e2117d8ec4e95ff659033754bd\""
+        }
+
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "FLICKER_API_KEY", "\"500774e2117d8ec4e95ff659033754bd\""
+        }
+    }
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+
+    compile rootProject.ext.appCompat
+    compile rootProject.ext.design
+    compile rootProject.ext.recyclerView
+
+    compile rootProject.ext.constraintLayout
+
+    testCompile 'junit:junit:4.12'
+
+    // Kotlin
+    compile rootProject.ext.kotlin
+
+    // Network
+    // http://square.github.io/retrofit/
+    compile rootProject.ext.retrofit
+    compile rootProject.ext.retrofitConverterGson
+    compile rootProject.ext.retrofitRxJava
+    // https://github.com/square/okhttp
+    compile rootProject.ext.okhttp
+    compile rootProject.ext.okhttpLoggingInterceptor
+
+    // RX
+    // https://github.com/ReactiveX/RxAndroid
+    compile rootProject.ext.rxAndroid
+    compile rootProject.ext.rxJava
+
+    compile rootProject.ext.glide
+}
+repositories {
+    mavenCentral()
+}

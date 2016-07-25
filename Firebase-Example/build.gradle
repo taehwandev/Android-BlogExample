@@ -1,0 +1,43 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+        applicationId "tech.thdev.firebase_example"
+        minSdkVersion 16
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    dexOptions {
+        // Runtime cpu count
+        maxProcessCount Runtime.getRuntime().availableProcessors()
+        javaMaxHeapSize "2g"
+        dexInProcess true
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+
+    compile rootProject.ext.appCompat
+    compile rootProject.ext.design
+    compile rootProject.ext.recyclerView
+
+    compile 'com.google.firebase:firebase-auth:9.0.1'
+    compile rootProject.ext.playServicesAuth
+    compile rootProject.ext.playServices
+
+    compile rootProject.ext.butterKnife
+    apt rootProject.ext.butterKnifeCompiler
+}

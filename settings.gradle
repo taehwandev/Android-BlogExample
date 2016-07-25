@@ -1,1 +1,6 @@
-include ':2016-04-05-N-MultiWindow', ':2016-07-25-BottomSheet'
+include ':2016-04-05-N-MultiWindow'
+include ':2016-04-20-AndroidTestExample'
+include ':2016-05-08-Android-Overlay-Permission-Example'
+include ':BottomSheet', ':N-Recycler-Lambda-Example',
+        ':ButterKnifeExample', ':Firebase-Example',
+        ':kotlin-example-01'

@@ -1,0 +1,82 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.3"
+
+    defaultConfig {
+        applicationId "tech.thdev.butterKnife_example"
+        minSdkVersion 16
+        targetSdkVersion 23
+        versionCode 2
+        versionName "1.0.2"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        debug {
+            buildConfigField "String", "FLICKER_API_KEY", "\"500774e2117d8ec4e95ff659033754bd\""
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    dexOptions {
+        // Runtime cpu count
+        maxProcessCount Runtime.getRuntime().availableProcessors()
+        javaMaxHeapSize "2g"
+        dexInProcess true
+    }
+
+    packagingOptions.excludes = [
+            'META-INF/DEPENDENCIES',
+            'META-INF/LICENSE',
+            'META-INF/LICENSE.txt',
+            'LICENSE.txt',
+            'LICENSE',
+            'META-INF/license.txt',
+            'META-INF/NOTICE',
+            'NOTICE',
+            'asm-license.txt',
+            'META-INF/NOTICE.txt',
+            'META-INF/notice.txt',
+            'META-INF/ASL2.0'
+    ]
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+
+    compile rootProject.ext.appCompat
+    compile rootProject.ext.design
+    compile rootProject.ext.recyclerView
+
+    compile rootProject.ext.butterKnife
+    apt rootProject.ext.butterKnifeCompiler
+
+    compile rootProject.ext.glide
+
+    // Network
+    compile rootProject.ext.retrofit
+    compile rootProject.ext.retrofitConverterGson
+    compile rootProject.ext.okhttpLoggingInterceptor
+
+    // Android Test
+    // Error:Conflict with dependency 'com.android.support:support-annotations'.
+    // Resolved versions for app (23.3.0) and test app (23.1.1) differ.
+    // See http://g.co/androidstudio/app-test-app-conflict for details.
+    androidTestCompile rootProject.ext.annotations
+
+    androidTestCompile rootProject.ext.testRunner
+    androidTestCompile rootProject.ext.testRules
+
+    androidTestCompile rootProject.ext.espressoCore
+    androidTestCompile rootProject.ext.espressoIntents
+
+    androidTestCompile rootProject.ext.dexmakerMockito
+    androidTestCompile rootProject.ext.awaitility
+}

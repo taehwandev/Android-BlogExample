@@ -7,15 +7,75 @@ ext {
 
     // Dependencies version
     supportLibraryVersion = '24.1.1'
+    constraintLayoutVersion = '1.0.0-alpha4'
+    playServicesVersion = '9.2.1'
+
+    // Bind view
     butterKnifeVersion = '8.2.1'
 
+    kotlin_version = '1.0.3'
 
-    // Dependencies
-    appCompat = "com.android.support:appcompat-v7:${rootProject.ext.supportLibraryVersion}"
-    recyclerView = "com.android.support:recyclerview-v7:${rootProject.ext.supportLibraryVersion}"
-    design = "com.android.support:design:${rootProject.ext.supportLibraryVersion}"
+    retrofitVersion = '2.1.0'
+    okhttpVersion = '3.3.1'
+
+    // Testing-only
+    testLibVersion = '0.5'
+    espressoLibVersion = '2.2.1'
+    dexmakerVersion = '1.4'
+
+
+    // Support library Dependencies
+    appCompat = "com.android.support:appcompat-v7:$rootProject.ext.supportLibraryVersion"
+    recyclerView = "com.android.support:recyclerview-v7:$rootProject.ext.supportLibraryVersion"
+    design = "com.android.support:design:$rootProject.ext.supportLibraryVersion"
+    annotations = "com.android.support:support-annotations:$rootProject.ext.supportLibraryVersion"
+
+    // Alpha
+    constraintLayout = "com.android.support.constraint:constraint-layout:$rootProject.ext.constraintLayoutVersion"
 
     // ButterKnife
-    butterKnife = "com.jakewharton:butterknife:${rootProject.ext.butterKnifeVersion}"
-    butterKnifeCompiler = "com.jakewharton:butterknife-compiler:${rootProject.ext.butterKnifeVersion}"
+    butterKnife = "com.jakewharton:butterknife:$rootProject.ext.butterKnifeVersion"
+    butterKnifeCompiler = "com.jakewharton:butterknife-compiler:$rootProject.ext.butterKnifeVersion"
+
+    // Google Play services
+    playServices = "com.google.android.gms:play-services:$rootProject.ext.playServicesVersion"
+    playServicesAuth = "com.google.android.gms:play-services-auth:$rootProject.ext.playServicesVersion"
+
+    // Kotlin
+    kotlin = "org.jetbrains.kotlin:kotlin-stdlib:$rootProject.ext.kotlin_version"
+
+    // Network
+    // http://square.github.io/retrofit/
+    retrofit = "com.squareup.retrofit2:retrofit:$rootProject.ext.retrofitVersion"
+    retrofitConverterGson = "com.squareup.retrofit2:converter-gson:$rootProject.ext.retrofitVersion"
+    retrofitRxJava = "com.squareup.retrofit2:adapter-rxjava:$rootProject.ext.retrofitVersion"
+
+    // OKHTTP3
+    // https://github.com/square/okhttp
+    okhttp = "com.squareup.okhttp3:okhttp:$rootProject.ext.okhttpVersion"
+    okhttpLoggingInterceptor = "com.squareup.okhttp3:logging-interceptor:$rootProject.ext.okhttpVersion"
+
+    // RX
+    // https://github.com/ReactiveX/RxAndroid
+    rxAndroid = 'io.reactivex:rxandroid:1.2.1'
+    rxJava = 'io.reactivex:rxjava:1.1.6'
+
+    // Image Library
+    glide = 'com.github.bumptech.glide:glide:3.7.0'
+
+
+    // Testing-only dependencies
+    testRunner = "com.android.support.test:runner:$rootProject.ext.testLibVersion"
+    testRules = "com.android.support.test:rules:$rootProject.ext.testLibVersion"
+
+    espressoCore = "com.android.support.test.espresso:espresso-core:$rootProject.ext.espressoLibVersion"
+
+    // add this for intent mocking support
+    espressoIntents = "com.android.support.test.espresso:espresso-intents:$rootProject.ext.espressoLibVersion"
+
+    // add this for webview testing support
+//    androidTestCompile "com.android.support.test.espresso:espresso-web:${espressoLibVersion}"
+
+    dexmakerMockito = "com.crittercism.dexmaker:dexmaker-mockito:$rootProject.ext.dexmakerVersion"
+    awaitility = 'com.jayway.awaitility:awaitility:1.7.0'
 }
