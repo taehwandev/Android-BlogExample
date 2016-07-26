@@ -5,5 +5,5 @@ package tech.thdev.kotlin_example_01.base.presenter
  */
 interface BaseView<in P> {
 
-    fun setPresenter(presenter: P)
+    fun onPresenter(presenter: P)
 }

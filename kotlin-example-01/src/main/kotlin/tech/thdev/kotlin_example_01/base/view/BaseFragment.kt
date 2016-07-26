@@ -8,20 +8,19 @@ import tech.thdev.kotlin_example_01.base.presenter.BaseView
  * Created by Tae-hwan on 7/21/16.
  */
 
-abstract class BaseFragment<P: BasePresenter<*>>() : Fragment(), BaseView<P> {
+abstract class BaseFragment<P : BasePresenter<*>>() : Fragment(), BaseView<P> {
 
-    private var presenter: P? = null
+    protected var presenter: P? = null
+        private set
 
-    override fun setPresenter(presenter: P) {
+    override fun onPresenter(presenter: P) {
         this.presenter = presenter
     }
-
-    fun presenter(): P? = presenter
 
     override fun onDestroy() {
         super.onDestroy()
 
-        presenter?.detachView()
+        presenter!!.detachView()
         presenter = null
     }
 }

@@ -40,11 +40,11 @@ class MainFragment : BaseFragment<MainContract.Presenter>(), MainContract.View {
 
         adapter = PhotoAdapter(context)
         recyclerView = view?.findViewById(R.id.recycler_view) as RecyclerView
-        recyclerView.addOnScrollListener(InfiniteScrollListener({ presenter()?.loadPhotos(page) }, recyclerView.layoutManager as StaggeredGridLayoutManager))
+        recyclerView.addOnScrollListener(InfiniteScrollListener({ presenter!!.loadPhotos(page) }, recyclerView.layoutManager as StaggeredGridLayoutManager))
         recyclerView.adapter = adapter
 
-        presenter()?.setDataModel(adapter!!)
-        presenter()?.loadPhotos(page)
+        presenter!!.setDataModel(adapter!!)
+        presenter!!.loadPhotos(page)
     }
 
     override fun showProgress() {
@@ -65,7 +65,7 @@ class MainFragment : BaseFragment<MainContract.Presenter>(), MainContract.View {
 
     override fun onDestroy() {
         super.onDestroy()
-        recyclerView.removeOnScrollListener(InfiniteScrollListener({ presenter()?.loadPhotos(page) }, recyclerView.layoutManager as StaggeredGridLayoutManager))
+        recyclerView.removeOnScrollListener(InfiniteScrollListener({ presenter!!.loadPhotos(page) }, recyclerView.layoutManager as StaggeredGridLayoutManager))
     }
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {

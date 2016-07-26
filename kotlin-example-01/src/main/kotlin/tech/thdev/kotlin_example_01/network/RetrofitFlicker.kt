@@ -18,6 +18,7 @@ class RetrofitFlicker {
     private val photoApi: PhotoServiceInterface
 
     init {
+        // val : read-only
         val retrofit = create()
 
         photoApi = retrofit.create(PhotoServiceInterface::class.java)
