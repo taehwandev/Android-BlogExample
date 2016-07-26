@@ -13,7 +13,7 @@ import tech.thdev.kotlin_example_01.model.Photo
  */
 class PhotoViewHolder(parent: ViewGroup?, adapter: BaseRecyclerAdapter<Photo>) : BaseRecyclerViewHolder<Photo>(R.layout.item_photo, parent, adapter) {
 
-    private var imageView: ImageView? = null
+    private val imageView: ImageView
 
     init {
         imageView = itemView.findViewById(R.id.image_view) as ImageView
@@ -26,5 +26,9 @@ class PhotoViewHolder(parent: ViewGroup?, adapter: BaseRecyclerAdapter<Photo>) :
                 .centerCrop()
                 .crossFade()
                 .into(imageView)
+
+        itemView.setOnLongClickListener {
+            true
+        }
     }
 }
