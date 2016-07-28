@@ -23,6 +23,9 @@ ext {
     espressoLibVersion = '2.2.1'
     dexmakerVersion = '1.4'
 
+    // Image Library
+    glideLibVersion = '3.7.0'
+
 
     // Support library Dependencies
     appCompat = "com.android.support:appcompat-v7:$rootProject.ext.supportLibraryVersion"
@@ -61,7 +64,7 @@ ext {
     rxJava = 'io.reactivex:rxjava:1.1.6'
 
     // Image Library
-    glide = 'com.github.bumptech.glide:glide:3.7.0'
+    glide = "com.github.bumptech.glide:glide:$rootProject.ext.glideLibVersion"
 
 
     // Testing-only dependencies
