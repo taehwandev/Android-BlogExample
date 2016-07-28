@@ -22,8 +22,19 @@ interface MainContract {
 
     interface Presenter: BasePresenter<View> {
 
+        /**
+         * Adapter setting.
+         */
         fun setDataModel(model: PhotoDataModel)
 
+        /**
+         * Recent Photos
+         */
         fun loadPhotos(page: Int)
+
+        /**
+         * keyword search photos
+         */
+        fun searchPhotos(page: Int, safeSearch: Int, text: String?)
     }
 }

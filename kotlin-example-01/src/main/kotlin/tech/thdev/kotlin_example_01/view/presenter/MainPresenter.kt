@@ -4,6 +4,7 @@ import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 import tech.thdev.kotlin_example_01.base.presenter.AbstractPresenter
+import tech.thdev.kotlin_example_01.model.PhotoResponse
 import tech.thdev.kotlin_example_01.network.RetrofitFlicker
 import tech.thdev.kotlin_example_01.view.adapter.model.PhotoDataModel
 
@@ -16,7 +17,7 @@ class MainPresenter(val retrofitFlicker: RetrofitFlicker) : AbstractPresenter<Ma
 
     override fun attachView(view: MainContract.View) {
         super.attachView(view)
-        getView()?.setPresenter(this)
+        view.onPresenter(this)
     }
 
     override fun setDataModel(model: PhotoDataModel) {
@@ -25,6 +26,15 @@ class MainPresenter(val retrofitFlicker: RetrofitFlicker) : AbstractPresenter<Ma
 
     override fun loadPhotos(page: Int) {
         val photos = retrofitFlicker.getRecentPhotos(page)
+        subscribePhoto(photos)
+    }
+
+    override fun searchPhotos(page: Int, safeSearch: Int, text: String?) {
+        val photos = retrofitFlicker.getSearchPhotos(page, safeSearch, text!!)
+        subscribePhoto(photos)
+    }
+
+    private fun subscribePhoto(photos: Observable<PhotoResponse>) {
         photos
                 .subscribeOn(Schedulers.io())
                 .map { it.photos }
@@ -33,14 +43,15 @@ class MainPresenter(val retrofitFlicker: RetrofitFlicker) : AbstractPresenter<Ma
                 .flatMap { Observable.from(it.photo) }
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe {
-                    getView()?.showProgress()
+                    view?.showProgress()
                 }
                 .doOnUnsubscribe {
-                    getView()?.refresh()
-                    getView()?.hideProgress()
+                    view?.refresh()
+                    view?.hideProgress()
                 }
                 .subscribe(
                         { model?.addItem(it) },
-                        { getView()?.showFailLoad() })
+                        { view?.showFailLoad() })
+
     }
 }

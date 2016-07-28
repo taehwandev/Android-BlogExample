@@ -72,10 +72,22 @@ class MainFragment : BaseFragment<MainContract.Presenter>(), MainContract.View {
 
         inflater?.inflate(R.menu.menu_search, menu)
 
-        var searchView: SearchView? = MenuItemCompat.getActionView(menu?.findItem(R.id.action_search)) as SearchView
+        val searchView: SearchView = MenuItemCompat.getActionView(menu?.findItem(R.id.action_search)) as SearchView
         val searchManager: SearchManager? = activity.getSystemService(Context.SEARCH_SERVICE) as SearchManager
 
-//        searchView?.setOnQueryTextListener()
+        searchView.setOnQueryTextListener(
+                object : SearchView.OnQueryTextListener {
+                    override fun onQueryTextSubmit(query: String?): Boolean {
+                        presenter?.searchPhotos(0, 0, query)
+                        return true
+                    }
+
+                    override fun onQueryTextChange(newText: String?): Boolean {
+                        presenter?.searchPhotos(0, 0, newText)
+                        return true
+                    }
+                }
+        )
 
         super.onCreateOptionsMenu(menu, inflater)
     }

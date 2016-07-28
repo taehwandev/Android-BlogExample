@@ -5,7 +5,8 @@ package tech.thdev.kotlin_example_01.base.presenter
  */
 abstract class AbstractPresenter<VIEW : BaseView<*>> : BasePresenter<VIEW> {
 
-    private var view: VIEW? = null
+    protected var view: VIEW? = null
+        private set
 
     override fun attachView(view: VIEW) {
         this.view = view
@@ -14,6 +15,4 @@ abstract class AbstractPresenter<VIEW : BaseView<*>> : BasePresenter<VIEW> {
     override fun detachView() {
         view = null
     }
-
-    override fun getView(): VIEW? = view
 }
