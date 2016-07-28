@@ -11,7 +11,7 @@ import tech.thdev.kotlin_example_01.view.adapter.model.PhotoDataModel
 /**
  * Created by Tae-hwan on 7/21/16.
  */
-class MainPresenter(val retrofitFlicker: RetrofitFlicker) : AbstractPresenter<MainContract.View>(), MainContract.Presenter {
+class MainPresenter(val retrofitFlicker: FlickrModule) : AbstractPresenter<MainContract.View>(), MainContract.Presenter {
 
     private var model: PhotoDataModel? = null
 
