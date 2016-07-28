@@ -1,12 +1,17 @@
 package tech.thdev.kotlin_example_01.view.presenter
 
+import android.text.TextUtils
 import rx.Observable
+import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
+import rx.subjects.PublishSubject
 import tech.thdev.kotlin_example_01.base.presenter.AbstractPresenter
-import tech.thdev.kotlin_example_01.model.PhotoResponse
-import tech.thdev.kotlin_example_01.network.RetrofitFlicker
+import tech.thdev.kotlin_example_01.data.PhotoResponse
+import tech.thdev.kotlin_example_01.network.FlickrModule
 import tech.thdev.kotlin_example_01.view.adapter.model.PhotoDataModel
+import tech.thdev.kotlin_example_01.view.data.SearchData
+import java.util.concurrent.TimeUnit
 
 /**
  * Created by Tae-hwan on 7/21/16.
@@ -14,6 +19,24 @@ import tech.thdev.kotlin_example_01.view.adapter.model.PhotoDataModel
 class MainPresenter(val retrofitFlicker: FlickrModule) : AbstractPresenter<MainContract.View>(), MainContract.Presenter {
 
     private var model: PhotoDataModel? = null
+
+    private val searchSubject: PublishSubject<SearchData>
+    private var searchSubscription: Subscription? = null
+
+    init {
+        searchSubject = PublishSubject.create()
+        initSubscription()
+    }
+
+    private fun initSubscription() {
+        searchSubscription = searchSubject
+                .onBackpressureBuffer()
+                .throttleWithTimeout(200, TimeUnit.MICROSECONDS)
+                .observeOn(Schedulers.io())
+                .subscribe(
+                        { loadSearchPhotos(it) },
+                        { view?.showFailLoad() })
+    }
 
     override fun attachView(view: MainContract.View) {
         super.attachView(view)
@@ -30,8 +53,27 @@ class MainPresenter(val retrofitFlicker: FlickrModule) : AbstractPresenter<MainC
     }
 
     override fun searchPhotos(page: Int, safeSearch: Int, text: String?) {
-        val photos = retrofitFlicker.getSearchPhotos(page, safeSearch, text!!)
-        subscribePhoto(photos)
+        if (!(searchSubscription?.isUnsubscribed as Boolean)) {
+            searchSubscription?.unsubscribe()
+        }
+
+        model?.clean()
+
+        initSubscription()
+        if (!TextUtils.isEmpty(text)) {
+            searchSubject.onNext(SearchData(text!!, page, safeSearch))
+
+        } else {
+            view?.initPhotoList()
+        }
+    }
+
+    private fun loadSearchPhotos(searchData: SearchData?) {
+        searchData?.let {
+            val photos = retrofitFlicker.getSearchPhotos(it.page, it.safeSearch, it.text)
+            model?.clean()
+            subscribePhoto(photos)
+        }
     }
 
     private fun subscribePhoto(photos: Observable<PhotoResponse>) {
@@ -52,6 +94,9 @@ class MainPresenter(val retrofitFlicker: FlickrModule) : AbstractPresenter<MainC
                 .subscribe(
                         { model?.addItem(it) },
                         { view?.showFailLoad() })
+    }
 
+    override fun unSubscribeSearch() {
+        searchSubscription?.unsubscribe()
     }
 }

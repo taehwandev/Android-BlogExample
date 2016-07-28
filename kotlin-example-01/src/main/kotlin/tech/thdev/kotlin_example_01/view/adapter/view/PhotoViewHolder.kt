@@ -6,7 +6,7 @@ import com.bumptech.glide.Glide
 import tech.thdev.kotlin_example_01.R
 import tech.thdev.kotlin_example_01.base.adapter.BaseRecyclerAdapter
 import tech.thdev.kotlin_example_01.base.adapter.BaseRecyclerViewHolder
-import tech.thdev.kotlin_example_01.model.Photo
+import tech.thdev.kotlin_example_01.data.Photo
 
 /**
  * Created by Tae-hwan on 7/22/16.

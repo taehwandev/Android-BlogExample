@@ -1,4 +1,4 @@
-package tech.thdev.kotlin_example_01.model
+package tech.thdev.kotlin_example_01.data
 
 import tech.thdev.kotlin_example_01.base.model.BaseItem
 

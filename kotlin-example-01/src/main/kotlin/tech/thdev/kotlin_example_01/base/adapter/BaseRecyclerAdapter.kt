@@ -33,5 +33,9 @@ abstract class BaseRecyclerAdapter<ITEM: BaseItem>(val context: Context) : Recyc
         itemList.add(item)
     }
 
+    fun clean() {
+        itemList.clear()
+    }
+
     override fun getItemCount(): Int = itemList.size
 }

@@ -18,6 +18,8 @@ interface MainContract {
         fun showProgress()
 
         fun hideProgress()
+
+        fun initPhotoList()
     }
 
     interface Presenter: BasePresenter<View> {
@@ -36,5 +38,7 @@ interface MainContract {
          * keyword search photos
          */
         fun searchPhotos(page: Int, safeSearch: Int, text: String?)
+
+        fun unSubscribeSearch()
     }
 }

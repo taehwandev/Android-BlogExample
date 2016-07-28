@@ -21,6 +21,5 @@ abstract class BaseFragment<P : BasePresenter<*>>() : Fragment(), BaseView<P> {
         super.onDestroy()
 
         presenter!!.detachView()
-        presenter = null
     }
 }

@@ -16,13 +16,13 @@ android {
     }
     buildTypes {
         debug {
-            buildConfigField "String", "FLICKR_API_KEY", "\"500774e2117d8ec4e95ff659033754bd\""
+            buildConfigField "String", "FLICKR_API_KEY", "\"1234\""
         }
 
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            buildConfigField "String", "FLICKR_API_KEY", "\"500774e2117d8ec4e95ff659033754bd\""
+            buildConfigField "String", "FLICKR_API_KEY", "\"1234\""
         }
     }
     sourceSets {

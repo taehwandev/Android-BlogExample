@@ -1,7 +1,7 @@
 package tech.thdev.kotlin_example_01.network
 
 import rx.Observable
-import tech.thdev.kotlin_example_01.model.PhotoResponse
+import tech.thdev.kotlin_example_01.data.PhotoResponse
 import tech.thdev.kotlin_example_01.network.retorfit.createRetrofit
 
 /**

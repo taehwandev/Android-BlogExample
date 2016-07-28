@@ -20,6 +20,10 @@ import tech.thdev.kotlin_example_01.view.presenter.MainContract
  */
 class MainFragment : BaseFragment<MainContract.Presenter>(), MainContract.View {
 
+    val TYPE_SAFE_SEARCH_SAFE: Int = 1
+    val TYPE_SAFE_SEARCH_MODERATE: Int = 2
+    val TYPE_SAFE_SEARCH_RESTRICTED: Int = 3
+
     private var loading: Boolean = false
     private var page: Int = 0
 
@@ -44,7 +48,7 @@ class MainFragment : BaseFragment<MainContract.Presenter>(), MainContract.View {
         recyclerView.adapter = adapter
 
         presenter!!.setDataModel(adapter!!)
-        presenter!!.loadPhotos(page)
+        initPhotoList()
     }
 
     override fun showProgress() {
@@ -65,7 +69,14 @@ class MainFragment : BaseFragment<MainContract.Presenter>(), MainContract.View {
 
     override fun onDestroy() {
         super.onDestroy()
+
+        presenter?.unSubscribeSearch()
         recyclerView.removeOnScrollListener(InfiniteScrollListener({ presenter!!.loadPhotos(page) }, recyclerView.layoutManager as StaggeredGridLayoutManager))
+    }
+
+    override fun initPhotoList() {
+        page = 0
+        presenter?.loadPhotos(page)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
@@ -77,13 +88,16 @@ class MainFragment : BaseFragment<MainContract.Presenter>(), MainContract.View {
 
         searchView.setOnQueryTextListener(
                 object : SearchView.OnQueryTextListener {
+
                     override fun onQueryTextSubmit(query: String?): Boolean {
-                        presenter?.searchPhotos(0, 0, query)
+                        page = 0
+                        presenter?.searchPhotos(page, TYPE_SAFE_SEARCH_SAFE, query)
                         return true
                     }
 
                     override fun onQueryTextChange(newText: String?): Boolean {
-                        presenter?.searchPhotos(0, 0, newText)
+                        page = 0
+                        presenter?.searchPhotos(page, TYPE_SAFE_SEARCH_SAFE, newText)
                         return true
                     }
                 }
