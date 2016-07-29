@@ -33,22 +33,27 @@
 ## 주요 Library version info
 
 ** Android Library **
+
 - support libraryVersion = 24.1.1
 - constraint layout version = 1.0.0-alpha4
 - Play service version = 9.2.1
 
 ** Image Library **
+
 - Glide version = 3.7.0
 
 ** Network Library **
+
 - retrofit version = 2.1.0
 - okhttp version = 3.3.1
 
 ** ReactiveX Library **
+
 - rxAndroid = 1.2.1
 - rxJava = 1.1.6
 
 ** UI Library **
+
 - ButterKnife = 8.2.1
 
 
