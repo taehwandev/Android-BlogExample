@@ -36,7 +36,7 @@ build.gradle에 FLICKR_API_KEY를 갱신해주어야 정상 동작합니다
 
 ## Preview
 
-[!sample_image_0.png](/images/sample_image_0.png)
+![sample_image_0.png](/images/sample_image_0.png)
 
 
 ## License
