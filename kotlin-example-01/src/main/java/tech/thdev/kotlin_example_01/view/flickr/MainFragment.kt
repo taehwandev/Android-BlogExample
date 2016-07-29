@@ -138,10 +138,11 @@ class MainFragment : BaseFragment<MainContract.Presenter>(), MainContract.View {
         val bitmap: Bitmap? = containerMain?.drawingCache
         val image: Bitmap? = Bitmap.createBitmap(bitmap)
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1)
-            imgBlurBackground?.setImageBitmap(createBlurImage(image, 25.0f))
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            val temp = createBlurImage(image, 25.0f)
+            temp?.let { imgBlurBackground?.setImageBitmap(it) }
 
-        else
+        } else
             imgBlurBackground?.setImageBitmap(image)
 
         containerMain?.isDrawingCacheEnabled = false
@@ -149,26 +150,26 @@ class MainFragment : BaseFragment<MainContract.Presenter>(), MainContract.View {
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     private fun createBlurImage(src: Bitmap?, r: Float): Bitmap? {
-        if (src == null) {
-            return src
+        src?.let {
+            val bitmap: Bitmap = Bitmap.createBitmap(src.width, src.height, Bitmap.Config.ARGB_8888)
+
+            val renderScript: RenderScript = RenderScript.create(context)
+
+            val blurInput: Allocation = Allocation.createFromBitmap(renderScript, src)
+            val blurOutput: Allocation = Allocation.createFromBitmap(renderScript, bitmap)
+
+            val blur: ScriptIntrinsicBlur = ScriptIntrinsicBlur.create(renderScript, Element.U8_4(renderScript))
+
+            blur.setInput(blurInput)
+            blur.setRadius(r)
+            blur.forEach(blurOutput)
+
+            blurOutput.copyTo(bitmap)
+            renderScript.destroy()
+            return bitmap
         }
 
-        val bitmap: Bitmap = Bitmap.createBitmap(src.width, src.height, Bitmap.Config.ARGB_8888)
-
-        val renderScript: RenderScript = RenderScript.create(context)
-
-        val blurInput: Allocation = Allocation.createFromBitmap(renderScript, src)
-        val blurOutput: Allocation = Allocation.createFromBitmap(renderScript, bitmap)
-
-        val blur: ScriptIntrinsicBlur = ScriptIntrinsicBlur.create(renderScript, Element.U8_4(renderScript))
-
-        blur.setInput(blurInput)
-        blur.setRadius(r)
-        blur.forEach(blurOutput)
-
-        blurOutput.copyTo(bitmap)
-        renderScript.destroy()
-        return bitmap
+        return null
     }
 
     override fun showProgress() {
