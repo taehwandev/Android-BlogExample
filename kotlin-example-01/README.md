@@ -20,21 +20,16 @@ build.gradle에 FLICKR_API_KEY를 갱신해주어야 정상 동작합니다
 
 ## Use Library version
 
-** Kotlin Library **
 - Kotlin version = 1.0.3
 
-** Android Library **
 - support libraryVersion = 24.1.1
 - constraint layout version = 1.0.0-alpha4
 
-** Image Library **
 - Glide version = 3.7.0
 
-** Network Library **
 - retrofit version = 2.1.0
 - okhttp version = 3.3.1
 
-** ReactiveX Library **
 - rxAndroid = 1.2.1
 - rxJava = 1.1.6
 
