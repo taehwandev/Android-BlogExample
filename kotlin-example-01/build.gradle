@@ -25,9 +25,6 @@ android {
             buildConfigField "String", "FLICKR_API_KEY", "\"1234\""
         }
     }
-    sourceSets {
-        main.java.srcDirs += 'src/main/kotlin'
-    }
 }
 
 dependencies {
@@ -43,7 +40,6 @@ dependencies {
     compile rootProject.ext.recyclerView
 
     compile rootProject.ext.constraintLayout
-
 
     // Kotlin
     compile rootProject.ext.kotlin

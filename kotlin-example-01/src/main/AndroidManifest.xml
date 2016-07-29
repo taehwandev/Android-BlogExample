@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="tech.thdev.kotlin_example_01">
-    
+
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -20,6 +20,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".view.blur.BlurActivity"></activity>
     </application>
 
 </manifest>

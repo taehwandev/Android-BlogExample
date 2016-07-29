@@ -2,13 +2,16 @@ package tech.thdev.kotlin_example_01.view.flickr
 
 import android.app.SearchManager
 import android.content.Context
+import android.graphics.Bitmap
 import android.os.Bundle
+import android.support.constraint.ConstraintLayout
 import android.support.v4.view.MenuItemCompat
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.SearchView
 import android.support.v7.widget.StaggeredGridLayoutManager
 import android.util.Log
 import android.view.*
+import android.widget.ImageView
 import android.widget.Toast
 import tech.thdev.kotlin_example_01.R
 import tech.thdev.kotlin_example_01.base.adapter.BaseRecyclerAdapter
@@ -31,6 +34,9 @@ class MainFragment : BaseFragment<MainContract.Presenter>(), MainContract.View {
 
     private var adapter: PhotoAdapter? = null
     private lateinit var recyclerView: RecyclerView
+
+    private var clBlur: ConstraintLayout? = null
+    private var imageView: ImageView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,9 +64,20 @@ class MainFragment : BaseFragment<MainContract.Presenter>(), MainContract.View {
 
         presenter!!.setDataModel(adapter!!)
         initPhotoList()
+
+        clBlur = activity?.findViewById(R.id.constraintLayout) as ConstraintLayout
+        imageView = activity?.findViewById(R.id.image_view) as ImageView
     }
 
     override fun showBlurDialog(imageUrl: String?) {
+        clBlur?.visibility = View.VISIBLE
+
+        val rootView = activity.window.decorView.findViewById(android.R.id.content)
+        rootView.isDrawingCacheEnabled = true
+        val bitmap: Bitmap? = rootView.drawingCache
+
+        imageView?.setImageBitmap(bitmap)
+
         Toast.makeText(context, "ShowBlurDialog", Toast.LENGTH_SHORT).show()
     }
 
