@@ -7,7 +7,7 @@ android {
 
     defaultConfig {
         applicationId "tech.thdev.kotlin_example_01"
-        minSdkVersion 16
+        minSdkVersion 17
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
@@ -16,13 +16,13 @@ android {
     }
     buildTypes {
         debug {
-            buildConfigField "String", "FLICKR_API_KEY", "\"1234\""
+            buildConfigField "String", "FLICKR_API_KEY", "\"343816eef263896e9e5a59bd1126a775\""
         }
 
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            buildConfigField "String", "FLICKR_API_KEY", "\"1234\""
+            buildConfigField "String", "FLICKR_API_KEY", "\"343816eef263896e9e5a59bd1126a775\""
         }
     }
 }

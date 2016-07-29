@@ -14,7 +14,7 @@ build.gradle에 FLICKR_API_KEY를 갱신해주어야 정상 동작합니다
 - buildToolsVersion = 24.0.1
 - compile sdk version = 24
 - Target sdk version = 24
-- Min sdk version = 16
+- Min sdk version = 17
 - Android studio 2.2 Preview 6
 
 
@@ -32,6 +32,11 @@ build.gradle에 FLICKR_API_KEY를 갱신해주어야 정상 동작합니다
 
 - rxAndroid = 1.2.1
 - rxJava = 1.1.6
+
+
+## Preview
+
+[!sample_image_0.png](/images/sample_image_0.png)
 
 
 ## License
