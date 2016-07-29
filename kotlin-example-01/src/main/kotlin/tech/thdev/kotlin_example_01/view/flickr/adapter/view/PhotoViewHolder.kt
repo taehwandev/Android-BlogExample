@@ -1,4 +1,4 @@
-package tech.thdev.kotlin_example_01.view.adapter.view
+package tech.thdev.kotlin_example_01.view.flickr.adapter.view
 
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -7,11 +7,12 @@ import tech.thdev.kotlin_example_01.R
 import tech.thdev.kotlin_example_01.base.adapter.BaseRecyclerAdapter
 import tech.thdev.kotlin_example_01.base.adapter.BaseRecyclerViewHolder
 import tech.thdev.kotlin_example_01.data.Photo
+import tech.thdev.kotlin_example_01.listener.LongClickListener
 
 /**
  * Created by Tae-hwan on 7/22/16.
  */
-class PhotoViewHolder(parent: ViewGroup?, adapter: BaseRecyclerAdapter<Photo>) : BaseRecyclerViewHolder<Photo>(R.layout.item_photo, parent, adapter) {
+class PhotoViewHolder(parent: ViewGroup?, adapter: BaseRecyclerAdapter<Photo>, val longClickListener: LongClickListener?) : BaseRecyclerViewHolder<Photo>(R.layout.item_photo, parent, adapter) {
 
     private val imageView: ImageView
 
@@ -21,14 +22,15 @@ class PhotoViewHolder(parent: ViewGroup?, adapter: BaseRecyclerAdapter<Photo>) :
 
     override fun onViewHolder(item: Photo?, position: Int) {
         Glide.with(context)
-                .load(String.format("https://farm%s.staticflickr.com/%s/%s_%s.jpg", item?.farm, item?.server, item?.id, item?.secret))
+                .load(item?.getImageUrl())
                 .placeholder(android.R.drawable.ic_menu_gallery)
                 .centerCrop()
                 .crossFade()
                 .into(imageView)
 
         itemView.setOnLongClickListener {
-            true
+            longClickListener?.let { it.onLongClickListener(adapter, position) }
+            false
         }
     }
 }

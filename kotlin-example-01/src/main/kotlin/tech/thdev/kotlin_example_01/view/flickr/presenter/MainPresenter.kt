@@ -1,4 +1,4 @@
-package tech.thdev.kotlin_example_01.view.presenter
+package tech.thdev.kotlin_example_01.view.flickr.presenter
 
 import android.text.TextUtils
 import rx.Observable
@@ -9,8 +9,8 @@ import rx.subjects.PublishSubject
 import tech.thdev.kotlin_example_01.base.presenter.AbstractPresenter
 import tech.thdev.kotlin_example_01.data.PhotoResponse
 import tech.thdev.kotlin_example_01.network.FlickrModule
-import tech.thdev.kotlin_example_01.view.adapter.model.PhotoDataModel
-import tech.thdev.kotlin_example_01.view.data.SearchData
+import tech.thdev.kotlin_example_01.view.flickr.adapter.model.PhotoDataModel
+import tech.thdev.kotlin_example_01.view.flickr.data.SearchData
 import java.util.concurrent.TimeUnit
 
 /**
@@ -94,6 +94,11 @@ class MainPresenter(val retrofitFlicker: FlickrModule) : AbstractPresenter<MainC
                 .subscribe(
                         { model?.addItem(it) },
                         { view?.showFailLoad() })
+    }
+
+    override fun updateLongClickItem(position: Int) {
+        val photo = model?.getItem(position)
+        view?.showBlurDialog(photo?.getImageUrl())
     }
 
     override fun unSubscribeSearch() {

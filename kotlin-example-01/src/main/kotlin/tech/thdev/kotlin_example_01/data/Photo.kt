@@ -14,4 +14,9 @@ data class Photo(val id: String,
                  val ispublic: Long,
                  val isfriend: Long,
                  val isfamily: Long,
-                 override val viewType: Int): BaseItem
+                 override val viewType: Int): BaseItem {
+
+    fun getImageUrl(): String {
+        return String.format("https://farm%s.staticflickr.com/%s/%s_%s.jpg", farm, server, id, secret)
+    }
+}

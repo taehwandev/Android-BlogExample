@@ -1,4 +1,4 @@
-package tech.thdev.kotlin_example_01.view
+package tech.thdev.kotlin_example_01.view.flickr
 
 import android.app.SearchManager
 import android.content.Context
@@ -11,9 +11,11 @@ import android.util.Log
 import android.view.*
 import android.widget.Toast
 import tech.thdev.kotlin_example_01.R
+import tech.thdev.kotlin_example_01.base.adapter.BaseRecyclerAdapter
 import tech.thdev.kotlin_example_01.base.view.BaseFragment
-import tech.thdev.kotlin_example_01.view.adapter.PhotoAdapter
-import tech.thdev.kotlin_example_01.view.presenter.MainContract
+import tech.thdev.kotlin_example_01.listener.LongClickListener
+import tech.thdev.kotlin_example_01.view.flickr.adapter.PhotoAdapter
+import tech.thdev.kotlin_example_01.view.flickr.presenter.MainContract
 
 /**
  * Created by Tae-hwan on 7/21/16.
@@ -43,12 +45,23 @@ class MainFragment : BaseFragment<MainContract.Presenter>(), MainContract.View {
         super.onViewCreated(view, savedInstanceState)
 
         adapter = PhotoAdapter(context)
+        adapter?.longClickListener = object: LongClickListener {
+
+            override fun onLongClickListener(baseRecyclerAdapter: BaseRecyclerAdapter<*>, position: Int): Boolean {
+                presenter?.updateLongClickItem(position)
+                return false
+            }
+        }
         recyclerView = view?.findViewById(R.id.recycler_view) as RecyclerView
         recyclerView.addOnScrollListener(InfiniteScrollListener({ presenter!!.loadPhotos(page) }, recyclerView.layoutManager as StaggeredGridLayoutManager))
         recyclerView.adapter = adapter
 
         presenter!!.setDataModel(adapter!!)
         initPhotoList()
+    }
+
+    override fun showBlurDialog(imageUrl: String?) {
+        Toast.makeText(context, "ShowBlurDialog", Toast.LENGTH_SHORT).show()
     }
 
     override fun showProgress() {

@@ -1,4 +1,4 @@
-package tech.thdev.kotlin_example_01.view.data
+package tech.thdev.kotlin_example_01.view.flickr.data
 
 /**
  * Created by Tae-hwan on 7/28/16.
