@@ -9,10 +9,34 @@ build.gradle에 FLICKR_API_KEY를 갱신해주어야 정상 동작합니다
 [Create an App - flickr](https://www.flickr.com/services/apps/create/)
 
 
-## Requirements
+## Android Developer Version info
 
-- Target Sdk Version : 24
-- Min Sdk Version : 16
+- buildToolsVersion = 24.0.1
+- compile sdk version = 24
+- Target sdk version = 24
+- Min sdk version = 16
+- Android studio 2.2 Preview 6
+
+
+## Use Library version
+
+** Kotlin Library **
+- Kotlin version = 1.0.3
+
+** Android Library **
+- support libraryVersion = 24.1.1
+- constraint layout version = 1.0.0-alpha4
+
+** Image Library **
+- Glide version = 3.7.0
+
+** Network Library **
+- retrofit version = 2.1.0
+- okhttp version = 3.3.1
+
+** ReactiveX Library **
+- rxAndroid = 1.2.1
+- rxJava = 1.1.6
 
 
 ## License
@@ -32,14 +56,3 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 ```
-
-### Use API
-
-- [Android SupportLibrary](https://developer.android.com/topic/libraries/support-library/revisions.html)
-- [Android ConstraintLayout](http://tools.android.com/tech-docs/layout-editor)
-- [Kotlin Android](https://kotlinlang.org/docs/tutorials/kotlin-android.html)
-- [Retrofit Library](http://square.github.io/retrofit/)
-- [okhttp 3](http://square.github.io/okhttp/)
-- [ReactiveX](http://reactivex.io/)
-- [Glide](https://github.com/bumptech/glide)
-
