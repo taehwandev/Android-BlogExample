@@ -1,22 +1,15 @@
 package tech.thdev.kotlin_example_01.view.flickr
 
-import android.annotation.TargetApi
 import android.app.SearchManager
 import android.content.Context
 import android.graphics.Bitmap
-import android.os.Build
 import android.os.Bundle
-import android.renderscript.Allocation
-import android.renderscript.Element
-import android.renderscript.RenderScript
-import android.renderscript.ScriptIntrinsicBlur
 import android.support.constraint.ConstraintLayout
 import android.support.design.widget.CoordinatorLayout
 import android.support.v4.view.MenuItemCompat
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.SearchView
 import android.support.v7.widget.StaggeredGridLayoutManager
-import android.util.Log
 import android.view.*
 import android.widget.ImageView
 import android.widget.Toast
@@ -30,6 +23,7 @@ import tech.thdev.kotlin_example_01.R
 import tech.thdev.kotlin_example_01.base.adapter.BaseRecyclerAdapter
 import tech.thdev.kotlin_example_01.base.view.BaseFragment
 import tech.thdev.kotlin_example_01.listener.LongClickListener
+import tech.thdev.kotlin_example_01.util.createBlurImage
 import tech.thdev.kotlin_example_01.view.flickr.adapter.PhotoAdapter
 import tech.thdev.kotlin_example_01.view.flickr.presenter.MainContract
 import java.util.concurrent.TimeUnit
@@ -138,38 +132,10 @@ class MainFragment : BaseFragment<MainContract.Presenter>(), MainContract.View {
         val bitmap: Bitmap? = containerMain?.drawingCache
         val image: Bitmap? = Bitmap.createBitmap(bitmap)
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            val temp = createBlurImage(image, 25.0f)
-            temp?.let { imgBlurBackground?.setImageBitmap(it) }
-
-        } else
-            imgBlurBackground?.setImageBitmap(image)
+        image?.createBlurImage(context)
+                ?.let { imgBlurBackground?.setImageBitmap(it) }
 
         containerMain?.isDrawingCacheEnabled = false
-    }
-
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
-    private fun createBlurImage(src: Bitmap?, r: Float): Bitmap? {
-        src?.let {
-            val bitmap: Bitmap = Bitmap.createBitmap(src.width, src.height, Bitmap.Config.ARGB_8888)
-
-            val renderScript: RenderScript = RenderScript.create(context)
-
-            val blurInput: Allocation = Allocation.createFromBitmap(renderScript, src)
-            val blurOutput: Allocation = Allocation.createFromBitmap(renderScript, bitmap)
-
-            val blur: ScriptIntrinsicBlur = ScriptIntrinsicBlur.create(renderScript, Element.U8_4(renderScript))
-
-            blur.setInput(blurInput)
-            blur.setRadius(r)
-            blur.forEach(blurOutput)
-
-            blurOutput.copyTo(bitmap)
-            renderScript.destroy()
-            return bitmap
-        }
-
-        return null
     }
 
     override fun showProgress() {
@@ -244,7 +210,6 @@ class MainFragment : BaseFragment<MainContract.Presenter>(), MainContract.View {
                 firstItemNumber = firstVisibleItem[0]
             }
 
-            Log.d("TAG", "loading " + loading + ", firstItemNumber " + firstItemNumber + ", visibleItemCount " + visibleItemCount + ", totalItemCount " + totalItemCount)
             if (!loading && (firstItemNumber + visibleItemCount) >= totalItemCount - 10) {
                 ++page
                 func()
