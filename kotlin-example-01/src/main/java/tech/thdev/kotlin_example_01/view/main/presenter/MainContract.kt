@@ -1,8 +1,8 @@
-package tech.thdev.kotlin_example_01.view.flickr.presenter
+package tech.thdev.kotlin_example_01.view.main.presenter
 
 import tech.thdev.kotlin_example_01.base.presenter.BasePresenter
 import tech.thdev.kotlin_example_01.base.presenter.BaseView
-import tech.thdev.kotlin_example_01.view.flickr.adapter.model.PhotoDataModel
+import tech.thdev.kotlin_example_01.view.main.adapter.model.PhotoDataModel
 
 /**
  * Created by Tae-hwan on 7/21/16.

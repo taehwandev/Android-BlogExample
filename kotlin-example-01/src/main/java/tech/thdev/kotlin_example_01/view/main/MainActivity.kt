@@ -1,4 +1,4 @@
-package tech.thdev.kotlin_example_01.view.flickr
+package tech.thdev.kotlin_example_01.view.main
 
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
@@ -8,7 +8,7 @@ import android.support.v7.widget.Toolbar
 import tech.thdev.kotlin_example_01.R
 import tech.thdev.kotlin_example_01.network.FlickrModule
 import tech.thdev.kotlin_example_01.util.setContentFragment
-import tech.thdev.kotlin_example_01.view.flickr.presenter.MainPresenter
+import tech.thdev.kotlin_example_01.view.main.presenter.MainPresenter
 
 class MainActivity : AppCompatActivity() {
 

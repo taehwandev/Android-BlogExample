@@ -1,4 +1,4 @@
-package tech.thdev.kotlin_example_01.view.flickr.presenter
+package tech.thdev.kotlin_example_01.view.main.presenter
 
 import android.text.TextUtils
 import rx.Observable
@@ -9,8 +9,8 @@ import rx.subjects.PublishSubject
 import tech.thdev.kotlin_example_01.base.presenter.AbstractPresenter
 import tech.thdev.kotlin_example_01.data.PhotoResponse
 import tech.thdev.kotlin_example_01.network.FlickrModule
-import tech.thdev.kotlin_example_01.view.flickr.adapter.model.PhotoDataModel
-import tech.thdev.kotlin_example_01.view.flickr.data.SearchData
+import tech.thdev.kotlin_example_01.view.main.adapter.model.PhotoDataModel
+import tech.thdev.kotlin_example_01.view.main.data.SearchData
 import java.util.concurrent.TimeUnit
 
 /**

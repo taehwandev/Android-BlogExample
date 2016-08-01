@@ -1,4 +1,4 @@
-package tech.thdev.kotlin_example_01.view.flickr.adapter.model
+package tech.thdev.kotlin_example_01.view.main.adapter.model
 
 import tech.thdev.kotlin_example_01.data.Photo
 

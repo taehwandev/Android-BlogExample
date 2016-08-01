@@ -1,4 +1,4 @@
-package tech.thdev.kotlin_example_01.view.flickr
+package tech.thdev.kotlin_example_01.view.main
 
 import android.app.SearchManager
 import android.content.Context
@@ -22,10 +22,11 @@ import rx.android.schedulers.AndroidSchedulers
 import tech.thdev.kotlin_example_01.R
 import tech.thdev.kotlin_example_01.base.adapter.BaseRecyclerAdapter
 import tech.thdev.kotlin_example_01.base.view.BaseFragment
+import tech.thdev.kotlin_example_01.listener.ItemClickListener
 import tech.thdev.kotlin_example_01.listener.LongClickListener
 import tech.thdev.kotlin_example_01.util.createBlurImage
-import tech.thdev.kotlin_example_01.view.flickr.adapter.PhotoAdapter
-import tech.thdev.kotlin_example_01.view.flickr.presenter.MainContract
+import tech.thdev.kotlin_example_01.view.main.adapter.PhotoAdapter
+import tech.thdev.kotlin_example_01.view.main.presenter.MainContract
 import java.util.concurrent.TimeUnit
 
 /**
@@ -70,8 +71,16 @@ class MainFragment : BaseFragment<MainContract.Presenter>(), MainContract.View {
             }
         }
 
+        adapter?.itemClickListener = object : ItemClickListener {
+
+            override fun OnClickListener(baseRecyclerAdapter: BaseRecyclerAdapter<*>, position: Int) {
+                /// OnClick ...
+            }
+        }
+
         recyclerView = view?.findViewById(R.id.recycler_view) as RecyclerView
-        recyclerView.addOnScrollListener(InfiniteScrollListener({ presenter!!.loadPhotos(page) }, recyclerView.layoutManager as StaggeredGridLayoutManager))
+        recyclerView.addOnScrollListener(InfiniteScrollListener({ presenter!!.loadPhotos(page) },
+                recyclerView.layoutManager as StaggeredGridLayoutManager))
         recyclerView.adapter = adapter
 
         presenter!!.setDataModel(adapter!!)
@@ -130,9 +139,8 @@ class MainFragment : BaseFragment<MainContract.Presenter>(), MainContract.View {
         containerMain?.isDrawingCacheEnabled = true
         containerMain?.buildDrawingCache(true)
         val bitmap: Bitmap? = containerMain?.drawingCache
-        val image: Bitmap? = Bitmap.createBitmap(bitmap)
 
-        image?.createBlurImage(context)
+        bitmap?.createBlurImage(context)
                 ?.let { imgBlurBackground?.setImageBitmap(it) }
 
         containerMain?.isDrawingCacheEnabled = false
