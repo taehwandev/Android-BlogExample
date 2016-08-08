@@ -21,7 +21,7 @@
         android:layout_toStartOf="@id/btn_search"
         android:ems="10"
         android:hint="WebView change keyword"
-        android:imeOptions="actionSearch"
+        android:imeOptions="actionSend"
         android:inputType="textPersonName" />
 
     <tech.thdev.webviewjavascriptinterface.webkit.CustomWebView

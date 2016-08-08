@@ -1,9 +1,15 @@
 package tech.thdev.webviewjavascriptinterface.view.main;
 
+import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -20,15 +26,17 @@ import tech.thdev.webviewjavascriptinterface.webkit.CustomWebViewClient;
  * Created by Tae-hwan on 8/8/16.
  */
 
-public class MainFragment extends BaseFragment<MainContract.Presenter> implements MainContract.View {
+public class MainFragment extends BaseFragment<MainContract.Presenter> implements MainContract.View, TextView.OnEditorActionListener {
+
+    private static final String DEFAULT_URL = "http://thdev.tech/sample/webview_sample.html";
 
     @BindView(R.id.web_view)
     CustomWebView webView;
 
-//    @BindView(R.id.et_keyword)
-//    EditText etKeyword;
+    @BindView(R.id.et_keyword)
+    EditText etKeyword;
 
-    private MainContract.Presenter presenter;
+    private EditText etUrl;
 
     public static MainFragment getInstance() {
         return new MainFragment();
@@ -43,19 +51,17 @@ public class MainFragment extends BaseFragment<MainContract.Presenter> implement
     public void onViewCreated(@org.jetbrains.annotations.Nullable View view, @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        setHasOptionsMenu(true);
+
         initView();
     }
 
     private void initView() {
-//        etKeyword.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-//            @Override
-//            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
-//                if (keyEvent.getAction() == KeyEvent.KEYCODE_SEARCH) {
-//                    updateKeyword();
-//                }
-//                return false;
-//            }
-//        });
+        etUrl = (EditText) getActivity().findViewById(R.id.et_url);
+        etUrl.setOnEditorActionListener(this);
+        etUrl.setText(DEFAULT_URL);
+
+        etKeyword.setOnEditorActionListener(this);
 
         webView.setWebViewClient(new CustomWebViewClient());
         webView.setWebChromeClient(new CustomWebChromeClient(getActivity()));
@@ -71,10 +77,53 @@ public class MainFragment extends BaseFragment<MainContract.Presenter> implement
          * the host application in unintended ways, executing Java code with the permissions of the host application.
          * Use extreme care when using this method in a WebView which could contain untrusted content.
          */
-        webView.addJavascriptInterface(presenter.getCustomJavaScript(), "WebViewTest");
+        if (getPresenter() != null) {
+            webView.addJavascriptInterface(getPresenter().getCustomJavaScript(), "WebViewTest");
+        }
         webView.init();
 
-        loadUrl("http://thdev.tech/sample/webview_sample.html");
+        loadUrl(DEFAULT_URL);
+    }
+
+    @Override
+    public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+        switch (i) {
+            case EditorInfo.IME_ACTION_SEND:
+                updateKeyword();
+                return true;
+
+            case EditorInfo.IME_ACTION_GO:
+                String url = etUrl.getText().toString();
+                if (TextUtils.isEmpty(url)) {
+                    url = DEFAULT_URL;
+                }
+                loadUrl(url);
+                hideKeyboard(etUrl);
+                return true;
+
+            default:
+                break;
+        }
+        return false;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.menu_reload, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_reload:
+                webView.reload();
+                return true;
+
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -85,21 +134,27 @@ public class MainFragment extends BaseFragment<MainContract.Presenter> implement
     }
 
     @Override
-    public void updateKeyword(String keyword) {
-//        etKeyword.setText(keyword);
+    public void updateKeyword(final String keyword) {
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                etKeyword.setText(keyword);
+            }
+        });
     }
 
-//    @OnClick(R.id.btn_search)
-//    public void onBtnSearch(View view) {
-//        updateKeyword();
-//    }
-
-    void updateKeyword() {
-//        loadUrl("javascript:updateKeyword('" + etKeyword.getText().toString() + "')");
+    @OnClick(R.id.btn_search)
+    public void onBtnSearch(View view) {
+        updateKeyword();
+        hideKeyboard(view);
     }
 
-    @Override
-    public void onPresenter(@Nullable MainContract.Presenter presenter) {
-        this.presenter = presenter;
+    private void updateKeyword() {
+        loadUrl("javascript:updateKeyword('" + etKeyword.getText().toString() + "')");
+    }
+
+    private void hideKeyboard(View view) {
+        InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 }
