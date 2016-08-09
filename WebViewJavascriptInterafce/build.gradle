@@ -27,6 +27,11 @@ android {
         main.java.srcDirs += 'src/main/kotlin'
         androidTest.java.srcDirs += 'src/androidTest/kotlin'
     }
+
+    packagingOptions {
+        exclude 'META-INF/maven/com.google.guava/guava/pom.properties'
+        exclude 'META-INF/maven/com.google.guava/guava/pom.xml'
+    }
 }
 
 dependencies {
@@ -45,6 +50,16 @@ dependencies {
     // Kotlin
     compile rootProject.ext.kotlin
 
-    testCompile 'junit:junit:4.12'
-    compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha4'
+    testCompile junit
+
+    androidTestCompile rootProject.ext.annotations
+
+    androidTestCompile rootProject.ext.testRunner
+    androidTestCompile rootProject.ext.testRules
+
+    androidTestCompile rootProject.ext.espressoCore
+    androidTestCompile rootProject.ext.espressoWebView
+    androidTestCompile rootProject.ext.espressoIntents
+
+    androidTestCompile rootProject.ext.dexmakerMockito
 }
