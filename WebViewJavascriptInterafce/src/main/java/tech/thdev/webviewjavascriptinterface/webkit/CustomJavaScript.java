@@ -21,9 +21,9 @@ public class CustomJavaScript {
     }
 
     @JavascriptInterface
-    public void showSearch(String keyword) {
+    public void updateKeyword(String keyword) {
         if (listener != null) {
-            listener.onShowSearch(keyword);
+            listener.onUpdateKeyword(keyword);
         }
     }
 }

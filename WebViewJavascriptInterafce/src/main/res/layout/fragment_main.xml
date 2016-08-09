@@ -22,7 +22,7 @@
         android:ems="10"
         android:hint="WebView change keyword"
         android:imeOptions="actionSend"
-        android:inputType="textPersonName" />
+        android:inputType="text" />
 
     <tech.thdev.webviewjavascriptinterface.webkit.CustomWebView
         android:id="@+id/web_view"

@@ -25,7 +25,7 @@ public class MainPresenter extends AbstractPresenter<MainContract.View> implemen
     }
 
     @Override
-    public void onShowSearch(String keyword) {
+    public void onUpdateKeyword(String keyword) {
         if (isAttachView()) {
             getView().updateKeyword(keyword);
         }

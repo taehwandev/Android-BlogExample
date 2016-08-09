@@ -19,8 +19,9 @@ ext {
     okhttpVersion = '3.3.1'
 
     // Testing-only
+    junitLibVersion = '4.12'
     testLibVersion = '0.5'
-    espressoLibVersion = '2.2.1'
+    espressoLibVersion = '2.2.2'
     dexmakerVersion = '1.4'
 
     // Image Library
@@ -68,10 +69,13 @@ ext {
 
 
     // Testing-only dependencies
+    junit = "junit:junit:$rootProject.ext.junitLibVersion"
+
     testRunner = "com.android.support.test:runner:$rootProject.ext.testLibVersion"
     testRules = "com.android.support.test:rules:$rootProject.ext.testLibVersion"
 
     espressoCore = "com.android.support.test.espresso:espresso-core:$rootProject.ext.espressoLibVersion"
+    espressoWebView = "com.android.support.test.espresso:espresso-web:$rootProject.ext.espressoLibVersion"
 
     // add this for intent mocking support
     espressoIntents = "com.android.support.test.espresso:espresso-intents:$rootProject.ext.espressoLibVersion"

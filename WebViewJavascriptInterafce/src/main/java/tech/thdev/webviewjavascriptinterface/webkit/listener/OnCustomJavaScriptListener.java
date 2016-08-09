@@ -6,5 +6,5 @@ package tech.thdev.webviewjavascriptinterface.webkit.listener;
 
 public interface OnCustomJavaScriptListener {
 
-    void onShowSearch(String keyword);
+    void onUpdateKeyword(String keyword);
 }

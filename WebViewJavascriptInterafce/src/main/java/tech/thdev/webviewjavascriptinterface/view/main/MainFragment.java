@@ -28,7 +28,7 @@ import tech.thdev.webviewjavascriptinterface.webkit.CustomWebViewClient;
 
 public class MainFragment extends BaseFragment<MainContract.Presenter> implements MainContract.View, TextView.OnEditorActionListener {
 
-    private static final String DEFAULT_URL = "http://thdev.tech/sample/webview_sample.html";
+    public static final String DEFAULT_URL = "http://thdev.tech/sample/webview_sample.html";
 
     @BindView(R.id.web_view)
     CustomWebView webView;
@@ -89,7 +89,7 @@ public class MainFragment extends BaseFragment<MainContract.Presenter> implement
     public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
         switch (i) {
             case EditorInfo.IME_ACTION_SEND:
-                updateKeyword();
+                setKeyword();
                 return true;
 
             case EditorInfo.IME_ACTION_GO:
@@ -145,12 +145,12 @@ public class MainFragment extends BaseFragment<MainContract.Presenter> implement
 
     @OnClick(R.id.btn_search)
     public void onBtnSearch(View view) {
-        updateKeyword();
+        setKeyword();
         hideKeyboard(view);
     }
 
-    private void updateKeyword() {
-        loadUrl("javascript:updateKeyword('" + etKeyword.getText().toString() + "')");
+    private void setKeyword() {
+        loadUrl("javascript:setKeyword('" + etKeyword.getText().toString() + "')");
     }
 
     private void hideKeyboard(View view) {
