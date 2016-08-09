@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId "tech.thdev.webviewjavascriptinterface"
-        minSdkVersion 17
+        minSdkVersion 18
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
@@ -29,6 +29,7 @@ android {
     }
 
     packagingOptions {
+        exclude 'asm-license.txt'
         exclude 'META-INF/maven/com.google.guava/guava/pom.properties'
         exclude 'META-INF/maven/com.google.guava/guava/pom.xml'
     }
@@ -61,5 +62,8 @@ dependencies {
     androidTestCompile rootProject.ext.espressoWebView
     androidTestCompile rootProject.ext.espressoIntents
 
+    androidTestCompile rootProject.ext.uiautomatorLib
+
     androidTestCompile rootProject.ext.dexmakerMockito
+    androidTestCompile rootProject.ext.awaitility
 }

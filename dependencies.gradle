@@ -23,6 +23,7 @@ ext {
     testLibVersion = '0.5'
     espressoLibVersion = '2.2.2'
     dexmakerVersion = '1.4'
+    uiautomatorLibVersion = '2.1.2'
 
     // Image Library
     glideLibVersion = '3.7.0'
@@ -79,6 +80,9 @@ ext {
 
     // add this for intent mocking support
     espressoIntents = "com.android.support.test.espresso:espresso-intents:$rootProject.ext.espressoLibVersion"
+
+    // Set this dependency to build and run UI Automator tests
+    uiautomatorLib = "com.android.support.test.uiautomator:uiautomator-v18:$rootProject.ext.uiautomatorLibVersion"
 
     // add this for webview testing support
 //    androidTestCompile "com.android.support.test.espresso:espresso-web:${espressoLibVersion}"

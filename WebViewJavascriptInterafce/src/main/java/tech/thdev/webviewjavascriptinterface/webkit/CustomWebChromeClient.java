@@ -21,7 +21,7 @@ public class CustomWebChromeClient extends WebChromeClient {
 
     @Override
     public boolean onJsAlert(WebView view, String url, String message, final JsResult result) {
-        AlertDialog alertDialog = new AlertDialog.Builder(activity).setMessage(message).setPositiveButton("확인", new DialogInterface.OnClickListener() {
+        AlertDialog alertDialog = new AlertDialog.Builder(activity).setMessage(message).setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -47,13 +47,13 @@ public class CustomWebChromeClient extends WebChromeClient {
 
     @Override
     public boolean onJsConfirm(WebView view, String url, String message, final JsResult result) {
-        AlertDialog alertDialog = new AlertDialog.Builder(activity).setMessage(message).setPositiveButton("확인", new DialogInterface.OnClickListener() {
+        AlertDialog alertDialog = new AlertDialog.Builder(activity).setMessage(message).setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 result.confirm();
             }
-        }).setNegativeButton("취소", new DialogInterface.OnClickListener() {
+        }).setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
 
             @Override
             public void onClick(DialogInterface dialog, int which) {

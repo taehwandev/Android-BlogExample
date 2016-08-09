@@ -1,14 +1,23 @@
 package tech.thdev.webviewjavascriptinterface.view.main;
 
+import android.support.test.InstrumentationRegistry;
 import android.support.test.espresso.action.ViewActions;
 import android.support.test.espresso.intent.rule.IntentsTestRule;
 import android.support.test.espresso.web.webdriver.DriverAtoms;
 import android.support.test.espresso.web.webdriver.Locator;
 import android.support.test.runner.AndroidJUnit4;
+import android.support.test.uiautomator.UiDevice;
+import android.support.test.uiautomator.UiObject;
+import android.support.test.uiautomator.UiObjectNotFoundException;
+import android.support.test.uiautomator.UiSelector;
 
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 
 import tech.thdev.webviewjavascriptinterface.R;
 
@@ -19,7 +28,10 @@ import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
+import static android.support.test.espresso.web.assertion.WebViewAssertions.webContent;
 import static android.support.test.espresso.web.assertion.WebViewAssertions.webMatches;
+import static android.support.test.espresso.web.matcher.DomMatchers.hasElementWithId;
+import static android.support.test.espresso.web.model.Atoms.getCurrentUrl;
 import static android.support.test.espresso.web.sugar.Web.onWebView;
 import static android.support.test.espresso.web.webdriver.DriverAtoms.clearElement;
 import static android.support.test.espresso.web.webdriver.DriverAtoms.findElement;
@@ -29,44 +41,122 @@ import static org.hamcrest.Matchers.containsString;
 
 /**
  * Created by Tae-hwan on 8/9/16.
+ * <p>
+ * - https://android.googlesource.com/platform/frameworks/testing/+/android-support-test/espresso/sample/src/androidTest/java/android/support/test/testapp/WebViewTest.java
+ * - http://blog.egorand.me/testing-runtime-permissions-lessons-learned/
  */
 @RunWith(AndroidJUnit4.class)
 public class MainFragmentTest {
 
+    private static final String ANDROID_SCRIPT_CALL = "EditText keyword change";
+    private static final String JAVASCRIPT_CALL = "Web text change";
+
     @Rule
     public IntentsTestRule<MainActivity> rule = new IntentsTestRule<>(MainActivity.class);
 
+    private UiDevice device;
+
+    // create  a signal to let us know when our task is done.
+    private final CountDownLatch signal = new CountDownLatch(1);
+
+    @Before
+    public void setUp() {
+        device = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
+    }
+
     @Test
-    public void testWebToAndroidScriptCall() throws Exception {
-        onView(withId(R.id.et_url)).perform(clearText());
-        onView(withId(R.id.et_url)).perform(typeText(MainFragment.DEFAULT_URL)).perform(ViewActions.pressImeActionButton());
+    public void testHasElement() throws Exception {
+        waitWebViewLoad();
 
         onWebView()
-                // Find the input element by ID
+                .check(webContent(hasElementWithId("search_keyword")))
+                .check(webContent(hasElementWithId("updateKeywordBtn")))
+                .check(webContent(hasElementWithId("showAlertBtn")))
+                .check(webContent(hasElementWithId("message")));
+    }
+
+    @Test
+    public void testWebToAndroidScriptCall() throws Exception {
+        String go = MainFragment.DEFAULT_URL;
+
+        onView(withId(R.id.et_url)).perform(clearText());
+        onView(withId(R.id.et_url)).perform(typeText(go)).perform(ViewActions.pressImeActionButton());
+
+        waitWebViewLoad();
+
+        onWebView()
+                // Find the search keyword element by ID
                 .withElement(findElement(Locator.ID, "search_keyword"))
                 // Clear previous input
                 .perform(clearElement())
                 // Enter text into the input element
-                .perform(DriverAtoms.webKeys("EditText Keyword change...."))
+                .perform(DriverAtoms.webKeys(ANDROID_SCRIPT_CALL))
                 // Find the submit button
                 .withElement(findElement(Locator.ID, "updateKeywordBtn"))
                 // Simulate a click via javascript
                 .perform(webClick());
 
-        onView(withId(R.id.et_keyword)).check(matches(withText("EditText Keyword change....")));
+        onView(withId(R.id.et_keyword)).check(matches(withText(ANDROID_SCRIPT_CALL)));
     }
 
     @Test
     public void testAndroidToWebScriptCall() throws Exception {
-        onView(withId(R.id.et_url)).perform(clearText());
-        onView(withId(R.id.et_url)).perform(typeText(MainFragment.DEFAULT_URL)).perform(ViewActions.pressImeActionButton());
+        String go = MainFragment.DEFAULT_URL;
 
-        onView(withId(R.id.et_keyword)).perform(clearText()).perform(typeText("WebView text change event..."));
+        onView(withId(R.id.et_url)).perform(clearText());
+        onView(withId(R.id.et_url)).perform(typeText(go)).perform(ViewActions.pressImeActionButton());
+
+        waitWebViewLoad();
+
+        onView(withId(R.id.et_keyword)).perform(clearText()).perform(typeText(JAVASCRIPT_CALL));
         onView(withId(R.id.btn_search)).perform(click());
 
         onWebView()
-                // Find the input element by ID
-                .withElement(findElement(Locator.ID, "search_keyword"))
-                .check(webMatches(getText(), containsString("WebView text change event...")));
+                //I use this to allow all needed time to WebView to load
+                .withNoTimeout()
+                // Find the message element by ID
+                .check(webContent(hasElementWithId("message")))
+                // Find the message element by ID
+                .withElement(findElement(Locator.ID, "message"))
+                // Verify that the text is displayed
+                .check(webMatches(getText(), containsString(JAVASCRIPT_CALL)));
+    }
+
+    @Test
+    public void testShowAlertDialog() throws Throwable {
+        waitWebViewLoad();
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    // Wait 2 second
+                    signal.await(2, TimeUnit.SECONDS);
+                    // Find ok button and click
+                    assertViewWithTextIsVisible(device, rule.getActivity().getString(android.R.string.ok));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+
+        // WebView show alert dialog
+        onWebView().withElement(findElement(Locator.ID, "showAlertBtn"))
+                .perform(webClick());
+    }
+
+    private void waitWebViewLoad() {
+        onWebView()
+                .withNoTimeout()
+                // Check current url
+                .check(webMatches(getCurrentUrl(), containsString(MainFragment.DEFAULT_URL)));
+    }
+
+    public static void assertViewWithTextIsVisible(UiDevice device, String text) throws UiObjectNotFoundException {
+        UiObject allowButton = device.findObject(new UiSelector().text(text));
+        if (!allowButton.exists()) {
+            throw new AssertionError("View with text <" + text + "> not found!");
+        }
+        allowButton.click();
     }
 }
