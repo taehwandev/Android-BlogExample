@@ -31,7 +31,9 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static android.support.test.espresso.web.assertion.WebViewAssertions.webContent;
 import static android.support.test.espresso.web.assertion.WebViewAssertions.webMatches;
 import static android.support.test.espresso.web.matcher.DomMatchers.hasElementWithId;
+import static android.support.test.espresso.web.model.Atoms.castOrDie;
 import static android.support.test.espresso.web.model.Atoms.getCurrentUrl;
+import static android.support.test.espresso.web.model.Atoms.script;
 import static android.support.test.espresso.web.sugar.Web.onWebView;
 import static android.support.test.espresso.web.webdriver.DriverAtoms.clearElement;
 import static android.support.test.espresso.web.webdriver.DriverAtoms.findElement;
@@ -55,9 +57,6 @@ public class MainFragmentTest {
     public IntentsTestRule<MainActivity> rule = new IntentsTestRule<>(MainActivity.class);
 
     private UiDevice device;
-
-    // create  a signal to let us know when our task is done.
-    private final CountDownLatch signal = new CountDownLatch(1);
 
     @Before
     public void setUp() {
@@ -91,6 +90,8 @@ public class MainFragmentTest {
                 .perform(clearElement())
                 // Enter text into the input element
                 .perform(DriverAtoms.webKeys(ANDROID_SCRIPT_CALL))
+                // Value check. script getValue 'search_keyword'
+                .check(webMatches(script("return document.getElementById('search_keyword').value", castOrDie(String.class)), containsString(ANDROID_SCRIPT_CALL)))
                 // Find the submit button
                 .withElement(findElement(Locator.ID, "updateKeywordBtn"))
                 // Simulate a click via javascript
@@ -100,7 +101,7 @@ public class MainFragmentTest {
     }
 
     @Test
-    public void testAndroidToWebScriptCall() throws Exception {
+    public void testWebViewUpdateElementByInputText() throws Exception {
         String go = MainFragment.DEFAULT_URL;
 
         onView(withId(R.id.et_url)).perform(clearText());
@@ -115,7 +116,27 @@ public class MainFragmentTest {
                 //I use this to allow all needed time to WebView to load
                 .withNoTimeout()
                 // Find the message element by ID
-                .check(webContent(hasElementWithId("message")))
+                .check(webContent(hasElementWithId("search_keyword")))
+                .check(webMatches(script("return document.getElementById('search_keyword').value", castOrDie(String.class)), containsString(JAVASCRIPT_CALL)));
+    }
+
+    @Test
+    public void testWebViewUpdateElementByDisplayed() throws Exception {
+        String go = MainFragment.DEFAULT_URL;
+
+        onView(withId(R.id.et_url)).perform(clearText());
+        onView(withId(R.id.et_url)).perform(typeText(go)).perform(ViewActions.pressImeActionButton());
+
+        waitWebViewLoad();
+
+        onView(withId(R.id.et_keyword)).perform(clearText()).perform(typeText(JAVASCRIPT_CALL));
+        onView(withId(R.id.btn_search)).perform(click());
+
+        onWebView()
+                //I use this to allow all needed time to WebView to load
+                .withNoTimeout()
+                // Find the message element by ID
+                .check(webContent(hasElementWithId("search_keyword")))
                 // Find the message element by ID
                 .withElement(findElement(Locator.ID, "message"))
                 // Verify that the text is displayed
@@ -124,14 +145,17 @@ public class MainFragmentTest {
 
     @Test
     public void testShowAlertDialog() throws Throwable {
+        // create  a signal to let us know when our task is done.
+        final CountDownLatch signal = new CountDownLatch(1);
+
         waitWebViewLoad();
 
         new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
-                    // Wait 2 second
-                    signal.await(2, TimeUnit.SECONDS);
+                    // Wait second
+                    signal.await(1, TimeUnit.SECONDS);
                     // Find ok button and click
                     assertViewWithTextIsVisible(device, rule.getActivity().getString(android.R.string.ok));
                 } catch (Exception e) {
@@ -145,7 +169,10 @@ public class MainFragmentTest {
                 .perform(webClick());
     }
 
-    private void waitWebViewLoad() {
+    /**
+     * WebView load finish check.
+     */
+    private void waitWebViewLoad() throws Exception {
         onWebView()
                 .withNoTimeout()
                 // Check current url
