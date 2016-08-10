@@ -133,10 +133,6 @@ public class MainFragmentTest {
         onView(withId(R.id.btn_search)).perform(click());
 
         onWebView()
-                //I use this to allow all needed time to WebView to load
-                .withNoTimeout()
-                // Find the message element by ID
-                .check(webContent(hasElementWithId("search_keyword")))
                 // Find the message element by ID
                 .withElement(findElement(Locator.ID, "message"))
                 // Verify that the text is displayed
@@ -167,6 +163,22 @@ public class MainFragmentTest {
         // WebView show alert dialog
         onWebView().withElement(findElement(Locator.ID, "showAlertBtn"))
                 .perform(webClick());
+    }
+
+    @Test
+    public void testCallWebJavascript() throws Throwable {
+        waitWebViewLoad();
+
+        onWebView()
+                // Find the search keyword element by ID
+                .withElement(findElement(Locator.ID, "search_keyword"))
+                // Clear previous input
+                .perform(clearElement())
+                // Enter text into the input element
+                .perform(DriverAtoms.webKeys(ANDROID_SCRIPT_CALL))
+                .perform(script("updateKeyword();"));
+
+        onView(withId(R.id.et_keyword)).check(matches(withText(ANDROID_SCRIPT_CALL)));
     }
 
     /**
