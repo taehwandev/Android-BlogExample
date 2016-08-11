@@ -35,4 +35,11 @@ public class MainPresenter extends AbstractPresenter<MainContract.View> implemen
     public CustomJavaScript getCustomJavaScript() {
         return customJavaScript;
     }
+
+    @Override
+    public void onChangeWebView(String url) {
+        if (isAttachView()) {
+            getView().changeWebView(url);
+        }
+    }
 }

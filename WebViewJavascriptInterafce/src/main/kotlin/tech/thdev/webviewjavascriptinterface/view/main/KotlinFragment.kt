@@ -1,9 +1,14 @@
 package tech.thdev.webviewjavascriptinterface.view.main
 
 import android.os.Bundle
+import android.text.TextUtils
 import android.view.View
+import android.view.inputmethod.EditorInfo
+import android.widget.EditText
+import android.widget.Toast
 import tech.thdev.kotlin_example_01.base.view.BaseFragment
 import tech.thdev.webviewjavascriptinterface.R
+import tech.thdev.webviewjavascriptinterface.util.hideKeyboard
 import tech.thdev.webviewjavascriptinterface.view.main.presenter.KotlinContract
 import tech.thdev.webviewjavascriptinterface.webkit.CustomWebChromeClient
 import tech.thdev.webviewjavascriptinterface.webkit.CustomWebViewClient
@@ -12,9 +17,13 @@ import tech.thdev.webviewjavascriptinterface.webkit.KtWebView
 /**
  * Created by Tae-hwan on 8/11/16.
  */
-class KotlinFragment(var url: String = ""): BaseFragment<KotlinContract.Presenter>() {
+class KotlinFragment(var url: String = ""): BaseFragment<KotlinContract.Presenter>(), KotlinContract.View {
 
     override fun getLayout(): Int = R.layout.fragment_kotlin
+
+    private val etUrl by lazy {
+        activity.findViewById(R.id.et_url) as EditText
+    }
 
     private val webView by lazy {
         view?.findViewById(R.id.web_view) as KtWebView
@@ -27,12 +36,33 @@ class KotlinFragment(var url: String = ""): BaseFragment<KotlinContract.Presente
     }
 
     private fun initView() {
+        etUrl.setOnEditorActionListener { textView, i, keyEvent ->
+            if (i == EditorInfo.IME_ACTION_GO) {
+                var url = etUrl.text.toString()
+                if (TextUtils.isEmpty(url)) {
+                    url = this.url
+                }
+                webView.loadUrl(url)
+                context.hideKeyboard(etUrl)
+            }
+            true
+        }
+
         webView.setWebChromeClient(CustomWebChromeClient(activity))
         webView.setWebViewClient(CustomWebViewClient())
         webView.init()
 
         webView.addJavascriptInterface(presenter?.getOnCustomJavaScriptListener(), "WebViewTest")
 
+        etUrl.setText(url)
         webView.loadUrl(url)
+    }
+
+    override fun updateKeyword(keyword: String?) {
+        Toast.makeText(context, keyword, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun changeUrl(url: String?) {
+        url?.let { webView.loadUrl(url) }
     }
 }

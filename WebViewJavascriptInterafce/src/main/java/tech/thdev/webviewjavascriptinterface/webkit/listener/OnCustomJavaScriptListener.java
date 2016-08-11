@@ -7,4 +7,6 @@ package tech.thdev.webviewjavascriptinterface.webkit.listener;
 public interface OnCustomJavaScriptListener {
 
     void onUpdateKeyword(String keyword);
+
+    void onChangeWebView(String url);
 }

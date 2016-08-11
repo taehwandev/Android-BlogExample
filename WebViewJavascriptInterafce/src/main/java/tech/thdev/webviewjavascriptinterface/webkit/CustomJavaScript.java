@@ -26,4 +26,11 @@ public class CustomJavaScript {
             listener.onUpdateKeyword(keyword);
         }
     }
+
+    @JavascriptInterface
+    public void changeWebView(String url) {
+        if (listener != null) {
+            listener.onChangeWebView(url);
+        }
+    }
 }

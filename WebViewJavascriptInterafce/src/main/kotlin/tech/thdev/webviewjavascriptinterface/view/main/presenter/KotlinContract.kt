@@ -15,6 +15,11 @@ interface KotlinContract {
          * WebView keyword event
          */
         fun updateKeyword(keyword: String?)
+
+        /**
+         * Url change
+         */
+        fun changeUrl(url: String?)
     }
 
     interface Presenter : BasePresenter<View>, OnCustomJavaScriptListener {

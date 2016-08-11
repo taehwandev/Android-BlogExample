@@ -6,6 +6,7 @@ import tech.thdev.webviewjavascriptinterface.R
 import tech.thdev.webviewjavascriptinterface.base.view.BaseActivity
 import tech.thdev.webviewjavascriptinterface.constant.Constant
 import tech.thdev.webviewjavascriptinterface.util.replaceContentFragment
+import tech.thdev.webviewjavascriptinterface.view.main.presenter.KotlinPresenter
 
 /**
  * Created by Tae-hwan on 8/11/16.
@@ -25,6 +26,9 @@ class KotlinActivity: BaseActivity() {
         val url = intent.getStringExtra(Constant.KEY_INTENT_URL)
         val fragment = KotlinFragment(url)
         replaceContentFragment(R.id.frame_layout, fragment)
+
+        val presenter = KotlinPresenter()
+        presenter.attachView(fragment)
     }
 
     private fun initToolbar() {

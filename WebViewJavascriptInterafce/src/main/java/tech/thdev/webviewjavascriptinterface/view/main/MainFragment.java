@@ -1,6 +1,6 @@
 package tech.thdev.webviewjavascriptinterface.view.main;
 
-import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.KeyEvent;
@@ -9,7 +9,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -17,6 +16,8 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import tech.thdev.kotlin_example_01.base.view.BaseFragment;
 import tech.thdev.webviewjavascriptinterface.R;
+import tech.thdev.webviewjavascriptinterface.constant.Constant;
+import tech.thdev.webviewjavascriptinterface.util.EditUtilKt;
 import tech.thdev.webviewjavascriptinterface.view.main.presenter.MainContract;
 import tech.thdev.webviewjavascriptinterface.webkit.CustomWebChromeClient;
 import tech.thdev.webviewjavascriptinterface.webkit.CustomWebView;
@@ -98,7 +99,7 @@ public class MainFragment extends BaseFragment<MainContract.Presenter> implement
                     url = DEFAULT_URL;
                 }
                 loadUrl(url);
-                hideKeyboard(etUrl);
+                EditUtilKt.hideKeyboard(getContext(), etUrl);
                 return true;
 
             default:
@@ -143,18 +144,20 @@ public class MainFragment extends BaseFragment<MainContract.Presenter> implement
         });
     }
 
+    @Override
+    public void changeWebView(String url) {
+        Intent intent = new Intent(getActivity(), KotlinActivity.class);
+        intent.putExtra(Constant.getKEY_INTENT_URL(), url);
+        startActivity(intent);
+    }
+
     @OnClick(R.id.btn_search)
     public void onBtnSearch(View view) {
         setKeyword();
-        hideKeyboard(view);
+        EditUtilKt.hideKeyboard(getContext(), view);
     }
 
     private void setKeyword() {
         loadUrl("javascript:setKeyword('" + etKeyword.getText().toString() + "')");
-    }
-
-    private void hideKeyboard(View view) {
-        InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 }

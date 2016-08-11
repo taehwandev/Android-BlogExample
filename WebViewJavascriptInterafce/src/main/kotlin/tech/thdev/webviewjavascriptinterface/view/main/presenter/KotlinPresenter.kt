@@ -18,4 +18,8 @@ class KotlinPresenter: AbstractPresenter<KotlinContract.View>(), KotlinContract.
     }
 
     override fun getOnCustomJavaScriptListener(): OnCustomJavaScriptListener = this
+
+    override fun onChangeWebView(url: String?) {
+        view?.changeUrl(url)
+    }
 }

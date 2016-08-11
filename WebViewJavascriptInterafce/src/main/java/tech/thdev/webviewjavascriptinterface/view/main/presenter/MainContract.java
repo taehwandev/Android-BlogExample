@@ -22,6 +22,11 @@ public interface MainContract {
          * WebKeyword update.
          */
         void updateKeyword(String keyword);
+
+        /**
+         * WebView Change event.
+         */
+        void changeWebView(String url);
     }
 
     interface Presenter extends BasePresenter<View>, OnCustomJavaScriptListener {

@@ -5,5 +5,7 @@ package tech.thdev.webviewjavascriptinterface.constant
  */
 object Constant {
 
+    @JvmStatic
     val KEY_INTENT_URL = "key-intent-url"
+
 }
