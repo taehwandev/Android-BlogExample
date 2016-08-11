@@ -44,7 +44,7 @@ public class CustomWebView extends WebView {
         settings.setDatabaseEnabled(true);
         settings.setDomStorageEnabled(true);
 
-        settings.setDefaultTextEncodingName("UTF-8");
+        // No Cache
         settings.setCacheMode(WebSettings.LOAD_NO_CACHE);
     }
 }
