@@ -48,6 +48,7 @@ ext {
 
     // Kotlin
     kotlin = "org.jetbrains.kotlin:kotlin-stdlib:$rootProject.ext.kotlin_version"
+    kotlinTestJunit = "org.jetbrains.kotlin:kotlin-test-junit:$rootProject.ext.kotlin_version"
 
     // Network
     // http://square.github.io/retrofit/

@@ -236,6 +236,26 @@ public class MainFragmentTest {
                 .perform(script(alert));
     }
 
+    @Test
+    public void testChangeWebViewTest() throws Exception {
+        waitWebViewLoad();
+
+        onWebView()
+                // Find the search keyword element by ID
+                .withElement(findElement(Locator.ID, "url"))
+                // Clear previous input
+                .perform(clearElement())
+                // Enter text into the input element
+                .perform(DriverAtoms.webKeys("http://google.com/"))
+                // Find the submit button
+                .withElement(findElement(Locator.ID, "changeWebView"))
+                // Simulate a click via javascript
+                .perform(webClick());
+
+        onWebView()
+                .check(webMatches(getCurrentUrl(), containsString("http://google.com")));
+    }
+
     /**
      * WebView load finish check.
      */

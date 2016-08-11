@@ -66,4 +66,6 @@ dependencies {
 
     androidTestCompile rootProject.ext.dexmakerMockito
     androidTestCompile rootProject.ext.awaitility
+
+    androidTestCompile rootProject.ext.kotlinTestJunit
 }
