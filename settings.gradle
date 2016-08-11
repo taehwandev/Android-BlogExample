@@ -1,6 +1,8 @@
-include ':2016-04-05-N-MultiWindow', ':WebViewJavascriptInterafce'
-include ':2016-04-20-AndroidTestExample'
-include ':2016-05-08-Android-Overlay-Permission-Example'
 include ':BottomSheet', ':N-Recycler-Lambda-Example',
         ':ButterKnifeExample', ':Firebase-Example',
         ':kotlin-example-01'
+
+include ':2016-04-05-N-MultiWindow'
+include ':2016-04-20-AndroidTestExample'
+include ':2016-05-08-Android-Overlay-Permission-Example'
+include ':2016-08-11-WebViewJavascriptInterafce'
