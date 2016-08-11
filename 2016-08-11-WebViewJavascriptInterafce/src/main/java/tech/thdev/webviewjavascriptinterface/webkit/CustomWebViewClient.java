@@ -1,6 +1,7 @@
 package tech.thdev.webviewjavascriptinterface.webkit;
 
 import android.annotation.TargetApi;
+import android.graphics.Bitmap;
 import android.os.Build;
 import android.util.Log;
 import android.webkit.WebResourceError;
@@ -14,6 +15,31 @@ import android.webkit.WebViewClient;
  */
 
 public class CustomWebViewClient extends WebViewClient {
+
+    @TargetApi(Build.VERSION_CODES.M)
+    @Override
+    public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+        Log.d("TAG", "request : " + request.getUrl());
+        return super.shouldOverrideUrlLoading(view, request);
+    }
+
+    @Override
+    public boolean shouldOverrideUrlLoading(WebView view, String url) {
+        Log.d("TAG", "request : " + url);
+        return super.shouldOverrideUrlLoading(view, url);
+    }
+
+    @Override
+    public void onPageStarted(WebView view, String url, Bitmap favicon) {
+        super.onPageStarted(view, url, favicon);
+        Log.d("TAG", "url : " + url);
+    }
+
+    @Override
+    public void onPageFinished(WebView view, String url) {
+        Log.e("TAG", "url " + url);
+        super.onPageFinished(view, url);
+    }
 
     @TargetApi(Build.VERSION_CODES.M)
     @Override
