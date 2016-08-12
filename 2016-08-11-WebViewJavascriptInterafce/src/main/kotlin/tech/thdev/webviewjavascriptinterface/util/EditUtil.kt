@@ -8,7 +8,8 @@ import android.view.inputmethod.InputMethodManager
  * Created by tae-hwan on 8/11/16.
  */
 
-fun Context.hideKeyboard(view: View) {
-    (this.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager)
-            .hideSoftInputFromWindow(view.windowToken, 0)
+fun Context.hideKeyboard(view: View?) {
+    view?.let {
+        (this.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager).hideSoftInputFromWindow(view.windowToken, 0)
+    }
 }

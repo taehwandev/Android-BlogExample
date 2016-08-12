@@ -37,9 +37,6 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
 
     compile rootProject.ext.appCompat
     compile rootProject.ext.design
@@ -58,7 +55,9 @@ dependencies {
     androidTestCompile rootProject.ext.testRunner
     androidTestCompile rootProject.ext.testRules
 
-    androidTestCompile rootProject.ext.espressoCore
+    androidTestCompile(rootProject.ext.espressoCore, {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
     androidTestCompile rootProject.ext.espressoWebView
     androidTestCompile rootProject.ext.espressoIntents
 

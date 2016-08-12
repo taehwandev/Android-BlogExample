@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">LocationAPIExample</string>
+    <string name="title_activity_maps">Map</string>
+</resources>
