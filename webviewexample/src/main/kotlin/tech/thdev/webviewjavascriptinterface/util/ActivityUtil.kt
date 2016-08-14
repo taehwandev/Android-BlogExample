@@ -15,7 +15,8 @@ fun AppCompatActivity.replaceContentFragment(@IdRes frameId: Int, fragment: Frag
     supportFragmentManager?.beginTransaction()?.replace(frameId, fragment)?.commit()
 }
 
-fun Context.hideKeyboard(view: View) {
-    (this.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager)
-            .hideSoftInputFromWindow(view.windowToken, 0)
+fun Context.hideKeyboard(view: View?) {
+    view?.let {
+        (this.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager).hideSoftInputFromWindow(view.windowToken, 0)
+    }
 }

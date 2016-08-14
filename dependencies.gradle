@@ -8,7 +8,7 @@ ext {
     // Dependencies version
     supportLibraryVersion = '24.1.1'
     constraintLayoutVersion = '1.0.0-alpha6'
-    playServicesVersion = '9.2.1'
+    playServicesVersion = '9.4.0'
 
     // Bind view
     butterKnifeVersion = '8.2.1'

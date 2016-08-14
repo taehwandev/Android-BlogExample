@@ -59,7 +59,9 @@ dependencies {
     androidTestCompile rootProject.ext.testRunner
     androidTestCompile rootProject.ext.testRules
 
-    androidTestCompile rootProject.ext.espressoCore
+    androidTestCompile(rootProject.ext.espressoCore, {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
     androidTestCompile rootProject.ext.espressoWebView
     androidTestCompile rootProject.ext.espressoIntents
 

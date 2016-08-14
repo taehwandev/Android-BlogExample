@@ -1,4 +1,4 @@
-include ':BottomSheet', ':N-Recycler-Lambda-Example', ':webviewexample',
+include ':BottomSheet', ':N-Recycler-Lambda-Example', ':locationapiexample', ':webviewexample',
         ':ButterKnifeExample', ':Firebase-Example',
         ':kotlin-example-01'
 
