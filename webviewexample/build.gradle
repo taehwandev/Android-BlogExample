@@ -7,8 +7,8 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
-        applicationId "tech.thdev.webviewjavascriptinterface"
-        minSdkVersion 18
+        applicationId "tech.thdev.webviewexample"
+        minSdkVersion 16
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
@@ -25,7 +25,6 @@ android {
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
-        androidTest.java.srcDirs += 'src/androidTest/kotlin'
     }
 
     packagingOptions {
@@ -40,7 +39,6 @@ dependencies {
 
     compile rootProject.ext.appCompat
     compile rootProject.ext.design
-    compile rootProject.ext.constraintLayout
 
     compile rootProject.ext.butterKnife
     apt rootProject.ext.butterKnifeCompiler
@@ -53,20 +51,4 @@ dependencies {
     androidTestCompile(rootProject.ext.espressoCore, {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-
-    androidTestCompile rootProject.ext.annotations
-
-    androidTestCompile rootProject.ext.testRunner
-    androidTestCompile rootProject.ext.testRules
-
-    androidTestCompile rootProject.ext.espressoCore
-    androidTestCompile rootProject.ext.espressoWebView
-    androidTestCompile rootProject.ext.espressoIntents
-
-    androidTestCompile rootProject.ext.uiautomatorLib
-
-    androidTestCompile rootProject.ext.dexmakerMockito
-    androidTestCompile rootProject.ext.awaitility
-
-    androidTestCompile rootProject.ext.kotlinTestJunit
 }

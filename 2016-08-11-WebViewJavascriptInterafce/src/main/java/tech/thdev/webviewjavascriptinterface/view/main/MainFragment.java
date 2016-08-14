@@ -17,7 +17,7 @@ import butterknife.OnClick;
 import tech.thdev.kotlin_example_01.base.view.BaseFragment;
 import tech.thdev.webviewjavascriptinterface.R;
 import tech.thdev.webviewjavascriptinterface.constant.Constant;
-import tech.thdev.webviewjavascriptinterface.util.EditUtilKt;
+import tech.thdev.webviewjavascriptinterface.util.ActivityUtilKt;
 import tech.thdev.webviewjavascriptinterface.view.main.presenter.MainContract;
 import tech.thdev.webviewjavascriptinterface.webkit.CustomWebChromeClient;
 import tech.thdev.webviewjavascriptinterface.webkit.CustomWebView;
@@ -99,7 +99,7 @@ public class MainFragment extends BaseFragment<MainContract.Presenter> implement
                     url = DEFAULT_URL;
                 }
                 loadUrl(url);
-                EditUtilKt.hideKeyboard(getContext(), etUrl);
+                ActivityUtilKt.hideKeyboard(getContext(), etUrl);
                 return true;
 
             default:
@@ -154,7 +154,7 @@ public class MainFragment extends BaseFragment<MainContract.Presenter> implement
     @OnClick(R.id.btn_search)
     public void onBtnSearch(View view) {
         setKeyword();
-        EditUtilKt.hideKeyboard(getContext(), view);
+        ActivityUtilKt.hideKeyboard(getContext(), view);
     }
 
     private void setKeyword() {
