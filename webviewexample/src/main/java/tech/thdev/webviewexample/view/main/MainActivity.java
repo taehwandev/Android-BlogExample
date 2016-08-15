@@ -27,6 +27,8 @@ public class MainActivity extends BaseActivity
     @BindView(R.id.nav_view)
     NavigationView navigationView;
 
+    private MainFragment fragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +45,7 @@ public class MainActivity extends BaseActivity
 
         navigationView.setNavigationItemSelectedListener(this);
 
-        MainFragment fragment = MainFragment.getInstance();
+        fragment = MainFragment.getInstance();
         ActivityUtilKt.replaceContentFragment(this, R.id.frame_layout, fragment);
 
         // Presenter create ...
@@ -59,6 +61,14 @@ public class MainActivity extends BaseActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
+
+        }
+        /**
+         * WebView can go back event
+         */
+        else if (fragment.canGoBack()) {
+            fragment.goBack();
+
         } else {
             super.onBackPressed();
         }
@@ -89,8 +99,6 @@ public class MainActivity extends BaseActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        MainFragment fragment = (MainFragment) ActivityUtilKt.findContentFragment(this, R.id.frame_layout);
-
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 

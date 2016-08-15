@@ -57,6 +57,7 @@ public class MainFragment extends BaseFragment<MainContract.Presenter> implement
         etUrlView.setOnEditorActionListener(this);
         floatingActionButton = (FloatingActionButton) getActivity().findViewById(R.id.fab);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
                 webView.reload();
@@ -65,7 +66,7 @@ public class MainFragment extends BaseFragment<MainContract.Presenter> implement
 
         loadingProgressBar = (ContentLoadingProgressBar) getActivity().findViewById(R.id.web_view_load_progress_bar);
 
-        webView.setOnKeyListener(this);
+//        webView.setOnKeyListener(this);
 
         // Add WebView ScrollChangeListener M
 //        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -113,6 +114,20 @@ public class MainFragment extends BaseFragment<MainContract.Presenter> implement
             }
         }
         return false;
+    }
+
+    /**
+     * WebView Can go back.
+     */
+    public boolean canGoBack() {
+        return webView.canGoBack();
+    }
+
+    /**
+     * WebView go back.
+     */
+    public void goBack() {
+        webView.goBack();
     }
 
     private void validationUrl() {
