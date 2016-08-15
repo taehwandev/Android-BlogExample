@@ -50,10 +50,6 @@ dependencies {
 
     testCompile junit
 
-    androidTestCompile(rootProject.ext.espressoCore, {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-
     androidTestCompile rootProject.ext.annotations
 
     androidTestCompile rootProject.ext.testRunner

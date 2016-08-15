@@ -1,24 +1,14 @@
 package tech.thdev.webviewjavascriptinterface.view.main;
 
-import android.support.test.InstrumentationRegistry;
 import android.support.test.espresso.action.ViewActions;
 import android.support.test.espresso.intent.rule.IntentsTestRule;
-import android.support.test.espresso.web.deps.guava.collect.Lists;
 import android.support.test.espresso.web.webdriver.DriverAtoms;
 import android.support.test.espresso.web.webdriver.Locator;
 import android.support.test.runner.AndroidJUnit4;
-import android.support.test.uiautomator.UiDevice;
-import android.support.test.uiautomator.UiObject;
-import android.support.test.uiautomator.UiObjectNotFoundException;
-import android.support.test.uiautomator.UiSelector;
 
-import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
 
 import tech.thdev.webviewjavascriptinterface.R;
 
@@ -35,15 +25,13 @@ import static android.support.test.espresso.web.matcher.DomMatchers.hasElementWi
 import static android.support.test.espresso.web.model.Atoms.castOrDie;
 import static android.support.test.espresso.web.model.Atoms.getCurrentUrl;
 import static android.support.test.espresso.web.model.Atoms.script;
-import static android.support.test.espresso.web.model.Atoms.scriptWithArgs;
-import static android.support.test.espresso.web.model.Atoms.transform;
 import static android.support.test.espresso.web.sugar.Web.onWebView;
 import static android.support.test.espresso.web.webdriver.DriverAtoms.clearElement;
 import static android.support.test.espresso.web.webdriver.DriverAtoms.findElement;
 import static android.support.test.espresso.web.webdriver.DriverAtoms.getText;
 import static android.support.test.espresso.web.webdriver.DriverAtoms.webClick;
 import static org.hamcrest.Matchers.containsString;
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.startsWith;
 
 /**
  * Created by Tae-hwan on 8/9/16.
@@ -59,13 +47,6 @@ public class MainFragmentTest {
 
     @Rule
     public IntentsTestRule<MainActivity> rule = new IntentsTestRule<>(MainActivity.class);
-
-    private UiDevice device;
-
-    @Before
-    public void setUp() {
-        device = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
-    }
 
     @Test
     public void testHasElement() throws Exception {
@@ -144,32 +125,6 @@ public class MainFragmentTest {
     }
 
     @Test
-    public void testShowAlertDialog() throws Throwable {
-        // create  a signal to let us know when our task is done.
-        final CountDownLatch signal = new CountDownLatch(1);
-
-        waitWebViewLoad();
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    // Wait second
-                    signal.await(1, TimeUnit.SECONDS);
-                    // Find ok button and click
-                    assertViewWithTextIsVisible(device, rule.getActivity().getString(android.R.string.ok));
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }).start();
-
-        // WebView show alert dialog
-        onWebView().withElement(findElement(Locator.ID, "showAlertBtn"))
-                .perform(webClick());
-    }
-
-    @Test
     public void testCallWebJavascript() throws Throwable {
         waitWebViewLoad();
 
@@ -183,57 +138,6 @@ public class MainFragmentTest {
                 .perform(script("updateKeyword();"));
 
         onView(withId(R.id.et_keyword)).check(matches(withText(ANDROID_SCRIPT_CALL)));
-    }
-
-    @Test
-    public void testJavascriptEvaluation() throws Throwable {
-        waitWebViewLoad();
-
-        String script = "function() { return arguments[0] }";
-
-        onWebView()
-                .check(webMatches(transform(scriptWithArgs(script,
-                        Lists.newArrayList("String")), castOrDie(String.class)), is("String")));
-
-
-        // Google Testing code
-        // Writing using functions is nice for re-usable snippits of logic that vary by their
-        // arguments.
-        String accumulateFn = "function() {"
-                + "  var initial = arguments[0];"
-                + "  for (var i = 1; i < arguments.length; i++) { "
-                + "    initial += arguments[i];"
-                + "  }"
-                + "  return initial;"
-                + "}";
-        onWebView()
-                .check(webMatches(transform(scriptWithArgs(accumulateFn,
-                        Lists.newArrayList(1, 2, 42, 7)),
-                        castOrDie(Integer.class)),
-                        is(52)));
-
-
-        String alert = "function() { alert(arguments[0]) }";
-
-        // create  a signal to let us know when our task is done.
-        final CountDownLatch signal = new CountDownLatch(1);
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    // Wait second
-                    signal.await(1, TimeUnit.SECONDS);
-                    // Find ok button and click
-                    assertViewWithTextIsVisible(device, rule.getActivity().getString(android.R.string.ok));
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }).start();
-
-        onWebView()
-                .perform(script(alert));
     }
 
     @Test
@@ -253,7 +157,8 @@ public class MainFragmentTest {
                 .perform(webClick());
 
         onWebView()
-                .check(webMatches(getCurrentUrl(), containsString("http://google.com")));
+                .withNoTimeout()
+                .check(webMatches(getCurrentUrl(), containsString("https://www.google")));
     }
 
     /**
@@ -264,13 +169,5 @@ public class MainFragmentTest {
                 .withNoTimeout()
                 // Check current url
                 .check(webMatches(getCurrentUrl(), containsString(MainFragment.DEFAULT_URL)));
-    }
-
-    public static void assertViewWithTextIsVisible(UiDevice device, String text) throws UiObjectNotFoundException {
-        UiObject allowButton = device.findObject(new UiSelector().text(text));
-        if (!allowButton.exists()) {
-            throw new AssertionError("View with text <" + text + "> not found!");
-        }
-        allowButton.click();
     }
 }
