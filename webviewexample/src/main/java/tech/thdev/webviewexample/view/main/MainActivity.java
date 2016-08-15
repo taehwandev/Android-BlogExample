@@ -1,4 +1,4 @@
-package tech.thdev.webviewexample;
+package tech.thdev.webviewexample.view.main;
 
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -10,6 +10,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import butterknife.BindView;
+import tech.thdev.webviewexample.R;
+import tech.thdev.webviewexample.view.main.presenter.MainPresenter;
 import tech.thdev.webviewjavascriptinterface.base.view.BaseActivity;
 import tech.thdev.webviewjavascriptinterface.util.ActivityUtilKt;
 

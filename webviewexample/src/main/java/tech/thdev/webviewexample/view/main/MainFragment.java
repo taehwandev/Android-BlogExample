@@ -1,12 +1,13 @@
-package tech.thdev.webviewexample;
+package tech.thdev.webviewexample.view.main;
 
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v4.widget.ContentLoadingProgressBar;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.webkit.WebSettings;
-import android.webkit.WebView;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -14,7 +15,10 @@ import org.jetbrains.annotations.Nullable;
 
 import butterknife.BindView;
 import tech.thdev.kotlin_example_01.base.view.BaseFragment;
+import tech.thdev.webviewexample.R;
+import tech.thdev.webviewexample.view.main.presenter.MainContract;
 import tech.thdev.webviewexample.webkit.CustomWebChromeClient;
+import tech.thdev.webviewexample.webkit.CustomWebView;
 import tech.thdev.webviewexample.webkit.CustomWebViewClient;
 import tech.thdev.webviewjavascriptinterface.util.ActivityUtilKt;
 
@@ -25,9 +29,12 @@ import tech.thdev.webviewjavascriptinterface.util.ActivityUtilKt;
 public class MainFragment extends BaseFragment<MainContract.Presenter> implements MainContract.View, TextView.OnEditorActionListener, View.OnKeyListener {
 
     @BindView(R.id.web_view)
-    WebView webView;
+    CustomWebView webView;
 
     private EditText etUrlView;
+    private ContentLoadingProgressBar loadingProgressBar;
+
+    private FloatingActionButton floatingActionButton;
 
     public static MainFragment getInstance() {
         return new MainFragment();
@@ -48,13 +55,36 @@ public class MainFragment extends BaseFragment<MainContract.Presenter> implement
     private void initView() {
         etUrlView = (EditText) getActivity().findViewById(R.id.et_url_input);
         etUrlView.setOnEditorActionListener(this);
+        floatingActionButton = (FloatingActionButton) getActivity().findViewById(R.id.fab);
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                webView.reload();
+            }
+        });
+
+        loadingProgressBar = (ContentLoadingProgressBar) getActivity().findViewById(R.id.web_view_load_progress_bar);
 
         webView.setOnKeyListener(this);
-        webView.setWebChromeClient(new CustomWebChromeClient(getActivity()));
+
+        // Add WebView ScrollChangeListener M
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+//            webView.setOnScrollChangeListener(new View.OnScrollChangeListener() {
+//                @Override
+//                public void onScrollChange(View view, int i, int i1, int i2, int i3) {
+//
+//                }
+//            });
+//        }
+
+        webView.setOnWebViewListener(getPresenter());
+
+        webView.setWebChromeClient(new CustomWebChromeClient(getActivity(), getPresenter()));
         webView.setWebViewClient(new CustomWebViewClient(getPresenter()));
-        WebSettings webSettings = webView.getSettings();
-        webSettings.setBuiltInZoomControls(true);
-        webView.loadUrl("about:blank");
+        webView.defaultInit(WebSettings.LOAD_DEFAULT);
+        if (getPresenter() != null) {
+            getPresenter().defaultLoadUrl();
+        }
     }
 
     @Override
@@ -72,7 +102,6 @@ public class MainFragment extends BaseFragment<MainContract.Presenter> implement
 
     @Override
     public boolean onKey(View view, int i, KeyEvent keyEvent) {
-        Log.d("TAG", "keycode : " + i);
         if (keyEvent.getAction() == KeyEvent.ACTION_DOWN) {
             switch (i) {
                 case KeyEvent.KEYCODE_BACK:
@@ -101,6 +130,25 @@ public class MainFragment extends BaseFragment<MainContract.Presenter> implement
     @Override
     public void setUrl(String url) {
         etUrlView.setText(url);
-        etUrlView.selectAll();
+    }
+
+    @Override
+    public void webViewScrollChanged(boolean isTop) {
+        if (isTop) {
+            floatingActionButton.show();
+        } else {
+            floatingActionButton.hide();
+        }
+    }
+
+    @Override
+    public void webViewProgressChanged(int newProgress) {
+        loadingProgressBar.setProgress(newProgress);
+
+        if (newProgress >= 100) {
+            loadingProgressBar.setVisibility(View.GONE);
+        } else if (loadingProgressBar.getVisibility() != View.VISIBLE) {
+            loadingProgressBar.setVisibility(View.VISIBLE);
+        }
     }
 }

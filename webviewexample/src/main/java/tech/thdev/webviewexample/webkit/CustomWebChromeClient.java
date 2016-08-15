@@ -7,6 +7,8 @@ import android.webkit.JsResult;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 
+import tech.thdev.webviewexample.webkit.listener.OnWebViewListener;
+
 /**
  * Created by Tae-hwan on 8/4/16.
  */
@@ -15,8 +17,11 @@ public class CustomWebChromeClient extends WebChromeClient {
 
     private Activity activity;
 
-    public CustomWebChromeClient(Activity activity) {
+    private OnWebViewListener webViewListener;
+
+    public CustomWebChromeClient(Activity activity, OnWebViewListener listener) {
         this.activity = activity;
+        this.webViewListener = listener;
     }
 
     @Override
@@ -76,5 +81,14 @@ public class CustomWebChromeClient extends WebChromeClient {
         }
 
         return true;
+    }
+
+    @Override
+    public void onProgressChanged(WebView view, int newProgress) {
+        super.onProgressChanged(view, newProgress);
+
+        if (webViewListener != null) {
+            webViewListener.onProgressChanged(newProgress);
+        }
     }
 }

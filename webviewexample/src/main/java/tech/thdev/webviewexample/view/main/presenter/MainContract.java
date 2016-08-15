@@ -1,4 +1,4 @@
-package tech.thdev.webviewexample;
+package tech.thdev.webviewexample.view.main.presenter;
 
 import tech.thdev.kotlin_example_01.base.presenter.BasePresenter;
 import tech.thdev.kotlin_example_01.base.presenter.BaseView;
@@ -18,10 +18,26 @@ public interface MainContract {
          * WebView request url change
          */
         void setUrl(String url);
+
+        /**
+         * WebView scroll change
+         * @param isTop If true, scroll to the top.
+         */
+        void webViewScrollChanged(boolean isTop);
+
+        /**
+         * WebView Progress changed
+         */
+        void webViewProgressChanged(int newProgress);
     }
 
     interface Presenter extends BasePresenter<View>, OnWebViewListener {
 
         void validationUrl(String text);
+
+        /**
+         * Default url load...
+         */
+        void defaultLoadUrl();
     }
 }

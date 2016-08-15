@@ -6,7 +6,11 @@ package tech.thdev.webviewexample.webkit.listener;
 
 public interface OnWebViewListener {
 
+    void onScroll(int l, int t, int oldl, int oldt);
+
     void onFinish(String url);
 
     void onUrlChange(String url);
+
+    void onProgressChanged(int newProgress);
 }
