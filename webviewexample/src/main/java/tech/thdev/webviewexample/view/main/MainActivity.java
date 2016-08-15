@@ -89,21 +89,28 @@ public class MainActivity extends BaseActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
+        MainFragment fragment = (MainFragment) ActivityUtilKt.findContentFragment(this, R.id.frame_layout);
+
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        switch (id) {
+            case R.id.nav_manage:
+                break;
 
-        } else if (id == R.id.nav_slideshow) {
+            case R.id.nav_share:
+                fragment.urlShare();
+                break;
 
-        } else if (id == R.id.nav_manage) {
+            // Bookmarks link
+            case R.id.bookmarks_google:
+            case R.id.bookmarks_stackoverflow:
+            case R.id.bookmarks_thdev:
+                fragment.loadUrl(item.getTitleCondensed().toString());
+                break;
 
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+            default:
+                break;
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

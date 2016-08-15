@@ -1,24 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Import" />
-        <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
-        <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
-        <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
-    </group>
+    <item android:title="Bookmarks">
+        <menu>
+            <item
+                android:id="@+id/bookmarks_google"
+                android:icon="@drawable/google_favicon"
+                android:title="Google"
+                android:titleCondensed="http://google.com/" />
+
+            <item
+                android:id="@+id/bookmarks_stackoverflow"
+                android:icon="@drawable/stackoverflow_favicon"
+                android:title="Stack overflow"
+                android:titleCondensed="http://stackoverflow.com/" />
+
+            <item
+                android:id="@+id/bookmarks_thdev"
+                android:icon="@drawable/thdev_favicon"
+                android:title="Thdev.tech"
+                android:titleCondensed="http://thdev.tech/" />
+        </menu>
+    </item>
 
     <item android:title="Communicate">
         <menu>
@@ -26,11 +29,14 @@
                 android:id="@+id/nav_share"
                 android:icon="@drawable/ic_menu_share"
                 android:title="Share" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
         </menu>
     </item>
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_manage"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Tools" />
+    </group>
 
 </menu>

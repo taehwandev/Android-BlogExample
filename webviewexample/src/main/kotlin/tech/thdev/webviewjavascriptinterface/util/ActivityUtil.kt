@@ -15,6 +15,11 @@ fun AppCompatActivity.replaceContentFragment(@IdRes frameId: Int, fragment: Frag
     supportFragmentManager?.beginTransaction()?.replace(frameId, fragment)?.commit()
 }
 
+/**
+ * FindContentFragment
+ */
+fun AppCompatActivity.findContentFragment(@IdRes frameId: Int) = supportFragmentManager?.findFragmentById(frameId)
+
 fun Context.hideKeyboard(view: View?) {
     view?.let {
         (this.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager).hideSoftInputFromWindow(view.windowToken, 0)

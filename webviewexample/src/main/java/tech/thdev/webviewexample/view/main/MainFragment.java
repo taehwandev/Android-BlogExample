@@ -1,9 +1,9 @@
 package tech.thdev.webviewexample.view.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.ContentLoadingProgressBar;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -150,5 +150,14 @@ public class MainFragment extends BaseFragment<MainContract.Presenter> implement
         } else if (loadingProgressBar.getVisibility() != View.VISIBLE) {
             loadingProgressBar.setVisibility(View.VISIBLE);
         }
+    }
+
+    public void urlShare() {
+        Intent sendIntent = new Intent(Intent.ACTION_SEND);
+        sendIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+        sendIntent.putExtra(Intent.EXTRA_SUBJECT, webView.getTitle());
+        sendIntent.putExtra(Intent.EXTRA_TEXT, webView.getUrl());
+        sendIntent.setType("text/plain");
+        startActivity(Intent.createChooser(sendIntent, "Share link!"));
     }
 }
