@@ -30,7 +30,8 @@
                     android:layout_height="2dp"
                     android:layout_alignParentBottom="true"
                     android:progressBackgroundTint="@color/colorPrimary"
-                    android:progressTint="#0D47A1" />
+                    android:progressTint="#0D47A1"
+                    android:visibility="gone" />
 
                 <EditText
                     android:id="@+id/et_url_input"

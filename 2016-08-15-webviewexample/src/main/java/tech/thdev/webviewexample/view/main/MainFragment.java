@@ -1,9 +1,11 @@
 package tech.thdev.webviewexample.view.main;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.ContentLoadingProgressBar;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -68,15 +70,15 @@ public class MainFragment extends BaseFragment<MainContract.Presenter> implement
 
 //        webView.setOnKeyListener(this);
 
-        // Add WebView ScrollChangeListener M
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-//            webView.setOnScrollChangeListener(new View.OnScrollChangeListener() {
-//                @Override
-//                public void onScrollChange(View view, int i, int i1, int i2, int i3) {
-//
-//                }
-//            });
-//        }
+//         Add WebView ScrollChangeListener M
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            webView.setOnScrollChangeListener(new View.OnScrollChangeListener() {
+                @Override
+                public void onScrollChange(View view, int i, int i1, int i2, int i3) {
+                    Log.d("TAG", "scroll " + i + ", i1 " + i1 + ", i2 " + i2 + ", i3 " + i3);
+                }
+            });
+        }
 
         webView.setOnWebViewListener(getPresenter());
 
