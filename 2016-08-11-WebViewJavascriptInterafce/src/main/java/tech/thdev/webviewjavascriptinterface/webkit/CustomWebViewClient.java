@@ -10,22 +10,34 @@ import android.webkit.WebResourceResponse;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import tech.thdev.webviewjavascriptinterface.webkit.listener.OnWebViewListener;
+
 /**
  * Created by Tae-hwan on 8/4/16.
  */
 
 public class CustomWebViewClient extends WebViewClient {
 
+    private OnWebViewListener listener;
+
+    public CustomWebViewClient(OnWebViewListener listener) {
+        this.listener = listener;
+    }
+
     @TargetApi(Build.VERSION_CODES.M)
     @Override
     public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
         Log.d("TAG", "request : " + request.getUrl());
+        shouldOverrideUrlLoading(view, request.getUrl().toString());
         return super.shouldOverrideUrlLoading(view, request);
     }
 
     @Override
     public boolean shouldOverrideUrlLoading(WebView view, String url) {
         Log.d("TAG", "request : " + url);
+        if (listener != null) {
+            listener.onUrlChange(url);
+        }
         return super.shouldOverrideUrlLoading(view, url);
     }
 
@@ -38,6 +50,9 @@ public class CustomWebViewClient extends WebViewClient {
     @Override
     public void onPageFinished(WebView view, String url) {
         Log.e("TAG", "url " + url);
+        if (listener != null) {
+            listener.onFinish(url);
+        }
         super.onPageFinished(view, url);
     }
 

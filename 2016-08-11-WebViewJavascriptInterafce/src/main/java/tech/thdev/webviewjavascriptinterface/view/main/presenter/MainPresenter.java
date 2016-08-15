@@ -42,4 +42,18 @@ public class MainPresenter extends AbstractPresenter<MainContract.View> implemen
             getView().changeWebView(url);
         }
     }
+
+    @Override
+    public void onFinish(String url) {
+        if (isAttachView()) {
+            getView().changeUrl(url);
+        }
+    }
+
+    @Override
+    public void onUrlChange(String url) {
+        if (isAttachView()) {
+            getView().changeUrl(url);
+        }
+    }
 }

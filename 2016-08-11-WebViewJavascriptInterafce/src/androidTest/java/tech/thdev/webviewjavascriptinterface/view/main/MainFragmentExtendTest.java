@@ -1,9 +1,9 @@
 package tech.thdev.webviewjavascriptinterface.view.main;
 
+import android.os.Build;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.espresso.intent.rule.IntentsTestRule;
 import android.support.test.espresso.web.deps.guava.collect.Lists;
-import android.support.test.espresso.web.webdriver.DriverAtoms;
 import android.support.test.espresso.web.webdriver.Locator;
 import android.support.test.uiautomator.UiDevice;
 import android.support.test.uiautomator.UiObject;
@@ -24,7 +24,6 @@ import static android.support.test.espresso.web.model.Atoms.script;
 import static android.support.test.espresso.web.model.Atoms.scriptWithArgs;
 import static android.support.test.espresso.web.model.Atoms.transform;
 import static android.support.test.espresso.web.sugar.Web.onWebView;
-import static android.support.test.espresso.web.webdriver.DriverAtoms.clearElement;
 import static android.support.test.espresso.web.webdriver.DriverAtoms.findElement;
 import static android.support.test.espresso.web.webdriver.DriverAtoms.webClick;
 import static org.hamcrest.Matchers.containsString;
@@ -42,7 +41,40 @@ public class MainFragmentExtendTest {
 
     @Before
     public void setUp() {
-        device = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2)
+            device = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
+    }
+
+    @Test
+    public void testScriptReturnValue() throws Throwable {
+        waitWebViewLoad(MainFragment.DEFAULT_URL);
+
+        String script = "function() { return arguments[0] }";
+
+        onWebView()
+                .check(webMatches(transform(scriptWithArgs(script,
+                        Lists.newArrayList("String")), castOrDie(String.class)), is("String")));
+    }
+
+    @Test
+    public void testScriptAccumulate() throws Throwable {
+        waitWebViewLoad(MainFragment.DEFAULT_URL);
+
+        // Google Testing code
+        // Writing using functions is nice for re-usable snippits of logic that vary by their
+        // arguments.
+        String accumulateFn = "function() {"
+                + "  var initial = arguments[0];"
+                + "  for (var i = 1; i < arguments.length; i++) { "
+                + "    initial += arguments[i];"
+                + "  }"
+                + "  return initial;"
+                + "}";
+        onWebView()
+                .check(webMatches(transform(scriptWithArgs(accumulateFn,
+                        Lists.newArrayList(1, 2, 42, 7)),
+                        castOrDie(Integer.class)),
+                        is(52)));
     }
 
     @Test
@@ -72,32 +104,8 @@ public class MainFragmentExtendTest {
     }
 
     @Test
-    public void testJavascriptEvaluation() throws Throwable {
+    public void testScriptAlert() throws Throwable {
         waitWebViewLoad(MainFragment.DEFAULT_URL);
-
-        String script = "function() { return arguments[0] }";
-
-        onWebView()
-                .check(webMatches(transform(scriptWithArgs(script,
-                        Lists.newArrayList("String")), castOrDie(String.class)), is("String")));
-
-
-        // Google Testing code
-        // Writing using functions is nice for re-usable snippits of logic that vary by their
-        // arguments.
-        String accumulateFn = "function() {"
-                + "  var initial = arguments[0];"
-                + "  for (var i = 1; i < arguments.length; i++) { "
-                + "    initial += arguments[i];"
-                + "  }"
-                + "  return initial;"
-                + "}";
-        onWebView()
-                .check(webMatches(transform(scriptWithArgs(accumulateFn,
-                        Lists.newArrayList(1, 2, 42, 7)),
-                        castOrDie(Integer.class)),
-                        is(52)));
-
 
         String alert = "function() { alert(arguments[0]) }";
 

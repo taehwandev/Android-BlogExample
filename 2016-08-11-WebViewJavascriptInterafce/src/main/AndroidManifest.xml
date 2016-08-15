@@ -4,7 +4,7 @@
     package="tech.thdev.webviewjavascriptinterface">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-sdk tools:overrideLibrary="android.support.test.uiautomator.v18"/>
+    <uses-sdk tools:overrideLibrary="android.support.test.uiautomator.v18" />
 
     <application
         android:allowBackup="true"
@@ -22,7 +22,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".view.main.KotlinActivity"
+        <activity
+            android:name=".view.main.KotlinActivity"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>
 

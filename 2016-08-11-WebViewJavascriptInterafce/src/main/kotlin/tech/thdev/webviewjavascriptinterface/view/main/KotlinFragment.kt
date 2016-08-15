@@ -49,7 +49,7 @@ class KotlinFragment(var url: String = ""): BaseFragment<KotlinContract.Presente
         }
 
         webView.setWebChromeClient(CustomWebChromeClient(activity))
-        webView.setWebViewClient(CustomWebViewClient())
+        webView.setWebViewClient(CustomWebViewClient(presenter))
         webView.init()
 
         webView.addJavascriptInterface(presenter?.getOnCustomJavaScriptListener(), "WebViewTest")
@@ -64,5 +64,9 @@ class KotlinFragment(var url: String = ""): BaseFragment<KotlinContract.Presente
 
     override fun changeUrl(url: String?) {
         url?.let { webView.loadUrl(url) }
+    }
+
+    override fun updateUrl(url: String?) {
+        etUrl.setText(url)
     }
 }

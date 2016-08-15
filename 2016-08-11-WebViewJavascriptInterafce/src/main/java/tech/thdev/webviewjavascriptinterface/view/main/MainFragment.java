@@ -64,7 +64,7 @@ public class MainFragment extends BaseFragment<MainContract.Presenter> implement
 
         etKeyword.setOnEditorActionListener(this);
 
-        webView.setWebViewClient(new CustomWebViewClient());
+        webView.setWebViewClient(new CustomWebViewClient(getPresenter()));
         webView.setWebChromeClient(new CustomWebChromeClient(getActivity()));
 
         /*
@@ -142,6 +142,11 @@ public class MainFragment extends BaseFragment<MainContract.Presenter> implement
                 etKeyword.setText(keyword);
             }
         });
+    }
+
+    @Override
+    public void changeUrl(String url) {
+        etUrl.setText(url);
     }
 
     @Override

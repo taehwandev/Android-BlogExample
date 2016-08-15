@@ -22,4 +22,12 @@ class KotlinPresenter: AbstractPresenter<KotlinContract.View>(), KotlinContract.
     override fun onChangeWebView(url: String?) {
         view?.changeUrl(url)
     }
+
+    override fun onFinish(url: String?) {
+        view?.updateUrl(url)
+    }
+
+    override fun onUrlChange(url: String?) {
+        view?.updateUrl(url)
+    }
 }
