@@ -46,6 +46,8 @@
 
     - ButterKnife : 8.2.1
 
+    - kotlin : 1.0.3
+
 
 - Test Dependencies
     - junit : 4.12
