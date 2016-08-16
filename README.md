@@ -15,53 +15,68 @@
 - [MediaCodecExample](https://github.com/taehwandev/MediaCodecExample)
 
 
-## Blog 샘플 프로젝트 Build info
+## Build info
 
-모든 Dependencies 정보는 아래 링크에서 확인 가능합니다
+- [View all Dependencies Information - dependencies.gradle](https://github.com/taehwandev/Android-BlogExample/blob/master/dependencies.gradle)
 
-[dependencies.gradle](https://github.com/taehwandev/Android-BlogExample/blob/master/dependencies.gradle)
-
-- Android studio 2.2 Preview 6 OR 2.1+
+- Android studio 2.2+ OR 2.1+
 
 - buildToolsVersion = 24.0.1
 - compile sdk version = 24
 - Target sdk version = 24
-- Min sdk version = Depending on the project.
-- gradle-wrapper.properties = 2.1.2
+- Min sdk version = Depending on the module.
+- gradle-wrapper.properties = 2.14.1
+- com.android.tools.build:gradle : 2.1.3
 
 
-## 주요 Library version info
+## Library version info
 
-- support libraryVersion = 24.1.1
-- constraint layout version = 1.0.0-alpha4
-- Play service version = 9.2.1
+- Dependencies
+    - support libraryVersion : 24.1.1
+    - constraint layout version : 1.0.0-alpha7
+    - Play service version : 9.4.0
 
-- Glide version = 3.7.0
+    - Glide version : 3.7.0
 
-- retrofit version = 2.1.0
-- okhttp version = 3.3.1
+    - retrofit version : 2.1.0
+    - okhttp version : 3.3.1
 
-- rxAndroid = 1.2.1
-- rxJava = 1.1.6
+    - rxAndroid : 1.2.1
+    - rxJava : 1.1.6
 
-- ButterKnife = 8.2.1
+    - ButterKnife : 8.2.1
 
 
-## Use API link
+- Test Dependencies
+    - junit : 4.12
+    - support test : 0.5
+    - espresso : 2.2.2
+    - dexmaker mockito : 1.4
+    - uiautomator : 2.1.2
+    - awaitility : 1.7.0
 
-- [Android SupportLibrary](https://developer.android.com/topic/libraries/support-library/revisions.html)
-- [Android ConstraintLayout](http://tools.android.com/tech-docs/layout-editor)
 
-- [Kotlin Android](https://kotlinlang.org/docs/tutorials/kotlin-android.html)
+## API links using
 
-- [Retrofit Library](http://square.github.io/retrofit/)
-- [okhttp 3](http://square.github.io/okhttp/)
+- Dependencies
+    - [Android SupportLibrary](https://developer.android.com/topic/libraries/support-library/revisions.html)
+    - [Android ConstraintLayout](http://tools.android.com/tech-docs/layout-editor)
 
-- [ReactiveX](http://reactivex.io/)
+    - [Kotlin Android](https://kotlinlang.org/docs/tutorials/kotlin-android.html)
 
-- [Glide](https://github.com/bumptech/glide)
+    - [Retrofit Library](http://square.github.io/retrofit/)
+    - [okhttp 3](http://square.github.io/okhttp/)
 
-- [ButterKnife](http://jakewharton.github.io/butterknife/)
+    - [ReactiveX](http://reactivex.io/)
+
+    - [Glide](https://github.com/bumptech/glide)
+
+    - [ButterKnife](http://jakewharton.github.io/butterknife/)
+
+- Test Dependencies
+    - [Android Testing Support Library](https://google.github.io/android-testing-support-library/)
+    - [Dexmaker Mockito](https://github.com/crittercism/dexmaker)
+    - [awaitility](https://github.com/awaitility/awaitility)
 
 
 ## License
