@@ -36,7 +36,7 @@ Android Test 코드 역시 Kotlin과 Java로 작성되어 있습니다.
 
 - [Android WebView javascriptInterface 사용하기](http://thdev.tech/androiddev/2016/08/11/Android-WebView-JavascriptInterface-Example.html)
 - [Android WebView TestCode 작성하기 기본 테스트 진행하기](http://thdev.tech/androiddev/2016/08/16/Android-WebView-TestCode.html)
-- Android WebView TestCode 작성하기 확장(Alert, Script 만들어 테스트)
+- <a href="http://thdev.tech/androiddev/2016/08/17/Android-WebView-TestCode-Extended">Android WebView TestCode 작성하기 확장(Alert, Script 만들어 테스트)</a>
 - Android WebView Kotlin Base 코드 정의 살펴보기
 - Android WebView Kotlin TestCode 작성하기
 
