@@ -9,7 +9,9 @@ android {
         minSdkVersion 15
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 2
-        versionName "1.0.1"
+        versionName "1.0.2"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
@@ -20,8 +22,11 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
-
     compile rootProject.ext.appCompat
+
+    testCompile junit
+
+    androidTestCompile(rootProject.ext.espressoCore, {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
 }
