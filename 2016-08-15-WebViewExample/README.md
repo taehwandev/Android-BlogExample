@@ -34,7 +34,7 @@ The code base kotlin, implementation of java(Android).
 
 | WebView        |
 |:--------------:|
-| ![Sample]     |
+| ![Sample]      |
 
 
 ## License
