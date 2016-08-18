@@ -55,4 +55,4 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ```
 
-[WebView]:  images/all_caputre.png
+[WebView]:  images/all_capture.png
