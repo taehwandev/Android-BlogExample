@@ -32,9 +32,9 @@ The code base kotlin, implementation of java(Android).
 
 ## Preview
 
-| WebView   | |
-|:---------:|:--:|
-|![Sample]  ||
+| WebView   |
+|:-------:|
+|![Sample]  |
 
 
 ## License
@@ -55,4 +55,4 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ```
 
-[Sample]:  images/all_caputre.png
+[WebView]:  images/all_caputre.png
