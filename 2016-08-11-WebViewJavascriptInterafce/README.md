@@ -48,13 +48,9 @@ Android Test 코드 역시 Kotlin과 Java로 작성되어 있습니다.
 
 ## Preview
 
-- WebView Sample
-
-![device-2016-08-11-223205.png](images/device-2016-08-11-223205.png)
-
-- Android Test Sample
-
-![testWebToAndroidScriptCall.gif](images/testWebToAndroidScriptCall.gif)
+| WebView        | WebView Test   |
+|:--------------:|:--------------:|
+| ![WebView]     |![WebView-Test] |
 
 
 ## License
@@ -74,3 +70,6 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 ```
+
+[WebView]:  images/device-2016-08-11-223205.png
+[WebView-Test]: images/testWebToAndroidScriptCall.gif
