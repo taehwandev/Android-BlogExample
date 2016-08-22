@@ -9,4 +9,6 @@ public interface OnCustomJavaScriptListener {
     void onUpdateKeyword(String keyword);
 
     void onChangeWebView(String url);
+
+    void hideKeyboard();
 }

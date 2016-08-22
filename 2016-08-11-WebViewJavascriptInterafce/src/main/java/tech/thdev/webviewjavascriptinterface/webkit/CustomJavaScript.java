@@ -33,4 +33,11 @@ public class CustomJavaScript {
             listener.onChangeWebView(url);
         }
     }
+
+    @JavascriptInterface
+    public void hideKeyboard() {
+        if (listener != null) {
+            listener.hideKeyboard();
+        }
+    }
 }

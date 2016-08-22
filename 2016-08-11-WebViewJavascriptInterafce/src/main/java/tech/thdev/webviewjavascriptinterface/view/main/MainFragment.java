@@ -1,5 +1,6 @@
 package tech.thdev.webviewjavascriptinterface.view.main;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -9,6 +10,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -154,6 +156,12 @@ public class MainFragment extends BaseFragment<MainContract.Presenter> implement
         Intent intent = new Intent(getActivity(), KotlinActivity.class);
         intent.putExtra(Constant.getKEY_INTENT_URL(), url);
         startActivity(intent);
+    }
+
+    @Override
+    public void hideKeyboard() {
+        InputMethodManager inputMethodManager = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(webView.getWindowToken(), 0);
     }
 
     @OnClick(R.id.btn_search)

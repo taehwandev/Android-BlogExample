@@ -26,6 +26,11 @@ interface KotlinContract {
          * Url update
          */
         fun updateUrl(url: String?)
+
+        /**
+         * WebView event... hide keyboard
+         */
+        fun hideKeyboard()
     }
 
     interface Presenter : BasePresenter<View>, OnCustomJavaScriptListener, OnWebViewListener {

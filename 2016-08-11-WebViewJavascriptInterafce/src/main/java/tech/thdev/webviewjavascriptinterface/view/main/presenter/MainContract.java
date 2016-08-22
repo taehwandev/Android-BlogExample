@@ -33,6 +33,11 @@ public interface MainContract {
          * Url Change event
          */
         void changeUrl(String url);
+
+        /**
+         * WebView event... hide keyboard
+         */
+        void hideKeyboard();
     }
 
     interface Presenter extends BasePresenter<View>, OnCustomJavaScriptListener, OnWebViewListener {

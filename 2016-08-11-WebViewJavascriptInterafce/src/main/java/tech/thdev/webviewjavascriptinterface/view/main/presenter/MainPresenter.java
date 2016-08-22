@@ -56,4 +56,11 @@ public class MainPresenter extends AbstractPresenter<MainContract.View> implemen
             getView().changeUrl(url);
         }
     }
+
+    @Override
+    public void hideKeyboard() {
+        if (isAttachView()) {
+            getView().hideKeyboard();
+        }
+    }
 }

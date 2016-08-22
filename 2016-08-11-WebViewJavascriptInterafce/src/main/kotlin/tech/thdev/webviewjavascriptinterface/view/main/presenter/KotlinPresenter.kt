@@ -30,4 +30,8 @@ class KotlinPresenter: AbstractPresenter<KotlinContract.View>(), KotlinContract.
     override fun onUrlChange(url: String?) {
         view?.updateUrl(url)
     }
+
+    override fun hideKeyboard() {
+        view?.hideKeyboard()
+    }
 }

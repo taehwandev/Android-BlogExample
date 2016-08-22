@@ -1,9 +1,11 @@
 package tech.thdev.webviewjavascriptinterface.view.main
 
+import android.content.Context
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
 import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.Toast
 import tech.thdev.kotlin_example_01.base.view.BaseFragment
@@ -68,5 +70,10 @@ class KotlinFragment(var url: String = ""): BaseFragment<KotlinContract.Presente
 
     override fun updateUrl(url: String?) {
         etUrl.setText(url)
+    }
+
+    override fun hideKeyboard() {
+        val inputMethodManager = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(webView.windowToken, 0)
     }
 }
