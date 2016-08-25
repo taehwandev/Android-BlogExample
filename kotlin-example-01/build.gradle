@@ -28,6 +28,7 @@ android {
             buildConfigField "String", "FLICKR_API_KEY", "\"343816eef263896e9e5a59bd1126a775\""
         }
     }
+    buildToolsVersion '24.0.1'
 }
 
 dependencies {

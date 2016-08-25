@@ -34,7 +34,7 @@ class PhotoViewHolder(parent: ViewGroup?,
 
         itemView.setOnLongClickListener {
             longClickListener?.onLongClickListener(adapter, position)
-            false
+            true
         }
 
         itemView.setOnClickListener {
