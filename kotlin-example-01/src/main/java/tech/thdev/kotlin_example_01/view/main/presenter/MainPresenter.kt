@@ -10,7 +10,7 @@ import tech.thdev.kotlin_example_01.base.presenter.AbstractPresenter
 import tech.thdev.kotlin_example_01.data.PhotoResponse
 import tech.thdev.kotlin_example_01.network.FlickrModule
 import tech.thdev.kotlin_example_01.view.main.adapter.model.PhotoDataModel
-import tech.thdev.kotlin_example_01.view.main.data.SearchData
+import tech.thdev.kotlin_example_01.data.SearchData
 import java.util.concurrent.TimeUnit
 
 /**
@@ -100,6 +100,12 @@ class MainPresenter(val retrofitFlicker: FlickrModule) : AbstractPresenter<MainC
         val photo = model?.getItem(position)
         view?.showBlurDialog(photo?.getImageUrl())
     }
+
+    override fun loadDetailView(position: Int) {
+        val photo = model?.getItem(position)
+        view?.showDetailView(photo?.getImageUrl())
+    }
+
 
     override fun unSubscribeSearch() {
         searchSubscription?.unsubscribe()

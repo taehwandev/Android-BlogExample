@@ -1,4 +1,4 @@
-package tech.thdev.kotlin_example_01.view.main.data
+package tech.thdev.kotlin_example_01.data
 
 /**
  * Created by Tae-hwan on 7/28/16.

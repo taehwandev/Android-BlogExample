@@ -2,6 +2,7 @@ package tech.thdev.kotlin_example_01.view.main
 
 import android.app.SearchManager
 import android.content.Context
+import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.support.constraint.ConstraintLayout
@@ -22,9 +23,11 @@ import rx.android.schedulers.AndroidSchedulers
 import tech.thdev.kotlin_example_01.R
 import tech.thdev.kotlin_example_01.base.adapter.BaseRecyclerAdapter
 import tech.thdev.kotlin_example_01.base.view.BaseFragment
+import tech.thdev.kotlin_example_01.constant.Constant
 import tech.thdev.kotlin_example_01.listener.ItemClickListener
 import tech.thdev.kotlin_example_01.listener.LongClickListener
 import tech.thdev.kotlin_example_01.util.createBlurImage
+import tech.thdev.kotlin_example_01.view.detail.DetailActivity
 import tech.thdev.kotlin_example_01.view.main.adapter.PhotoAdapter
 import tech.thdev.kotlin_example_01.view.main.presenter.MainContract
 import java.util.concurrent.TimeUnit
@@ -74,7 +77,7 @@ class MainFragment : BaseFragment<MainContract.Presenter>(), MainContract.View {
         adapter?.itemClickListener = object : ItemClickListener {
 
             override fun OnClickListener(baseRecyclerAdapter: BaseRecyclerAdapter<*>, position: Int) {
-                /// OnClick ...
+                presenter?.loadDetailView(position)
             }
         }
 
@@ -91,6 +94,12 @@ class MainFragment : BaseFragment<MainContract.Presenter>(), MainContract.View {
         imgView = activity?.findViewById(R.id.img_view) as ImageView
 
         containerMain = activity?.findViewById(R.id.container_main) as CoordinatorLayout
+    }
+
+    override fun showDetailView(imageUrl: String?) {
+        val intent = Intent(context, DetailActivity::class.java)
+        intent.putExtra(Constant.KEY_IMAGE_URL, imageUrl)
+        startActivity(intent)
     }
 
     override fun showBlurDialog(imageUrl: String?) {

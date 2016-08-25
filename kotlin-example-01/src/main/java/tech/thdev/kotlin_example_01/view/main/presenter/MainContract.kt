@@ -22,6 +22,8 @@ interface MainContract {
         fun initPhotoList()
 
         fun showBlurDialog(imageUrl: String?)
+
+        fun showDetailView(imageUrl: String?)
     }
 
     interface Presenter: BasePresenter<View> {
@@ -50,5 +52,10 @@ interface MainContract {
          * Subscribe destroy.
          */
         fun unSubscribeSearch()
+
+        /**
+         * Load Detail Activity
+         */
+        fun loadDetailView(position: Int)
     }
 }

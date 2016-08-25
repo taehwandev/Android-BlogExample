@@ -5,12 +5,13 @@
     android:id="@+id/container_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="false"
+    android:fitsSystemWindows="true"
     tools:context="tech.thdev.kotlin_example_01.view.main.MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
         android:orientation="vertical">
 
         <android.support.design.widget.AppBarLayout
@@ -38,6 +39,7 @@
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
         android:visibility="gone">
 
         <ImageView
@@ -47,14 +49,8 @@
 
         <ImageView
             android:id="@+id/img_view"
-            android:layout_width="299dp"
-            android:layout_height="470dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             app:layout_constraintBottom_toBottomOf="@+id/constraintLayout"
             app:layout_constraintLeft_toLeftOf="@+id/constraintLayout"
             app:layout_constraintRight_toRightOf="@+id/constraintLayout"

@@ -1,11 +1,13 @@
 package tech.thdev.webviewexample.view.main;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -35,6 +37,17 @@ public class MainActivity extends BaseActivity
         setContentView(R.layout.activity_main);
         initToolbar();
         initView();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+
+        Log.d("TAG", "config : " + (newConfig.orientation) + ", newConfig.screenLayout : " + newConfig.screenLayout);
+        Log.e("TAG", "newConfig.densityDpi : " + newConfig.densityDpi);
+        Log.i("TAg", "uiMode : " + newConfig.uiMode);
+        Log.i("TAg", "smallestScreenWidthDp : " + newConfig.smallestScreenWidthDp);
+        Log.i("TAg", "screenWidthDp : " + newConfig.screenWidthDp + ", screenHeightDp : " + newConfig.screenHeightDp);
     }
 
     private void initView() {
