@@ -7,6 +7,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -39,6 +40,17 @@ public class MainActivity extends BaseActivity
         initView();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        DisplayMetrics metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+
+        Log.i("TAG", "display width : " + metrics.widthPixels + ", height : " + metrics.heightPixels + ", densityDpi : " + metrics.densityDpi);
+    }
+
+    // android:configChanges="screenLayout|uiMode|screenSize|smallestScreenSize|density"
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
