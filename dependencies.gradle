@@ -1,17 +1,17 @@
 ext {
     // Build SDK version
-    buildToolsVersion = '24.0.1'
+    buildToolsVersion = '24.0.2'
     compileSdkVersion = 24
     targetSdkVersion = 24
 
 
     // Dependencies version
-    supportLibraryVersion = '24.1.1'
+    supportLibraryVersion = '24.2.0'
     constraintLayoutVersion = '1.0.0-alpha7'
     playServicesVersion = '9.4.0'
 
     // Bind view
-    butterKnifeVersion = '8.2.1'
+    butterKnifeVersion = '8.4.0'
 
     kotlin_version = '1.0.3'
 
