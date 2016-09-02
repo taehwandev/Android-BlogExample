@@ -1,20 +1,24 @@
 package tech.thdev.butter_knife_example.view;
 
+import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.support.annotation.StringRes;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.util.Log;
+import android.view.ContextThemeWrapper;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import butterknife.BindString;
@@ -24,7 +28,6 @@ import butterknife.OnClick;
 import butterknife.OnLongClick;
 import tech.thdev.butter_knife_example.R;
 import tech.thdev.butter_knife_example.base.BaseActivity;
-import tech.thdev.butter_knife_example.bean.RadioItem;
 import tech.thdev.butter_knife_example.constant.Constant;
 
 public class MainActivity extends BaseActivity {
@@ -109,6 +112,47 @@ public class MainActivity extends BaseActivity {
     private void showSnackbar(String message) {
         Snackbar.make(floatingActionButton, message, Snackbar.LENGTH_SHORT).setAction("Action", null).show();
     }
+
+    @OnClick(R.id.btn_holo_date_picker)
+    public void onClickHoloDatePicker(View view) {
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+        DatePickerDialog datePickerDialog = new DatePickerDialog(new ContextThemeWrapper(this, android.R.style.Theme_Holo_Light_Dialog), dateSetListener, year, month, day);
+        datePickerDialog.show();
+    }
+
+    @OnClick(R.id.btn_material_date_picker)
+    public void onClickMaterialDatePicker(View view) {
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+        DatePickerDialog datePickerDialog = new DatePickerDialog(new ContextThemeWrapper(this, android.R.style.Theme_Material_Dialog), dateSetListener, year, month, day);
+        datePickerDialog.show();
+    }
+
+    @OnClick(R.id.btn_date_picker)
+    public void onClickDatePicker(View view) {
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+        Context context = new ContextThemeWrapper(this, android.R.style.Theme_Holo_Light_Dialog);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            context = this;
+        }
+        DatePickerDialog datePickerDialog = new DatePickerDialog(context, dateSetListener, year, month, day);
+        datePickerDialog.show();
+    }
+
+    private DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+            Snackbar.make(floatingActionButton, year + "-" + monthOfYear + "-" + dayOfMonth, Snackbar.LENGTH_SHORT).show();
+        }
+    };
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

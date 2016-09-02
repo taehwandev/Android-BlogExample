@@ -59,4 +59,25 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/btn_photo_view"
         android:text="@string/photo_search_recycler_example" />
+
+    <Button
+        android:id="@+id/btn_holo_date_picker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_photo_search_view"
+        android:text="Show date picker - holo theme"/>
+
+    <Button
+        android:id="@+id/btn_material_date_picker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_holo_date_picker"
+        android:text="Show date picker - material"/>
+
+    <Button
+        android:id="@+id/btn_date_picker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_material_date_picker"
+        android:text="Show date picker"/>
 </RelativeLayout>
