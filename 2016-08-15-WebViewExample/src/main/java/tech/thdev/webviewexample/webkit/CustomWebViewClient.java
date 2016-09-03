@@ -24,7 +24,7 @@ public class CustomWebViewClient extends WebViewClient {
         this.listener = listener;
     }
 
-    @TargetApi(Build.VERSION_CODES.M)
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
     public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
         shouldOverrideUrlLoading(view, request.getUrl().toString());
