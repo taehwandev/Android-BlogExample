@@ -1,15 +1,18 @@
 ext {
     // Build SDK version
-    buildToolsVersion = '24.0.2'
+    buildToolsVersion = '24.0.3'
     compileSdkVersion = 24
     targetSdkVersion = 24
 
 
     // Dependencies version
+    baseLibraryVersion = '1.0.4'
+
+    // support library
     supportLibraryVersion = '24.2.1'
 
-    // Constraint Layout new versio : <a href="http://tools.android.com/recent/constraintlayoutalpha8isnowavailable">new</a>
-    constraintLayoutVersion = '1.0.0-alpha8'
+    // Constraint Layout new versio : <a href="http://tools.android.com/recent/constraintlayoutalpha9isnowavailable">new</a>
+    constraintLayoutVersion = '1.0.0-alpha9'
     playServicesVersion = '9.4.0'
 
     // Bind view
@@ -30,6 +33,9 @@ ext {
     // Image Library
     glideLibVersion = '3.7.0'
 
+
+    // Thdev.tech base library
+    base = "tech.thdev.support:base:$rootProject.ext.baseLibraryVersion"
 
     // Support library Dependencies
     appCompat = "com.android.support:appcompat-v7:$rootProject.ext.supportLibraryVersion"

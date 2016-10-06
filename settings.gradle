@@ -1,4 +1,4 @@
-include ':BottomSheet', ':N-Recycler-Lambda-Example', ':locationapiexample', ':LockerAppLaunchExample',
+include ':BottomSheet', ':N-Recycler-Lambda-Example', ':locationapiexample', ':LockerAppLaunchExample', ':hugo-example',
         ':ButterKnifeExample', ':Firebase-Example'
 
 include ':2016-04-05-N-MultiWindow'
