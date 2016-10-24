@@ -6,6 +6,9 @@ ext {
 
 
     // Dependencies version
+    baseLibraryVersion = '1.0.4'
+
+    // support library
     supportLibraryVersion = '24.2.1'
 
     // Constraint Layout new versio : <a href="http://tools.android.com/recent/constraintlayoutbeta1isnowavailable">new</a>
@@ -30,6 +33,9 @@ ext {
     // Image Library
     glideLibVersion = '3.7.0'
 
+
+    // Thdev.tech base library
+    base = "tech.thdev.support:base:$rootProject.ext.baseLibraryVersion"
 
     // Support library Dependencies
     appCompat = "com.android.support:appcompat-v7:$rootProject.ext.supportLibraryVersion"
