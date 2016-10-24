@@ -1,6 +1,6 @@
 ext {
     // Build SDK version
-    buildToolsVersion = '24.0.2'
+    buildToolsVersion = '24.0.3'
     compileSdkVersion = 24
     targetSdkVersion = 24
 
@@ -8,14 +8,14 @@ ext {
     // Dependencies version
     supportLibraryVersion = '24.2.1'
 
-    // Constraint Layout new versio : <a href="http://tools.android.com/recent/constraintlayoutalpha8isnowavailable">new</a>
-    constraintLayoutVersion = '1.0.0-alpha8'
+    // Constraint Layout new versio : <a href="http://tools.android.com/recent/constraintlayoutbeta1isnowavailable">new</a>
+    constraintLayoutVersion = '1.0.0-beta1'
     playServicesVersion = '9.4.0'
 
     // Bind view
     butterKnifeVersion = '8.4.0'
 
-    kotlin_version = '1.0.3'
+    kotlin_version = '1.0.4'
 
     retrofitVersion = '2.1.0'
     okhttpVersion = '3.3.1'

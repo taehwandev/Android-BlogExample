@@ -19,21 +19,21 @@
 
 - [View all Dependencies Information - dependencies.gradle](https://github.com/taehwandev/Android-BlogExample/blob/master/dependencies.gradle)
 
-- Android studio 2.2+ OR 2.1+
+- Android studio 2.2+
 
-- buildToolsVersion = 24.0.1
+- buildToolsVersion = 24.0.3
 - compile sdk version = 24
 - Target sdk version = 24
 - Min sdk version = Depending on the module.
 - gradle-wrapper.properties = 2.14.1
-- com.android.tools.build:gradle : 2.1.3
+- com.android.tools.build:gradle : 2.2.2
 
 
 ## Library version info
 
 - Dependencies
-    - support libraryVersion : 24.1.1
-    - constraint layout version : 1.0.0-alpha7
+    - support libraryVersion : 24.2.1
+    - constraint layout version : 1.0.0-beta1
     - Play service version : 9.4.0
 
     - Glide version : 3.7.0
