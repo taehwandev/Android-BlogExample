@@ -1,77 +1,88 @@
-package tech.thdev.customlistviewsample.adapter;
+package tech.thdev.customlistviewsample.async;
 
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
-import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.LruCache;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.ref.WeakReference;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.List;
+import java.util.LinkedHashMap;
+import java.util.concurrent.RejectedExecutionException;
 
 import tech.thdev.customlistviewsample.R;
-import tech.thdev.customlistviewsample.data.GitHubItem;
 
 /**
- * Created by tae-hwan on 10/24/16.
+ * Created by tae-hwan on 10/25/16.
  */
 
-public class GitHubUserAdapter extends ArrayAdapter<GitHubItem> {
+public class ImageDownload {
 
-    private View rootView;
-    private ViewHolder viewHolder;
+    private final LinkedHashMap<String, ImageAsync> map = new LinkedHashMap<>();
 
     /**
      * LruCache를 사용하여 Image를 캐쉬처리
      */
     private LruCache<String, WeakReference<Bitmap>> cache = new LruCache<>(5 * 1024 * 1024); // 5MiB
 
-    public GitHubUserAdapter(Context context, int resource, List<GitHubItem> objects) {
-        super(context, resource, objects);
+    private ImageDownload() {
+
     }
 
-    @NonNull
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        if (convertView == null) {
-            LayoutInflater inflater = LayoutInflater.from(getContext());
-            rootView = inflater.inflate(R.layout.item_github_user, null);
+    private static ImageDownload imageDownload;
 
-            viewHolder = new ViewHolder();
-            viewHolder.imgUserAvater = (ImageView) rootView.findViewById(R.id.img_user_avater);
-            viewHolder.tvUserName = (TextView) rootView.findViewById(R.id.tv_user_name);
-            viewHolder.tvUserScore = (TextView) rootView.findViewById(R.id.tv_user_score);
-
-            // setTag
-            rootView.setTag(viewHolder);
-
-        } else {
-            rootView = convertView;
-            viewHolder = (ViewHolder) rootView.getTag();
+    public static ImageDownload getInstance() {
+        if (imageDownload == null) {
+            synchronized (ImageDownload.class) {
+                if (imageDownload == null) {
+                    imageDownload = new ImageDownload();
+                }
+            }
         }
+        return imageDownload;
+    }
 
-        final GitHubItem gitHubItem = getItem(position);
-        if (gitHubItem != null) {
-            viewHolder.tvUserName.setText(gitHubItem.login);
-            viewHolder.tvUserScore.setText(String.format("%f", gitHubItem.score));
-            new ImageAsync(viewHolder.imgUserAvater).execute(gitHubItem.avatar_url);
+    private void clearAsync() {
+        synchronized (map) {
+            for (ImageAsync imageAsync : map.values()) {
+                cancelAsync(imageAsync);
+            }
+
+            Log.e("TAG", "cancel Async size : " + map.size());
+            map.clear();
         }
+    }
 
-        return rootView;
+
+    private void cancelAsync(ImageAsync async) {
+        if (async.getStatus().equals(AsyncTask.Status.RUNNING)) {
+            async.cancel(true);
+        }
+    }
+
+    public void startImageDownload(final ImageView imageView, final String url) {
+        synchronized (map) {
+            if (map.containsKey(url)) {
+                cancelAsync(map.get(url));
+                map.remove(url);
+            }
+
+            try {
+                ImageAsync imageAsync = new ImageAsync(imageView);
+                imageAsync.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, url);
+                map.put(url, imageAsync);
+            } catch (RejectedExecutionException e) {
+                clearAsync();
+            }
+        }
     }
 
     private class ImageAsync extends AsyncTask<String, String, String> {
@@ -91,11 +102,12 @@ public class GitHubUserAdapter extends ArrayAdapter<GitHubItem> {
 
                 if (weakReference == null || weakReference.get() == null) {
                     URL url = new URL(urlString);
-                    Log.d("TA", urlString);
                     URLConnection connection = url.openConnection();
                     connection.connect();
+
                     InputStream is = connection.getInputStream();
                     BufferedInputStream bis = new BufferedInputStream(is);
+
                     weakReference = new WeakReference<>(BitmapFactory.decodeStream(bis));
                     cache.put(urlString, weakReference);
                     bis.close();
@@ -103,8 +115,10 @@ public class GitHubUserAdapter extends ArrayAdapter<GitHubItem> {
                 }
                 return urlString;
 
+            } catch (MalformedURLException e) {
+
             } catch (IOException e) {
-                // TODO: handle exception
+
             }
             return null;
         }
@@ -118,16 +132,17 @@ public class GitHubUserAdapter extends ArrayAdapter<GitHubItem> {
         @Override
         protected void onPostExecute(String url) {
             super.onPostExecute(url);
-            Log.e("TAG", "bitmap " + url);
-            if (!TextUtils.isEmpty(url)) {
-                weakReferenceImageView.get().setImageBitmap(cache.get(url).get());
+            if (isCancelled()) {
+                return;
+            }
+            ImageView imageView = weakReferenceImageView.get();
+            if (!TextUtils.isEmpty(url) &&
+                    imageView.getTag() != null &&
+                    imageView.getTag().equals(url) &&
+                    cache.get(url) != null &&
+                    cache.get(url).get() != null) {
+                imageView.setImageBitmap(cache.get(url).get());
             }
         }
-    }
-
-    private class ViewHolder {
-        ImageView imgUserAvater;
-        TextView tvUserName;
-        TextView tvUserScore;
     }
 }
