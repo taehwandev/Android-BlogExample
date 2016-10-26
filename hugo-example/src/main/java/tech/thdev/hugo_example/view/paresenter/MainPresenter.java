@@ -1,4 +1,4 @@
-package tech.thdev.hugo_example;
+package tech.thdev.hugo_example.view.paresenter;
 
 
 import rx.Observable;
@@ -8,6 +8,7 @@ import rx.functions.Action1;
 import tech.thdev.base.presenter.AbstractPresenter;
 import tech.thdev.hugo_example.adapter.contract.ListAdapterContract;
 import tech.thdev.hugo_example.data.Items;
+import tech.thdev.hugo_example.view.MainContract;
 
 /**
  * Created by rgpkorea on 06/10/2016.

@@ -1,4 +1,4 @@
-package tech.thdev.hugo_example;
+package tech.thdev.hugo_example.view;
 
 import tech.thdev.base.presenter.BasePresenter;
 import tech.thdev.base.presenter.BaseView;
