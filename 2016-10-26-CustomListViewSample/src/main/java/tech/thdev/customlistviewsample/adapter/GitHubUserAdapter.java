@@ -13,6 +13,7 @@ import java.util.List;
 
 import tech.thdev.customlistviewsample.R;
 import tech.thdev.customlistviewsample.async.ImageDownload;
+import tech.thdev.customlistviewsample.async.ImageDownloadThread;
 import tech.thdev.customlistviewsample.data.GitHubItem;
 
 /**
@@ -52,8 +53,8 @@ public class GitHubUserAdapter extends ArrayAdapter<GitHubItem> {
         if (gitHubItem != null) {
             viewHolder.tvUserName.setText(gitHubItem.login);
             viewHolder.tvUserScore.setText(String.format("%f", gitHubItem.score));
-            viewHolder.imgUserAvater.setTag(gitHubItem.avatar_url);
-            ImageDownload.getInstance().startImageDownload(viewHolder.imgUserAvater, gitHubItem.avatar_url);
+//            ImageDownload.getInstance().startImageDownload(viewHolder.imgUserAvater, gitHubItem.avatar_url);
+            ImageDownloadThread.getInstance().loadImage(R.mipmap.ic_launcher, viewHolder.imgUserAvater, gitHubItem.avatar_url);
         }
 
         return rootView;

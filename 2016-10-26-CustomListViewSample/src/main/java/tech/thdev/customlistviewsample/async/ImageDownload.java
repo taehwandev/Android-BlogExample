@@ -12,7 +12,6 @@ import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.ref.WeakReference;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.LinkedHashMap;
@@ -76,9 +75,18 @@ public class ImageDownload {
             }
 
             try {
-                ImageAsync imageAsync = new ImageAsync(imageView);
-                imageAsync.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, url);
-                map.put(url, imageAsync);
+                WeakReference<Bitmap> weakReference = cache.get(url);
+                if (weakReference == null || weakReference.get() == null) {
+                    // 이미지 뷰 동기화를 위해서 tag 추가
+                    imageView.setTag(url);
+
+                    ImageAsync imageAsync = new ImageAsync(imageView);
+                    imageAsync.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, url);
+                    map.put(url, imageAsync);
+
+                } else {
+                    imageView.setImageBitmap(weakReference.get());
+                }
             } catch (RejectedExecutionException e) {
                 clearAsync();
             }
@@ -89,6 +97,10 @@ public class ImageDownload {
 
         private WeakReference<ImageView> weakReferenceImageView;
 
+        URLConnection connection;
+        InputStream inputStream;
+        BufferedInputStream bufferedInputStream;
+
         public ImageAsync(ImageView imageView) {
             this.weakReferenceImageView = new WeakReference<>(imageView);
         }
@@ -98,29 +110,38 @@ public class ImageDownload {
             try {
                 String urlString = strings[0];
 
-                WeakReference<Bitmap> weakReference = cache.get(urlString);
+                URL url = new URL(urlString);
+                connection = url.openConnection();
+                connection.connect();
 
-                if (weakReference == null || weakReference.get() == null) {
-                    URL url = new URL(urlString);
-                    URLConnection connection = url.openConnection();
-                    connection.connect();
+                inputStream = connection.getInputStream();
+                bufferedInputStream = new BufferedInputStream(inputStream);
 
-                    InputStream is = connection.getInputStream();
-                    BufferedInputStream bis = new BufferedInputStream(is);
-
-                    weakReference = new WeakReference<>(BitmapFactory.decodeStream(bis));
-                    cache.put(urlString, weakReference);
-                    bis.close();
-                    is.close();
-                }
+                cache.put(urlString, new WeakReference<>(BitmapFactory.decodeStream(bufferedInputStream)));
                 return urlString;
 
-            } catch (MalformedURLException e) {
-
             } catch (IOException e) {
+                closeStream();
 
+            } finally {
+                closeStream();
             }
             return null;
+        }
+
+        private void closeStream() {
+            try {
+                if (inputStream != null) {
+                    inputStream.close();
+                    inputStream = null;
+                }
+                if (bufferedInputStream != null) {
+                    bufferedInputStream.close();
+                    bufferedInputStream = null;
+                }
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
         }
 
         @Override
