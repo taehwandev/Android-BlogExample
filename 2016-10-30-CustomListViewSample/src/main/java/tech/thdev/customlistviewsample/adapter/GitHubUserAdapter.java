@@ -12,7 +12,6 @@ import android.widget.TextView;
 import java.util.List;
 
 import tech.thdev.customlistviewsample.R;
-import tech.thdev.customlistviewsample.async.ImageDownload;
 import tech.thdev.customlistviewsample.async.ImageDownloadThread;
 import tech.thdev.customlistviewsample.data.GitHubItem;
 
@@ -34,7 +33,7 @@ public class GitHubUserAdapter extends ArrayAdapter<GitHubItem> {
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
             LayoutInflater inflater = LayoutInflater.from(getContext());
-            rootView = inflater.inflate(R.layout.item_github_user, null);
+            rootView = inflater.inflate(R.layout.item_github_user, parent, false);
 
             viewHolder = new ViewHolder();
             viewHolder.imgUserAvater = (ImageView) rootView.findViewById(R.id.img_user_avater);

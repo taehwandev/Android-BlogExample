@@ -42,6 +42,8 @@ ext {
     recyclerView = "com.android.support:recyclerview-v7:$rootProject.ext.supportLibraryVersion"
     design = "com.android.support:design:$rootProject.ext.supportLibraryVersion"
     annotations = "com.android.support:support-annotations:$rootProject.ext.supportLibraryVersion"
+    chromeCustomTabs = "com.android.support:customtabs:$rootProject.ext.supportLibraryVersion"
+
 
     // Alpha
     constraintLayout = "com.android.support.constraint:constraint-layout:$rootProject.ext.constraintLayoutVersion"

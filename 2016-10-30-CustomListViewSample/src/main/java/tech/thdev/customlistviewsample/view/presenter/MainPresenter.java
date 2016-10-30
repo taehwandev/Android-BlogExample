@@ -71,4 +71,10 @@ public class MainPresenter implements MainContract.Presenter {
             }
         });
     }
+
+    @Override
+    public void onItemClick(int position) {
+        // GitHubItem arrayList에서 아이템을 가져오고, 이를 View에 show 하도록 전달한다
+        view.showChromeTabs(view.getListItem(position));
+    }
 }

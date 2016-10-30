@@ -1,0 +1,11 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".view.CustomListViewActivity">
+    <item
+        android:id="@+id/action_change_sample"
+        android:orderInCategory="100"
+        android:icon="@drawable/page_one"
+        android:title="@string/java_sample"
+        app:showAsAction="always" />
+</menu>

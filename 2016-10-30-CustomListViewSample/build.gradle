@@ -1,4 +1,6 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -14,11 +16,16 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
     }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
     }
 }
 
@@ -31,6 +38,17 @@ dependencies {
     compile rootProject.ext.retrofit
     compile rootProject.ext.retrofitConverterGson
     compile rootProject.ext.okhttpLoggingInterceptor
+    compile rootProject.ext.chromeCustomTabs
+
+    // Kotlin
+    compile rootProject.ext.kotlin
+
+    // Image load library
+    compile rootProject.ext.glide
+
+
+    // thdev base
+    compile rootProject.ext.base
 
     testCompile junit
 

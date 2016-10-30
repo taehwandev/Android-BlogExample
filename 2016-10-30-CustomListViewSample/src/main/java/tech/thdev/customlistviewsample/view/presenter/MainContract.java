@@ -19,10 +19,16 @@ public interface MainContract {
         void showFailLoad();
 
         void addItem(GitHubItem item);
+
+        void showChromeTabs(GitHubItem item);
+
+        GitHubItem getListItem(int position);
     }
 
     interface Presenter {
 
         void loadGitHubUser(String userKeyword);
+
+        void onItemClick(int position);
     }
 }
