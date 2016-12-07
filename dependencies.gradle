@@ -18,7 +18,7 @@ ext {
     // Bind view
     butterKnifeVersion = '8.4.0'
 
-    kotlin_version = '1.0.4'
+    kotlin_version = '1.0.5-2'
 
     retrofitVersion = '2.1.0'
     okhttpVersion = '3.3.1'
