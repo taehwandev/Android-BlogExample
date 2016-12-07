@@ -1,9 +1,1 @@
-include ':BottomSheet', ':N-Recycler-Lambda-Example', ':locationapiexample', ':LockerAppLaunchExample', ':hugo-example',
-        ':ButterKnifeExample', ':Firebase-Example'
-
-include ':2016-04-05-N-MultiWindow'
-include ':2016-04-20-AndroidTestExample'
-include ':2016-05-08-Android-Overlay-Permission-Example'
-include ':2016-08-11-WebViewJavascriptInterafce'
-include ':2016-08-15-WebViewExample'
-include ':2016-10-30-CustomListViewSample'
+include ':app'
