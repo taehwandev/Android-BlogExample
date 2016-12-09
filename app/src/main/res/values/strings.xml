@@ -5,4 +5,8 @@
     <string name="label_basic_activity">Basic Sample</string>
     <string name="basic_sample_bottom_title">Bottom sheets usage</string>
     <string name="basic_sample_bottom_message">There are two major types of bottom sheets: Modal bottom sheets are alternatives to menus or simple dialogs. They can also present deep-linked content from other apps. They are primarily for mobile. Persistent bottom sheets present in-app content. Elevation distinguishes modal from persistent bottom sheets. Modal bottom sheets rest at a higher elevation than the app’s content; whereas persistent bottom sheets rest at the same elevation as the app and integrate with its content. On larger screens, where space is less constrained, using alternative surfaces and components such as simple dialogs and menus may be more appropriate than bottom sheets.</string>
+    <string name="bottom_recycler_sample">Bottom Recycler sample</string>
+
+    <string name="label_recycler_activity">Recycler Bottom sheet sample</string>
+    <string name="recycler_sample_bottom_title">RecyclerView Bottom sheet</string>
 </resources>

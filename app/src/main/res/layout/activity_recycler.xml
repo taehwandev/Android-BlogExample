@@ -26,12 +26,14 @@
     <RelativeLayout
         android:id="@+id/rl_bottom_sheet"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimaryDark"
         app:behavior_hideable="true"
         app:behavior_peekHeight="200dp"
         app:layout_behavior="@string/bottom_sheet_behavior">
 
-        <include layout="@layout/bottom_basic" />
+        <include
+            layout="@layout/bottom_recycler" />
     </RelativeLayout>
 
     <android.support.design.widget.FloatingActionButton
