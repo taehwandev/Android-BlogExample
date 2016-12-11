@@ -29,7 +29,7 @@ Blog Android BottomSheet Intro에 소개한 예제 코드입니다.
 ## Library version info
 
 - Dependencies
-    - [Android support library version]((https://developer.android.com/topic/libraries/support-library/revisions.html) : 25.0.1
+    - [Android support library version](https://developer.android.com/topic/libraries/support-library/revisions.html) : 25.0.1
 
     - [ButterKnife](http://jakewharton.github.io/butterknife/) : 8.4.0
 
