@@ -90,4 +90,15 @@ public class RecyclerBottomSheetActivity extends BaseActivity {
         // 확장
         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
     }
+
+    @Override
+    public void onBackPressed() {
+        // Bottom Sheet state change.
+        if (bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
+            bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+
+        } else {
+            super.onBackPressed();
+        }
+    }
 }
