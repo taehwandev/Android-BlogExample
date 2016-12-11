@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import tech.thdev.app.R;
 import tech.thdev.app.data.BottomData;
 
@@ -22,6 +23,8 @@ public class RecyclerBottomSheetViewHolder extends RecyclerView.ViewHolder {
 
     public RecyclerBottomSheetViewHolder(Context context, ViewGroup parent) {
         super(LayoutInflater.from(context).inflate(R.layout.item_recycler_bottom_sheet, parent, false));
+
+        ButterKnife.bind(this, itemView);
     }
 
     public void onBind(BottomData item, int position) {
