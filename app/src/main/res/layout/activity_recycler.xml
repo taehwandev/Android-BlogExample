@@ -32,8 +32,7 @@
         app:behavior_peekHeight="200dp"
         app:layout_behavior="@string/bottom_sheet_behavior">
 
-        <include
-            layout="@layout/bottom_recycler" />
+        <include layout="@layout/bottom_recycler" />
     </RelativeLayout>
 
     <android.support.design.widget.FloatingActionButton
@@ -42,7 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/fab_margin"
         app:layout_anchor="@id/rl_bottom_sheet"
-        app:layout_anchorGravity="right"
+        app:layout_anchorGravity="left"
         app:srcCompat="@android:drawable/ic_dialog_email" />
 
 </android.support.design.widget.CoordinatorLayout>
