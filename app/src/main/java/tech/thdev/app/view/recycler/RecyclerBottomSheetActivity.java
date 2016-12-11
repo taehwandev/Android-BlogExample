@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.RelativeLayout;
 
@@ -42,6 +43,8 @@ public class RecyclerBottomSheetActivity extends BaseActivity {
         setTitle(R.string.label_recycler_activity);
 
         bottomSheetBehavior = BottomSheetBehavior.from(rlBottomSheet);
+        bottomSheetBehavior.setPeekHeight((int) TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP, 300.f, getResources().getDisplayMetrics()));
         bottomSheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
             @Override
             public void onStateChanged(@NonNull View bottomSheet, int newState) {

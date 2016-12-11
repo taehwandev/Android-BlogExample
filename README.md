@@ -1,84 +1,50 @@
 # Summary
-블로그에 게시되는 안드로이드 예제를 정리합니다.
-일부 예제는 별도의 Repository를 가질 수 있으며 해당 부분은 아래 링크를 참고해주세요.
+Blog Android BottomSheet Intro에 소개한 예제 코드입니다.
 
+- [Blog - Android BottomSheet Intro](http://thdev.tech/androiddev/2016/12/11/Android-BottomSheet-Intro.html)
 
-# Blog
-관련 포스트는 다음의 블로그를 통해 확인 할 수 있습니다.
-- [블로그 링크 : thdev.tech](http://thdev.tech)
+## Preview
 
+- BottomSheet Sample
 
-# Etc
-그외 다른 예제의 링크는 아래와 같습니다.
-- [MAppPermission](https://github.com/taehwandev/MAppPermission)
-- [MediaProjectionExample](https://github.com/taehwandev/MediaProjectionExample)
-- [MediaCodecExample](https://github.com/taehwandev/MediaCodecExample)
+![bottom_sheet_02]
+
+- BottomSheet Expanded
+
+![bottom_sheet_03]
 
 
 ## Build info
 
-- [View all Dependencies Information - dependencies.gradle](https://github.com/taehwandev/Android-BlogExample/blob/master/dependencies.gradle)
+- Android studio 2.2.3
 
-- Android studio 2.2+
-
-- buildToolsVersion = 24.0.3
-- compile sdk version = 24
-- Target sdk version = 24
-- Min sdk version = Depending on the module.
+- buildToolsVersion = 25.0.1
+- compile sdk version = 25
+- Target sdk version = 25
+- Min sdk version = 16
 - gradle-wrapper.properties = 2.14.1
-- com.android.tools.build:gradle : 2.2.2
+- com.android.tools.build:gradle : 2.2.3
 
 
 ## Library version info
 
 - Dependencies
-    - support libraryVersion : 24.2.1
-    - constraint layout version : 1.0.0-beta1
-    - Play service version : 9.4.0
+    - support libraryVersion : 25.0.1
 
-    - Glide version : 3.7.0
+    - ButterKnife : 8.4.0
 
-    - retrofit version : 2.1.0
-    - okhttp version : 3.3.1
-
-    - rxAndroid : 1.2.1
-    - rxJava : 1.1.6
-
-    - ButterKnife : 8.2.1
-
-    - kotlin : 1.0.3
-
-
-- Test Dependencies
-    - junit : 4.12
-    - support test : 0.5
-    - espresso : 2.2.2
-    - dexmaker mockito : 1.4
-    - uiautomator : 2.1.2
-    - awaitility : 1.7.0
+    - kotlin : 1.0.5-2
+    - th-base : 1.0.4
 
 
 ## API links using
 
 - Dependencies
     - [Android SupportLibrary](https://developer.android.com/topic/libraries/support-library/revisions.html)
-    - [Android ConstraintLayout](http://tools.android.com/tech-docs/layout-editor)
 
     - [Kotlin Android](https://kotlinlang.org/docs/tutorials/kotlin-android.html)
 
-    - [Retrofit Library](http://square.github.io/retrofit/)
-    - [okhttp 3](http://square.github.io/okhttp/)
-
-    - [ReactiveX](http://reactivex.io/)
-
-    - [Glide](https://github.com/bumptech/glide)
-
     - [ButterKnife](http://jakewharton.github.io/butterknife/)
-
-- Test Dependencies
-    - [Android Testing Support Library](https://google.github.io/android-testing-support-library/)
-    - [Dexmaker Mockito](https://github.com/crittercism/dexmaker)
-    - [awaitility](https://github.com/awaitility/awaitility)
 
 
 ## License
@@ -98,3 +64,6 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 ```
+
+[bottom_sheet_02]: images/bottom_sheet_02.png
+[bottom_sheet_03]: images/bottom_sheet_03.png
