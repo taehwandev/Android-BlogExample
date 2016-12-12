@@ -1,5 +1,7 @@
 package tech.thdev.app.view.one.adapter.model
 
+import tech.thdev.app.data.MovieChartItem
+
 /**
  * Created by Tae-hwan on 12/12/2016.
  */
@@ -12,12 +14,12 @@ interface SampleOneAdapterContract {
 
     interface Model {
 
-        fun addItem(item: String)
+        fun addItem(item: MovieChartItem)
 
-        fun getItem(position: Int): String
+        fun getItem(position: Int): MovieChartItem
 
         fun getItemCount(): Int
 
-        fun getItems(): List<String>
+        fun getItems(): List<MovieChartItem>
     }
 }

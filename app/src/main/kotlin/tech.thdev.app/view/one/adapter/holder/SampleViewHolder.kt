@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.item_sample_view.view.*
 import tech.thdev.app.R
+import tech.thdev.app.data.MovieChartItem
 
 /**
  * Created by Tae-hwan on 12/12/2016.
@@ -14,9 +15,21 @@ import tech.thdev.app.R
 class SampleViewHolder(val context: Context, parent: ViewGroup?)
     : RecyclerView.ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_sample_view, parent, false)) {
 
-    fun onBind(item: String, position: Int) {
+    fun onBind(item: MovieChartItem, position: Int) {
         with(itemView) {
-            tv_title.text = item
+            tv_rank.text = item.rank
+            tv_title.text = item.title
+
+            val rankInten = item.changeRanking.toInt()
+            if (rankInten < 0) {
+                img_rank_inten.setImageResource(R.drawable.ic_down)
+
+            } else if (rankInten > 0) {
+                img_rank_inten.setImageResource(R.drawable.ic_up)
+
+            } else {
+                img_rank_inten.setImageResource(R.drawable.ic_none)
+            }
         }
     }
 }

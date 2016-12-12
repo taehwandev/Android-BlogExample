@@ -1,10 +1,10 @@
 package tech.thdev.app.adapter
 
-import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
-import tech.thdev.app.view.basic.PlaceholderFragment
 import tech.thdev.app.adapter.model.SectionsPagerModel
+import tech.thdev.app.view.basic.PlaceholderFragment
+import tech.thdev.app.view.one.SampleOneFragment
 import java.util.*
 
 /**
@@ -18,10 +18,9 @@ class SectionsPagerAdapter(fragmentManager: FragmentManager) : FragmentPagerAdap
 
     private val itemList = ArrayList<Int>()
 
-    override fun getItem(position: Int): Fragment {
-        // getItem is called to instantiate the fragment for the given page.
-        // Return a PlaceholderFragment (defined as a static inner class below).
-        return PlaceholderFragment.newInstance(position + 1)
+    override fun getItem(position: Int) = when (position) {
+        0 -> SampleOneFragment()
+        else -> PlaceholderFragment.newInstance(position + 1)
     }
 
     // itemList size

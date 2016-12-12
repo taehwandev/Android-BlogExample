@@ -20,7 +20,6 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|enterAlways"
             app:popupTheme="@style/AppTheme.PopupOverlay">
 
         </android.support.v7.widget.Toolbar>
@@ -42,6 +41,7 @@
         app:itemTextColor="@color/bottom_section_color"
         app:layout_anchor="@id/container"
         app:layout_anchorGravity="bottom"
+        app:layout_behavior="tech.thdev.app.view.BottomNavigationBehavior"
         app:menu="@menu/bottom_navigation_main" />
 
 </android.support.design.widget.CoordinatorLayout>

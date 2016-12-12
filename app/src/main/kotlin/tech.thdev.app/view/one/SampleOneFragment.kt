@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import kotlinx.android.synthetic.main.fragment_sample_one.*
 import tech.thdev.app.R
+import tech.thdev.app.data.source.MovieSearchRepository
 import tech.thdev.app.view.one.adapter.SampleOneAdapter
 import tech.thdev.app.view.one.presenter.SampleOneContract
 import tech.thdev.app.view.one.presenter.SampleOnePresenter
@@ -26,5 +27,12 @@ class SampleOneFragment : BasePresenterFragment<SampleOneContract.View, SampleOn
 
         presenter?.sampleOneOneModel = sampleOneAdapter
         presenter?.sampleOneOneView = sampleOneAdapter
+
+        presenter?.movieSearchRepository = MovieSearchRepository
+        presenter?.searchMovie("20161211")
+    }
+
+    override fun isFinishing() {
+        activity.isFinishing
     }
 }

@@ -49,7 +49,7 @@ buildscript {
 ext {
     Properties properties = new Properties()
     properties.load(project.rootProject.file('local.properties').newDataInputStream())
-    flickrApiKey = properties.getProperty('daum_api_key', "\"\"")
+    kobisApiKey = properties.getProperty('kobis_api_key', "\"\"")
 }
 
 allprojects {

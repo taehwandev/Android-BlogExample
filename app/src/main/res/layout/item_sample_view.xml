@@ -1,16 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:layout_height="70dp">
 
-    <TextView
-        android:id="@+id/tv_title"
+    <View
+        android:id="@+id/view_line"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:gravity="center_vertical"
-        android:padding="10dp"
-        android:textStyle="bold"
-        android:textSize="20sp"
-        android:text="TV Title" />
-</LinearLayout>
+        android:layout_height="0.5dp"
+        android:layout_alignParentBottom="true"
+        android:background="#666" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/view_line"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/tv_rank"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="10"
+            android:textColor="#990000"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:padding="10dp"
+            android:text="Movie title"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:id="@+id/img_rank_inten"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_none" />
+    </LinearLayout>
+</RelativeLayout>
