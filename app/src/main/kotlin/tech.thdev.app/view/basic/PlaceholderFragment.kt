@@ -1,8 +1,9 @@
-package tech.thdev.app
+package tech.thdev.app.view.basic
 
 import android.os.Bundle
 import android.view.View
 import kotlinx.android.synthetic.main.fragment_main.*
+import tech.thdev.app.R
 import tech.thdev.base.view.BaseFragment
 
 /**

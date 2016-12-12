@@ -14,6 +14,27 @@ buildscript {
         supportLibraryVersion = '25.0.1'
 
         butterKnifeVersion = '8.4.0'
+
+        // Rx
+        // https://github.com/ReactiveX/RxAndroid/tree/2.x
+        rxandroidVersion = '2.0.1'
+        // https://github.com/ReactiveX/RxJava/tree/2.x
+        rxjavaVersion = '2.0.1'
+
+        // Image loader
+        // https://github.com/bumptech/glide
+        glideVersion = '3.7.0'
+
+        // Retrofit
+        // https://github.com/square/retrofit
+        retrofitVersion = '2.1.0'
+        // Retrofit rxAdapter
+        // https://github.com/JakeWharton/retrofit2-rxjava2-adapter
+        retrofitRxAdapter = '1.0.0'
+
+        // OkHttp
+        // https://github.com/square/okhttp
+        okhttpVersion = '3.5.0'
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.2.3'
@@ -22,6 +43,13 @@ buildscript {
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
+}
+
+// FlickrAPI key는 local.properties에 "flickrApiKey="생성한 키""를 등록하면 됩니다
+ext {
+    Properties properties = new Properties()
+    properties.load(project.rootProject.file('local.properties').newDataInputStream())
+    flickrApiKey = properties.getProperty('daum_api_key', "\"\"")
 }
 
 allprojects {

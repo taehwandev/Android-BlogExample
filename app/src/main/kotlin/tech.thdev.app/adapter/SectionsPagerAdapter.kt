@@ -3,7 +3,7 @@ package tech.thdev.app.adapter
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
-import tech.thdev.app.PlaceholderFragment
+import tech.thdev.app.view.basic.PlaceholderFragment
 import tech.thdev.app.adapter.model.SectionsPagerModel
 import java.util.*
 
