@@ -1,7 +1,7 @@
 package tech.thdev.app.data.source
 
 import io.reactivex.Flowable
-import tech.thdev.app.data.BoxOfficeContainer
+import tech.thdev.app.data.DailyBoxOfficeContainer
 import tech.thdev.app.network.KobisApiService
 import tech.thdev.app.network.createRetrofit
 
@@ -17,7 +17,9 @@ class MovieSearchRemoteDataSource : MovieSearchDataSource {
         kobisApiService = createRetrofit(KobisApiService::class.java, "http://www.kobis.or.kr/")
     }
 
-    override fun getBoxOffice(targetDate: String): Flowable<BoxOfficeContainer> {
+    override fun getDailyBoxOffice(targetDate: String): Flowable<DailyBoxOfficeContainer> {
         return kobisApiService.searchMovie(targetDate)
     }
+
+    override fun getWeekBoxOffice(targetDate: String) = kobisApiService.getWeekBoxOffice(targetDate)
 }

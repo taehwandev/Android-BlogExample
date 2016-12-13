@@ -1,6 +1,6 @@
-package tech.thdev.app.presenter;
+package tech.thdev.app.view.main.presenter;
 
-import tech.thdev.app.adapter.model.SectionsPagerModel;
+import tech.thdev.app.adapter.pager.model.SectionsPagerModel;
 import tech.thdev.base.presenter.BasePresenter;
 import tech.thdev.base.presenter.BaseView;
 

@@ -1,4 +1,4 @@
-package tech.thdev.app.view.one.adapter.model
+package tech.thdev.app.adapter.movie.adapter.model
 
 import tech.thdev.app.data.MovieChartItem
 
@@ -6,7 +6,7 @@ import tech.thdev.app.data.MovieChartItem
  * Created by Tae-hwan on 12/12/2016.
  */
 
-interface SampleOneAdapterContract {
+interface BoxOfficeAdapterContract {
 
     interface View {
         fun reload()

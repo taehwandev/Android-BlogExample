@@ -7,5 +7,6 @@ package tech.thdev.app.data
 data class MovieChartItem(val title: String,
                           val rank: String,
                           val date: String,
+                          val attendance: String,
                           val changeRanking: String,
                           val viewType: Int)

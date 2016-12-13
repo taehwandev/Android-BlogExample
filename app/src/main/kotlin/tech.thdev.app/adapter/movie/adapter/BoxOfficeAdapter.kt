@@ -1,34 +1,34 @@
-package tech.thdev.app.view.one.adapter
+package tech.thdev.app.adapter.movie.adapter
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
 import tech.thdev.app.data.MovieChartItem
-import tech.thdev.app.view.one.adapter.holder.SampleViewHeaderViewHolder
-import tech.thdev.app.view.one.adapter.holder.SampleViewHolder
-import tech.thdev.app.view.one.adapter.model.SampleOneAdapterContract
+import tech.thdev.app.adapter.movie.adapter.holder.BoxOfficeHeaderViewHolder
+import tech.thdev.app.adapter.movie.adapter.holder.BoxOfficeViewHolder
+import tech.thdev.app.adapter.movie.adapter.model.BoxOfficeAdapterContract
 import java.util.*
 
 /**
  * Created by Tae-hwan on 12/12/2016.
  */
 
-class SampleOneAdapter(val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>(), SampleOneAdapterContract.Model, SampleOneAdapterContract.View {
+class BoxOfficeAdapter(val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>(), BoxOfficeAdapterContract.Model, BoxOfficeAdapterContract.View {
 
     private val itemList = ArrayList<MovieChartItem>()
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int) = when (viewType) {
-        100 -> SampleViewHeaderViewHolder(context, parent)
-        else -> SampleViewHolder(context, parent)
+        100 -> BoxOfficeHeaderViewHolder(context, parent)
+        else -> BoxOfficeViewHolder(context, parent)
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
         when (getItemViewType(position)) {
             100 -> {
-                (holder as? SampleViewHeaderViewHolder)?.onBind(getItem(position), position)
+                (holder as? BoxOfficeHeaderViewHolder)?.onBind(getItem(position), position)
             }
             else -> {
-                (holder as? SampleViewHolder)?.onBind(getItem(position), position)
+                (holder as? BoxOfficeViewHolder)?.onBind(getItem(position), position)
             }
         }
     }

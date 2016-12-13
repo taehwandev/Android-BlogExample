@@ -7,16 +7,16 @@
         app:showAsAction="ifRoom"
         android:enabled="true"
         android:icon="@android:drawable/ic_dialog_info"
-        android:title="Section One" />
+        android:title="@string/selection_home" />
     <item
         android:id="@+id/action_two"
         app:showAsAction="ifRoom"
         android:icon="@android:drawable/ic_dialog_info"
-        android:title="Section Two" />
+        android:title="@string/selection_daily_box_office" />
     <item
         android:id="@+id/action_three"
         app:showAsAction="ifRoom"
         android:enabled="true"
         android:icon="@android:drawable/ic_dialog_info"
-        android:title="Section Three" />
+        android:title="@string/selection_weekly_box_office" />
 </menu>

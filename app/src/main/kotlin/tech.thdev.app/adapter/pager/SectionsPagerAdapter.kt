@@ -1,10 +1,11 @@
-package tech.thdev.app.adapter
+package tech.thdev.app.adapter.pager
 
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
-import tech.thdev.app.adapter.model.SectionsPagerModel
+import tech.thdev.app.adapter.pager.model.SectionsPagerModel
 import tech.thdev.app.view.basic.PlaceholderFragment
-import tech.thdev.app.view.one.SampleOneFragment
+import tech.thdev.app.view.dailyboxoffice.DailyBoxOfficeFragment
+import tech.thdev.app.view.weekboxoffice.WeeklyBoxOfficeFragment
 import java.util.*
 
 /**
@@ -19,8 +20,9 @@ class SectionsPagerAdapter(fragmentManager: FragmentManager) : FragmentPagerAdap
     private val itemList = ArrayList<Int>()
 
     override fun getItem(position: Int) = when (position) {
-        0 -> SampleOneFragment()
-        else -> PlaceholderFragment.newInstance(position + 1)
+        1 -> DailyBoxOfficeFragment()
+        2 -> WeeklyBoxOfficeFragment()
+        else -> PlaceholderFragment.newInstance()
     }
 
     // itemList size

@@ -12,6 +12,9 @@ object MovieSearchRepository : MovieSearchDataSource {
         remoteDataSource = MovieSearchRemoteDataSource()
     }
 
-    override fun getBoxOffice(targetDate: String)
-            = remoteDataSource.getBoxOffice(targetDate)
+    override fun getDailyBoxOffice(targetDate: String)
+            = remoteDataSource.getDailyBoxOffice(targetDate)
+
+    override fun getWeekBoxOffice(targetDate: String)
+            = remoteDataSource.getWeekBoxOffice(targetDate)
 }

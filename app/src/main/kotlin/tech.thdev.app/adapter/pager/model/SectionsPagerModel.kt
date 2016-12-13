@@ -1,4 +1,4 @@
-package tech.thdev.app.adapter.model
+package tech.thdev.app.adapter.pager.model
 
 /**
  * Created by tae-hwan on 12/11/16.

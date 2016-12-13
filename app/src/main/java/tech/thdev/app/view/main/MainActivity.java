@@ -1,4 +1,4 @@
-package tech.thdev.app;
+package tech.thdev.app.view.main;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -12,9 +12,10 @@ import android.view.MenuItem;
 import org.jetbrains.annotations.Nullable;
 
 import butterknife.BindView;
-import tech.thdev.app.adapter.SectionsPagerAdapter;
-import tech.thdev.app.presenter.MainContract;
-import tech.thdev.app.presenter.MainPresenter;
+import tech.thdev.app.R;
+import tech.thdev.app.adapter.pager.SectionsPagerAdapter;
+import tech.thdev.app.view.main.presenter.MainContract;
+import tech.thdev.app.view.main.presenter.MainPresenter;
 import tech.thdev.base.view.BasePresenterActivity;
 
 public class MainActivity extends BasePresenterActivity<MainContract.View, MainContract.Presenter> implements MainContract.View, ViewPager.OnPageChangeListener {
@@ -63,6 +64,7 @@ public class MainActivity extends BasePresenterActivity<MainContract.View, MainC
         viewPager.addOnPageChangeListener(this);
         viewPager.setCurrentItem(0);
         prevBottomNavigation = bottomNavigationView.getMenu().getItem(0);
+        viewPager.setOffscreenPageLimit(3);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
