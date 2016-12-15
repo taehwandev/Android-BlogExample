@@ -3,6 +3,21 @@
 
 Android BottomNavigation 샘플입니다.
 
+- [블로그 링크: Android BottomNavigationView 사용하기](http://thdev.tech/androiddev/2016/12/16/Android-BottomNavigationView-Intro.html)
+
+## Use
+
+- [Open API 서비스 - 영화관 입장관리 통합전산망](http://www.kobis.or.kr/kobisopenapi/homepg/main/main.do)의 일별 박스 오피스와 주간 박스오피스 2가지 API를 사용하였습니다.
+
+해당 사이트에 접근하셔서 API 키를 발급받아
+
+`local.properties`에 다음과 같이 코드를 추가해주시면 되겠습니다.
+
+```
+kobis_api_key="발급받은 API Key"
+```
+
+
 
 ## Preview
 
