@@ -6,6 +6,8 @@ import android.text.TextUtils
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
+import android.webkit.WebSettings
+import android.webkit.WebView
 import android.widget.EditText
 import android.widget.Toast
 import tech.thdev.kotlin_example_01.base.view.BaseFragment
@@ -55,6 +57,8 @@ class KotlinFragment(var url: String = ""): BaseFragment<KotlinContract.Presente
         webView.init()
 
         webView.addJavascriptInterface(presenter?.getOnCustomJavaScriptListener(), "WebViewTest")
+
+        WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
 
         etUrl.setText(url)
         webView.loadUrl(url)
