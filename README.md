@@ -18,7 +18,7 @@ Kotlin과 Java 코드로 분리되어 있습니다.
 
 ## Blog
 
-- [Android 윈도우(Overlay) 권한 획득하기](http://thdev.tech/androiddev/2016/05/08/Android-Overlay-Permission.html)
+- [Android 윈도우(Overlay) 권한 획득하기](http://thdev.tech/androiddev/2017/01/30/Android-Overlay-Permission.html)
 
 
 ## Preview
@@ -34,7 +34,7 @@ Kotlin과 Java 코드로 분리되어 있습니다.
 
     - [ButterKnife](http://jakewharton.github.io/butterknife/) : 8.4.0
 
-    - [kotlin](https://kotlinlang.org/docs/tutorials/kotlin-android.html) : 1.0.5-2
+    - [kotlin](https://kotlinlang.org/docs/tutorials/kotlin-android.html) : 1.0.6
     - [th-base](https://github.com/taehwandev/AndroidBase) : 1.0.4
 
 ## API

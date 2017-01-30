@@ -7,7 +7,7 @@ buildscript {
         mavenCentral()
     }
     ext {
-        kotlin_version = '1.0.5-2'
+        kotlin_version = '1.0.6'
         supportLibraryVersion = '25.1.0'
 
         butterKnifeVersion = '8.4.0'
