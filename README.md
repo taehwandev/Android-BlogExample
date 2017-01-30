@@ -4,8 +4,6 @@
 
 Android 윈도우(Overlay) 권한 획득하기에 사용한 예제 코드입니다
 
-- [블로그 링크: Android 윈도우(Overlay) 권한 획득](http://thdev.tech/androiddev/2016/05/08/Android-Overlay-Permission.html)
-
 Kotlin과 Java 코드로 분리되어 있습니다.
 
 - [Kotlin Sample](https://github.com/taehwandev/Android-BlogExample/tree/03-Overlay-Permission-Example/app-kotlin)
