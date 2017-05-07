@@ -30,8 +30,8 @@ dependencies {
     })
     testCompile 'junit:junit:4.12'
 
-    compile "com.android.support:appcompat-v7:$supportLibraryVersion"
-    compile "com.android.support:design:$supportLibraryVersion"
+    compile "com.android.support:appcompat-v7:$support_library_version"
+    compile "com.android.support:design:$support_library_version"
 
     // kotlin
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
@@ -41,5 +41,5 @@ dependencies {
     annotationProcessor "com.jakewharton:butterknife-compiler:$butterKnifeVersion"
 
     // Thdev support base
-    compile "tech.thdev.support:base:$baseSupportLibrary"
+    compile "tech.thdev.support:base:$th_support_java_base_version"
 }
