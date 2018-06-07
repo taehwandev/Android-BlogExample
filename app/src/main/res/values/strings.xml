@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">app</string>
+    <string name="user_id">Input user id</string>
+    <string name="user_password">Input user password</string>
+    <string name="label_login">Login</string>
+    <string name="label_logout">Logout</string>
 </resources>
