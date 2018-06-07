@@ -8,9 +8,10 @@ buildscript {
 
     ext {
         kotlin_version = '1.2.41'
-        androidxSupportLibraryVersion = '1.0.0-alpha1'
+        androidxSupportLibraryVersion = '1.0.0-alpha3'
         androidxConstraintVersion = '1.1.0'
         androidxLifecycle = '2.0.0-alpha1'
+        thLifecycleExtensionsVersion = '1.1.1'
     }
 
     dependencies {

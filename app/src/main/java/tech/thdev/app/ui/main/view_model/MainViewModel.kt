@@ -1,4 +1,4 @@
-package tech.thdev.app.ui.main
+package tech.thdev.app.ui.main.view_model
 
 import androidx.lifecycle.ViewModel
 
