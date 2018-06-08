@@ -1,6 +1,7 @@
 package tech.thdev.app.ui.main
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,8 +29,15 @@ class LoginFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         // TODO: Use the ViewModel
-        btn_login.setOnClickListener {
-            viewModel.coroutinesExample()
+        viewModel.loadTime()
+
+        viewModel.init()
+    }
+
+    private fun LoginViewModel.init() {
+        updateTime = {
+            Log.e("TEMP", "now Time $it")
+            tv_message.text = it
         }
     }
 }
