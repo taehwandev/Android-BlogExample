@@ -5,9 +5,11 @@ import kotlinx.coroutines.experimental.CommonPool
 import kotlinx.coroutines.experimental.android.UI
 import kotlinx.coroutines.experimental.async
 import kotlinx.coroutines.experimental.launch
+import kotlinx.coroutines.experimental.suspendAtomicCancellableCoroutine
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.coroutines.experimental.CoroutineContext
+import kotlin.coroutines.experimental.suspendCoroutine
 
 class LoginViewModel : ViewModel() {
 
@@ -19,6 +21,9 @@ class LoginViewModel : ViewModel() {
     // represents a common pool of shared threads as the coroutine dispatcher
     private val bgContext: CoroutineContext = CommonPool
 
+    suspend fun loginUser() {
+    }
+
     fun loadTime() = launch(uiContext) {
         val simpleDateFormat = SimpleDateFormat("HH:mm:ss.SSS", Locale.getDefault())
         (0..1000).forEach {
@@ -28,5 +33,9 @@ class LoginViewModel : ViewModel() {
 
             println("end")
         }
+    }
+
+    fun updateInput(input: String) {
+
     }
 }

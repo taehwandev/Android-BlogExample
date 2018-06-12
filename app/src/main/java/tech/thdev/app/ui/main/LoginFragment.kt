@@ -1,6 +1,8 @@
 package tech.thdev.app.ui.main
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -29,15 +31,33 @@ class LoginFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         // TODO: Use the ViewModel
-        viewModel.loadTime()
 
-        viewModel.init()
+        et_user_id.addTextChangedListener(textWatcher)
     }
 
     private fun LoginViewModel.init() {
         updateTime = {
             Log.e("TEMP", "now Time $it")
             tv_message.text = it
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        et_user_id.removeTextChangedListener(textWatcher)
+    }
+
+    private val textWatcher = object : TextWatcher {
+        override fun afterTextChanged(p0: Editable?) {
+
+        }
+
+        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+        }
+
+        override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            p0?.let { viewModel.updateInput(it.toString()) }
         }
     }
 }
