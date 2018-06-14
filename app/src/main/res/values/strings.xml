@@ -1,8 +1,10 @@
 <resources>
     <string name="app_name">app</string>
-    <string name="user_id">Input user id</string>
-    <string name="user_password">Input user password</string>
+    <string name="label_user_id">User id</string>
+    <string name="label_user_password">User password</string>
     <string name="label_login">Login</string>
     <string name="label_logout">Logout</string>
     <string name="label_login_time">Login time %s</string>
+    <string name="message_login_fail">Login fail. retry user id/password.</string>
+    <string name="label_login_sample">Login!</string>
 </resources>

@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="10dp"
     tools:context=".ui.main.LoginFragment">
 
     <TextView
@@ -13,9 +14,10 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="10dp"
-        android:text="Show message"
+        android:text="@string/label_login_sample"
         android:textSize="15sp"
         android:textStyle="bold"
+        android:textColor="@color/select_message_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -23,7 +25,7 @@
         android:id="@+id/et_user_id"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="@string/user_id"
+        android:hint="@string/label_user_id"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -33,7 +35,8 @@
         android:id="@+id/et_password"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="@string/user_password"
+        android:hint="@string/label_user_password"
+        android:inputType="textVisiblePassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_user_id" />

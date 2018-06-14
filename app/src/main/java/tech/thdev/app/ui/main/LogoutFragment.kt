@@ -10,14 +10,17 @@ import kotlinx.coroutines.experimental.Job
 import kotlinx.coroutines.experimental.android.UI
 import kotlinx.coroutines.experimental.cancelAndJoin
 import kotlinx.coroutines.experimental.launch
+import tech.thdev.app.ActivityListener
 import tech.thdev.app.R
 import tech.thdev.app.ui.main.viewmodel.LogoutViewModel
 import tech.thdev.lifecycle.extensions.inject
 
 class LogoutFragment : Fragment() {
 
+    private lateinit var activityListener: ActivityListener
+
     companion object {
-        fun newInstance() = LogoutFragment()
+        fun newInstance(activityListener: ActivityListener) = LogoutFragment().apply { this.activityListener = activityListener }
     }
 
     private val viewModel: LogoutViewModel by lazy {
@@ -27,16 +30,6 @@ class LogoutFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
         return inflater.inflate(R.layout.logout_fragment, container, false)
-    }
-
-    private val timer: Job by lazy {
-        launch {
-            var i = 0
-            while (isActive) {
-                launch(UI) { tv_login_time.text = "${++i}" }
-                Thread.sleep(100)
-            }
-        }
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -50,14 +43,21 @@ class LogoutFragment : Fragment() {
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onDestroyView() {
+        super.onDestroyView()
+
         viewModel.stopLoginTime()
     }
 
     private fun LogoutViewModel.init() {
         updateLoginTime = {
-            tv_login_time.text = getString(R.string.label_login_time, it)
+            tv_login_time?.text = getString(R.string.label_login_time, it)
+        }
+
+        logoutSucess = {
+            if (::activityListener.isInitialized) {
+                activityListener.showLogin()
+            }
         }
     }
 }

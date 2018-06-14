@@ -4,5 +4,10 @@ import tech.thdev.app.data.LoginItem
 
 interface LoginDataSource {
 
-    suspend fun login(user: LoginItem): Boolean
+    companion object {
+        const val TYPE_SUCCESS = 0
+        const val TYPE_DONT_MATCH = 1
+    }
+
+    suspend fun login(user: LoginItem): Int
 }

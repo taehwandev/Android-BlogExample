@@ -3,24 +3,28 @@ package tech.thdev.app.ui.main
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.login_fragment.*
+import tech.thdev.app.ActivityListener
 import tech.thdev.app.R
+import tech.thdev.app.data.source.login.LoginRepository
 import tech.thdev.app.ui.main.viewmodel.LoginViewModel
 import tech.thdev.lifecycle.extensions.inject
 
 class LoginFragment : Fragment() {
 
+    private lateinit var activityListener: ActivityListener
+
     companion object {
-        fun newInstance() = LoginFragment()
+        fun newInstance(activityListener: ActivityListener) =
+                LoginFragment().apply { this.activityListener = activityListener }
     }
 
     private val viewModel: LoginViewModel by lazy {
-        LoginViewModel().inject(this)
+        LoginViewModel(LoginRepository).inject(this)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -30,22 +34,50 @@ class LoginFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        // TODO: Use the ViewModel
+        viewModel.init()
 
-        et_user_id.addTextChangedListener(textWatcher)
-    }
-
-    private fun LoginViewModel.init() {
-        updateTime = {
-            Log.e("TEMP", "now Time $it")
-            tv_message.text = it
+        btn_login.run {
+            setOnClickListener {
+                viewModel.startLogin(et_user_id?.text.toString(), et_password.text.toString())
+            }
+            isEnabled = false
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        viewModel.startTimerWatcher()
+
+        et_user_id.addTextChangedListener(textWatcher)
+        et_password.addTextChangedListener(textWatcher)
+    }
+
+    private fun LoginViewModel.init() {
+        statusChangeLoginButton = {
+            btn_login.isEnabled = it
+
+            tv_message.run {
+                setText(R.string.label_login_sample)
+                isSelected = false
+            }
+        }
+
+        loginSuccess = activityListener::showLogout
+
+        loginFail = {
+            tv_message.run {
+                setText(R.string.message_login_fail)
+                isSelected = true
+            }
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
 
         et_user_id.removeTextChangedListener(textWatcher)
+        et_password.removeTextChangedListener(textWatcher)
     }
 
     private val textWatcher = object : TextWatcher {
@@ -57,7 +89,9 @@ class LoginFragment : Fragment() {
         }
 
         override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            p0?.let { viewModel.updateInput(it.toString()) }
+            val userId = et_user_id?.text?.toString() ?: ""
+            val userPassword = et_password?.text?.toString() ?: ""
+            viewModel.updateInput(userId, userPassword)
         }
     }
 }

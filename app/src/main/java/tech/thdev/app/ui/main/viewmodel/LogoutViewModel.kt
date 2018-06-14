@@ -16,6 +16,7 @@ class LogoutViewModel : ViewModel() {
     private val bgContext = CommonPool
 
     lateinit var updateLoginTime: (time: String) -> Unit
+    lateinit var logoutSucess: () -> Unit
 
     private val prevLoginTime: Long by lazy {
         System.currentTimeMillis()
@@ -46,7 +47,7 @@ class LogoutViewModel : ViewModel() {
         Log.e("TEMP", "stop")
         launch {
             loginTimer.cancelAndJoin()
-            launch(uiContext) { updateLoginTime("end time") }
+            launch(uiContext) { logoutSucess() }
         }
         Log.e("TEMP", "stop cancelAndJoin")
     }
