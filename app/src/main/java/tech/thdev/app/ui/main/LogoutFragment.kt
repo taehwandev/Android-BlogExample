@@ -54,7 +54,7 @@ class LogoutFragment : Fragment() {
             tv_login_time?.text = getString(R.string.label_login_time, it)
         }
 
-        logoutSucess = {
+        logoutSuccess = {
             if (::activityListener.isInitialized) {
                 activityListener.showLogin()
             }

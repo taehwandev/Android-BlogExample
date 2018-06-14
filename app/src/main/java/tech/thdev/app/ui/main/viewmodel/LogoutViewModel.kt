@@ -16,38 +16,37 @@ class LogoutViewModel : ViewModel() {
     private val bgContext = CommonPool
 
     lateinit var updateLoginTime: (time: String) -> Unit
-    lateinit var logoutSucess: () -> Unit
+    lateinit var logoutSuccess: () -> Unit
 
-    private val prevLoginTime: Long by lazy {
-        System.currentTimeMillis()
-    }
+    private var prevLoginTime: Long = 0
 
     private val simpleDateFormat: SimpleDateFormat by lazy {
         SimpleDateFormat("mm:ss.S", Locale.getDefault())
     }
 
-    private val loginTimer: Job by lazy {
-        launch {
-            while (isActive) {
-                launch(uiContext) {
-                    if (::updateLoginTime.isInitialized) {
-                        updateLoginTime(simpleDateFormat.format(System.currentTimeMillis() - prevLoginTime))
-                    }
+    private lateinit var loginTimer: Job
+
+    private fun updateTimeThread() = launch {
+        while (isActive) {
+            launch(uiContext) {
+                if (::updateLoginTime.isInitialized) {
+                    updateLoginTime(simpleDateFormat.format(System.currentTimeMillis() - prevLoginTime))
                 }
-                Thread.sleep(10)
             }
+            Thread.sleep(10)
         }
     }
 
     fun startLoginTime() {
-        loginTimer
+        prevLoginTime = System.currentTimeMillis()
+        loginTimer = updateTimeThread()
     }
 
     fun stopLoginTime() {
         Log.e("TEMP", "stop")
         launch {
             loginTimer.cancelAndJoin()
-            launch(uiContext) { logoutSucess() }
+            launch(uiContext) { logoutSuccess() }
         }
         Log.e("TEMP", "stop cancelAndJoin")
     }

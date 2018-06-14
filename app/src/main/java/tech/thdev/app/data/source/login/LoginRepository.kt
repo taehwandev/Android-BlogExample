@@ -11,7 +11,7 @@ object LoginRepository : LoginDataSource {
         var status = LoginDataSource.TYPE_DONT_MATCH
         dummyLoginData.forEach { (userId, password) ->
             if (user.userId == userId && user.password == password) {
-                delay(5000L)
+                delay(1000L)
                 status = LoginDataSource.TYPE_SUCCESS
             }
         }

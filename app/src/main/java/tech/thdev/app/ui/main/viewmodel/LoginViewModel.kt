@@ -1,5 +1,6 @@
 package tech.thdev.app.ui.main.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.experimental.CommonPool
 import kotlinx.coroutines.experimental.android.UI
@@ -26,17 +27,17 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
     // represents a common pool of shared threads as the coroutine dispatcher
     private val bgContext: CoroutineContext = CommonPool
 
-    private val checkUserChannel: Channel<LoginItem> by lazy {
-        Channel<LoginItem>()
-    }
+    private lateinit var checkUserChannel: Channel<LoginItem>
 
     fun startTimerWatcher() {
+        checkUserChannel = Channel()
         launch(bgContext) { checkUserInput(checkUserChannel) }
     }
 
     private suspend fun checkUserInput(receiveChannel: ReceiveChannel<LoginItem>) = produce<LoginItem> {
         // isActive only loop.
         while (isActive) {
+            Log.d("TEMP", "isActive $isActive")
             select<Unit> {
                 receiveChannel.onReceive {
                     launch(uiContext) {
