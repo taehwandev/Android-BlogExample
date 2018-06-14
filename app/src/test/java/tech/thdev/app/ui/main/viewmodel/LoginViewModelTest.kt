@@ -1,6 +1,5 @@
 package tech.thdev.app.ui.main.viewmodel
 
-import kotlinx.coroutines.experimental.cancelChildren
 import kotlinx.coroutines.experimental.channels.Channel
 import kotlinx.coroutines.experimental.channels.ReceiveChannel
 import kotlinx.coroutines.experimental.channels.produce
@@ -18,23 +17,27 @@ class LoginViewModelTest {
             select<Unit> {
                 input.onReceive {
                     println("item $it")
+                    println("userId ${it.userId == "abc"} password ${it.password == "b"}")
+                    if (it.userId == "abcd" && it.password == "b") {
+                        println("userId close???")
+                        input.cancel()
+                    }
                 }
             }
         }
     }
 
     @Test
-    fun test() = runBlocking<Unit> {
+    fun test() = runBlocking {
         val chan = Channel<LoginItem>()
         launch(coroutineContext) {
-            for (s in inputCheck(chan)) {
-
-            }
+            inputCheck(chan)
         }
-        chan.send(LoginItem("a", "b)"))
-        chan.send(LoginItem("ab", "b)"))
-        chan.send(LoginItem("abc", "b)"))
-        chan.send(LoginItem("abcd", "b)"))
-        chan.close()
+        chan.send(LoginItem("a", "b"))
+        chan.send(LoginItem("ab", "b"))
+        delay(300)
+        chan.send(LoginItem("abc", "b"))
+        chan.send(LoginItem("abcd", "b"))
+        delay(500)
     }
 }
