@@ -11,6 +11,8 @@ buildscript {
         kotlin_version = '1.2.50'
         coroutines_version = '0.22.5'
 
+        playServicesVersion = '15.0.1'
+
         androidxSupportLibraryVersion = '1.0.0-alpha3'
         androidxConstraintVersion = '1.1.1'
         androidxLifecycle = '2.0.0-alpha1'

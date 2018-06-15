@@ -24,7 +24,7 @@ class LoginFragment : Fragment() {
     }
 
     private val viewModel: LoginViewModel by lazy {
-        LoginViewModel(LoginRepository).inject(this)
+        LoginViewModel(LoginRepository, activityListener.smartLockViewModel).inject(this)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -51,6 +51,8 @@ class LoginFragment : Fragment() {
 
         et_user_id.addTextChangedListener(textWatcher)
         et_password.addTextChangedListener(textWatcher)
+
+        activityListener.smartLockViewModel.loadCredential()
     }
 
     private fun LoginViewModel.init() {
