@@ -3,7 +3,6 @@ package tech.thdev.app.ui.main.viewmodel
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.google.android.gms.auth.api.credentials.Credential
-import com.google.android.gms.auth.api.credentials.IdentityProviders
 import kotlinx.coroutines.experimental.CommonPool
 import kotlinx.coroutines.experimental.android.UI
 import kotlinx.coroutines.experimental.cancelChildren

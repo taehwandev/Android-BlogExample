@@ -70,6 +70,10 @@ class SmartLockViewModel(val activity: FragmentActivity) :
                 })
     }
 
+    fun saveCredential(userName: String, userPassowrd: String) {
+
+    }
+
     fun saveCredential(credential: Credential) {
         // Credential is valid so save it.
         credentialsClient.save(credential).addOnCompleteListener {
@@ -139,5 +143,4 @@ class SmartLockViewModel(val activity: FragmentActivity) :
     override fun onConnectionFailed(connectionResult: ConnectionResult) {
         Log.d("TEMP", "onConnectionFailed: $connectionResult")
     }
-
 }

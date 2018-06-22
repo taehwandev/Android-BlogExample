@@ -6,10 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.logout_fragment.*
-import kotlinx.coroutines.experimental.Job
-import kotlinx.coroutines.experimental.android.UI
-import kotlinx.coroutines.experimental.cancelAndJoin
-import kotlinx.coroutines.experimental.launch
 import tech.thdev.app.ActivityListener
 import tech.thdev.app.R
 import tech.thdev.app.ui.main.viewmodel.LogoutViewModel
