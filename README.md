@@ -17,8 +17,6 @@
 
 ## Build info
 
-- [View all Dependencies Information - dependencies.gradle](https://github.com/taehwandev/Android-BlogExample/blob/master/dependencies.gradle)
-
 - Android studio 3.3+
 
 - compile sdk version = 28
