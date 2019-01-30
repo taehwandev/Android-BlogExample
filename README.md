@@ -19,66 +19,43 @@
 
 - [View all Dependencies Information - dependencies.gradle](https://github.com/taehwandev/Android-BlogExample/blob/master/dependencies.gradle)
 
-- Android studio 2.2+
+- Android studio 3.3+
 
-- buildToolsVersion = 24.0.3
-- compile sdk version = 24
-- Target sdk version = 24
+- compile sdk version = 28
+- Target sdk version = 28
 - Min sdk version = Depending on the module.
-- gradle-wrapper.properties = 2.14.1
-- com.android.tools.build:gradle : 2.2.2
 
 
 ## Library version info
 
 - Dependencies
-    - support libraryVersion : 24.2.1
-    - constraint layout version : 1.0.0-beta1
-    - Play service version : 9.4.0
+    - Android Support
+        - [Support library legacy](https://developer.android.com/topic/libraries/support-library/revisions)
+        - [Jetpack AndroidX](https://developer.android.com/jetpack/androidx)
+        - [Jetpack architecture](https://developer.android.com/topic/libraries/architecture/adding-components)
 
-    - Glide version : 3.7.0
+    - UI
+        - [constraint layout](https://developer.android.com/training/constraint-layout/)
 
-    - retrofit version : 2.1.0
-    - okhttp version : 3.3.1
+    - ImageLoader
+        - [Glide](https://github.com/bumptech/glide)
 
-    - rxAndroid : 1.2.1
-    - rxJava : 1.1.6
+    - Network
+        - [Retrofit](https://square.github.io/retrofit/)
+        - [OkHttp](https://github.com/square/okhttp)
 
-    - ButterKnife : 8.2.1
+    - ReactiveX
+        - [RxJava](https://github.com/ReactiveX/RxJava)
+        - [RxAndroid](https://github.com/ReactiveX/RxAndroid)
+        - [RxKotlin](https://github.com/ReactiveX/RxKotlin)
 
-    - kotlin : 1.0.3
+    - Kotlin
+        - [kotlin](https://github.com/JetBrains/kotlin)
+        - [kotlinx.coroutines](https://github.com/Kotlin/kotlinx.coroutines)
 
-
-- Test Dependencies
-    - junit : 4.12
-    - support test : 0.5
-    - espresso : 2.2.2
-    - dexmaker mockito : 1.4
-    - uiautomator : 2.1.2
-    - awaitility : 1.7.0
-
-
-## API links using
-
-- Dependencies
-    - [Android SupportLibrary](https://developer.android.com/topic/libraries/support-library/revisions.html)
-    - [Android ConstraintLayout](http://tools.android.com/tech-docs/layout-editor)
-
-    - [Kotlin Android](https://kotlinlang.org/docs/tutorials/kotlin-android.html)
-
-    - [Retrofit Library](http://square.github.io/retrofit/)
-    - [okhttp 3](http://square.github.io/okhttp/)
-
-    - [ReactiveX](http://reactivex.io/)
-
-    - [Glide](https://github.com/bumptech/glide)
-
-    - [ButterKnife](http://jakewharton.github.io/butterknife/)
-
-- Test Dependencies
-    - [Android Testing Support Library](https://google.github.io/android-testing-support-library/)
-    - [Dexmaker Mockito](https://github.com/crittercism/dexmaker)
-    - [awaitility](https://github.com/awaitility/awaitility)
+    - thdev support library
+        - [LifecycleExtensions](https://thdev.tech/LifecycleExtensions/)
+        - [CoroutinesUIExtensions](https://thdev.tech/CoroutinesUIExtensions/)
 
 
 ## License
