@@ -27,6 +27,7 @@ buildscript {
         constraintLayoutVersion = '1.1.3'
         materialVersion = '1.0.0'
         coreKtxVersion = '1.1.0'
+        fragmentKtxVersion = '1.1.0'
     }
 
     dependencies {
