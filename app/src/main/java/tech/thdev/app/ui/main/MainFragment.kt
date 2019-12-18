@@ -7,10 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.security.crypto.EncryptedFile
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKeys
 import tech.thdev.app.databinding.MainFragmentBinding
-
+import java.io.File
 
 class MainFragment : Fragment() {
 
@@ -53,11 +54,10 @@ class MainFragment : Fragment() {
         binding.btnFileExample.setOnClickListener {
             // Although you can define your own key generation parameter specification, it's
             // recommended that you use the value specified here.
-            val keyGenParameterSpec = MasterKeys.AES256_GCM_SPEC
-            val masterKeyAlias = MasterKeys.getOrCreate(keyGenParameterSpec)
-
+//            val keyGenParameterSpec = MasterKeys.AES256_GCM_SPEC
+//            val masterKeyAlias = MasterKeys.getOrCreate(keyGenParameterSpec)
+//
 //            val fileToRead = "my_sensitive_data.txt"
-//            android.util.Log.e("TEMP", "requireContext().cacheDir ${requireContext().cacheDir}")
 //            val file = File(requireContext().cacheDir, fileToRead)
 //            if (file.exists()) {
 //                file.delete()
@@ -72,7 +72,7 @@ class MainFragment : Fragment() {
 //            encryptedFile.openFileOutput().bufferedWriter().use {
 //                it.write(binding.editQuery.text.toString())
 //            }
-
+//
 //            val content = encryptedFile.openFileInput().bufferedReader().useLines { lines ->
 //                lines.fold(" ") { working, line ->
 //                    "$working $line"
