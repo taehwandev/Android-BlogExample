@@ -9,77 +9,12 @@
 
 
 # Etc
+
 그외 다른 예제의 링크는 아래와 같습니다.
+
 - [MAppPermission](https://github.com/taehwandev/MAppPermission)
 - [MediaProjectionExample](https://github.com/taehwandev/MediaProjectionExample)
 - [MediaCodecExample](https://github.com/taehwandev/MediaCodecExample)
-
-
-## Build info
-
-- [View all Dependencies Information - dependencies.gradle](https://github.com/taehwandev/Android-BlogExample/blob/master/dependencies.gradle)
-
-- Android studio 2.2+
-
-- buildToolsVersion = 24.0.3
-- compile sdk version = 24
-- Target sdk version = 24
-- Min sdk version = Depending on the module.
-- gradle-wrapper.properties = 2.14.1
-- com.android.tools.build:gradle : 2.2.2
-
-
-## Library version info
-
-- Dependencies
-    - support libraryVersion : 24.2.1
-    - constraint layout version : 1.0.0-beta1
-    - Play service version : 9.4.0
-
-    - Glide version : 3.7.0
-
-    - retrofit version : 2.1.0
-    - okhttp version : 3.3.1
-
-    - rxAndroid : 1.2.1
-    - rxJava : 1.1.6
-
-    - ButterKnife : 8.2.1
-
-    - kotlin : 1.0.3
-
-
-- Test Dependencies
-    - junit : 4.12
-    - support test : 0.5
-    - espresso : 2.2.2
-    - dexmaker mockito : 1.4
-    - uiautomator : 2.1.2
-    - awaitility : 1.7.0
-
-
-## API links using
-
-- Dependencies
-    - [Android SupportLibrary](https://developer.android.com/topic/libraries/support-library/revisions.html)
-    - [Android ConstraintLayout](http://tools.android.com/tech-docs/layout-editor)
-
-    - [Kotlin Android](https://kotlinlang.org/docs/tutorials/kotlin-android.html)
-
-    - [Retrofit Library](http://square.github.io/retrofit/)
-    - [okhttp 3](http://square.github.io/okhttp/)
-
-    - [ReactiveX](http://reactivex.io/)
-
-    - [Glide](https://github.com/bumptech/glide)
-
-    - [ButterKnife](http://jakewharton.github.io/butterknife/)
-
-- Test Dependencies
-    - [Android Testing Support Library](https://google.github.io/android-testing-support-library/)
-    - [Dexmaker Mockito](https://github.com/crittercism/dexmaker)
-    - [awaitility](https://github.com/awaitility/awaitility)
-
 
 ## License
 
