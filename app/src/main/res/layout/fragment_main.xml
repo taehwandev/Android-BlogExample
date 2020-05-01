@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/et_keyword"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:hint="WebView change keyword"
+        android:imeOptions="actionSend"
+        android:inputType="textWebEditText"
+        app:layout_constraintBottom_toTopOf="@id/web_view"
+        app:layout_constraintEnd_toStartOf="@id/btn_search"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_search"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="Change keyword"
+        app:layout_constraintBottom_toTopOf="@id/web_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/et_keyword"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <tech.thdev.app.webkit.CustomWebView
+        android:id="@+id/web_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/et_keyword" />
+</androidx.constraintlayout.widget.ConstraintLayout>

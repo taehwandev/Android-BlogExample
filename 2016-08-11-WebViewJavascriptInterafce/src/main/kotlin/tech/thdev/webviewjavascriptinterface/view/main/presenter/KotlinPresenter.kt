@@ -13,7 +13,7 @@ class KotlinPresenter: AbstractPresenter<KotlinContract.View>(), KotlinContract.
         view.onPresenter(this)
     }
 
-    override fun onUpdateKeyword(keyword: String?) {
+    override fun onUpdateKeyword(keyword: String) {
         view?.updateKeyword(keyword)
     }
 
