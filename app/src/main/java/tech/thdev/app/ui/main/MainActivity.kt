@@ -3,6 +3,7 @@ package tech.thdev.app.ui.main
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import tech.thdev.app.R
+import tech.thdev.app.constant.KEY_INTENT_URL
 import tech.thdev.app.databinding.ActivityMainBinding
 import tech.thdev.app.ui.main.presenter.MainPresenter
 import tech.thdev.app.util.replaceContentFragment
@@ -22,7 +23,8 @@ class MainActivity : AppCompatActivity() {
     private fun initView() {
         setSupportActionBar(binding.toolbar)
 
-        val fragment = MainFragment.newInstance()
+        val url = intent.getStringExtra(KEY_INTENT_URL)
+        val fragment = MainFragment.newInstance(url)
         val presenter = MainPresenter()
         presenter.attachView(fragment)
 

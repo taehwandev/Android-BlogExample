@@ -13,7 +13,7 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
@@ -44,9 +44,13 @@ dependencies {
     implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
     implementation "com.google.android.material:material:$materialVersion"
 
-    testImplementation 'junit:junit:4.12'
-    androidTestCompile("com.android.support.test.espresso:espresso-core:3.0.2", {
-        exclude group: "com.android.support", module: "support-annotations"
-    })
+    // https://developer.android.com/training/testing/espresso/web
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test:rules:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-web:3.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-intents:3.2.0'
 
+    testImplementation 'junit:junit:4.12'
+    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0"
 }

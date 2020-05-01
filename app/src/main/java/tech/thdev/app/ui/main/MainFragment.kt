@@ -21,9 +21,18 @@ class MainFragment : BaseFragment<MainContract.Presenter>(), MainContract.View {
 
     companion object {
         const val DEFAULT_URL = "https://thdev.tech/blog-sample/2016-08-11-WebViewJavascriptInterafce/"
+        const val EXTRA_URL = "url"
 
-        fun newInstance(): MainFragment =
-            MainFragment()
+        fun newInstance(url: String?): MainFragment =
+            MainFragment().apply {
+                arguments = Bundle().apply {
+                    putString(EXTRA_URL, url)
+                }
+            }
+    }
+
+    private val url: String by lazy {
+        arguments?.getString(EXTRA_URL) ?: DEFAULT_URL
     }
 
     private lateinit var binding: FragmentMainBinding
@@ -49,7 +58,7 @@ class MainFragment : BaseFragment<MainContract.Presenter>(), MainContract.View {
             setOnEditorActionListener { view, actionId, _ ->
                 when (actionId) {
                     EditorInfo.IME_ACTION_GO -> {
-                        val newUrl = view.text.toString().takeIf { it.isNotEmpty() } ?: DEFAULT_URL
+                        val newUrl = view.text.toString().takeIf { it.isNotEmpty() } ?: url
                         loadUrl(newUrl)
                         view.hideKeyboard()
                         true
@@ -57,9 +66,9 @@ class MainFragment : BaseFragment<MainContract.Presenter>(), MainContract.View {
                     else -> false
                 }
             }
-            setText(DEFAULT_URL)
+            setText(url)
         }
-        etKeyword.setOnEditorActionListener { view, actionId, _ ->
+        etKeyword.setOnEditorActionListener { _, actionId, _ ->
             when (actionId) {
                 EditorInfo.IME_ACTION_SEND -> {
                     setKeyword()
@@ -75,7 +84,7 @@ class MainFragment : BaseFragment<MainContract.Presenter>(), MainContract.View {
         }
 
         webView.webViewClient = CustomWebViewClient(presenter)
-        webView.setWebChromeClient(CustomWebChromeClient(requireActivity()))
+        webView.webChromeClient = CustomWebChromeClient(requireActivity())
 
         /*
          * This method can be used to allow JavaScript to control the host application.
@@ -90,7 +99,7 @@ class MainFragment : BaseFragment<MainContract.Presenter>(), MainContract.View {
          */
         webView.addJavascriptInterface(presenter?.customJavaScript, "WebViewTest")
         webView.init()
-        loadUrl(DEFAULT_URL)
+        loadUrl(url)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
