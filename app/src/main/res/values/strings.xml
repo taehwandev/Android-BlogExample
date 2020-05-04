@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">CustomListViewSample</string>
+
+    <string name="label_sample_one">Sample one ListView</string>
+    <string name="label_sample_two">sample two ListView</string>
+
+    <string name="score">Score %f</string>
+    <string name="sample_one">Sample one</string>
+    <string name="sample_two">Sample two</string>
+</resources>

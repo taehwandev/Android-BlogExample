@@ -2,23 +2,34 @@
 
 buildscript {
     repositories {
+        google()
         jcenter()
-        mavenCentral()
     }
 
     ext {
-        buildToolsVersion = '25.0.2'
+        compileSdkVersionInfo = 29
+        buildToolsVersionInfo = "29.0.3"
+        minSdkVerisonInfo = 24
+        targetSdkVersionInfo = 29
 
-        kotlin_version = '1.0.6'
-        supportLibraryVersion = '25.1.0'
+        kotlin_version = '1.3.72'
 
-        butterKnifeVersion = '8.4.0'
+        appcompatVersion = '1.1.0'
+        activityVersion = '1.2.0-alpha04'
+        materialVersion = '1.1.0'
+        constraintLayoutVersion = '1.1.3'
 
-        baseSupportLibrary = '1.0.4'
+        coreKtx = '1.2.0'
+        lifecycleExtensions = '2.2.0'
+
+        retrofitVersion = '2.8.1'
+        okhttp3Version = '4.6.0'
+
+        glideVersion = '4.11.0'
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.2.3'
+        classpath 'com.android.tools.build:gradle:3.6.3'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
         // NOTE: Do not place your application dependencies here; they belong
@@ -28,6 +39,7 @@ buildscript {
 
 allprojects {
     repositories {
+        google()
         jcenter()
     }
 }
