@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">ButterKnifeExample</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="sample_message">One Message</string>
+    <string name="sample_message_long_click">One Message long click</string>
+    <string name="btn_oen_title">Message change example - onClick/onLongClick</string>
+
+    <string name="intent_title">Intent sample</string>
+    <string name="intent_btn_title">Intent load sample</string>
+    <string name="intent_get_string">getString</string>
+
+    <string name="radio_button_recycler_example">Radio button recycler example</string>
+
+    <string name="photo_recycler_example">Photo Recycler Example</string>
+    <string name="photo_search_recycler_example">Photo recycler search example</string>
+
+    <string name="date_picker_holo_theme">Show date picker - holo theme</string>
+    <string name="date_picker_material_theme">Show date picker - material</string>
+    <string name="date_picker">Show date picker</string>
+</resources>
