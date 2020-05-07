@@ -13,29 +13,6 @@ Blog Android BottomSheet Intro에 소개한 예제 코드입니다.
 
 ![bottom_sheet_03]
 
-
-## Build info
-
-- Android studio 2.2.3
-
-- buildToolsVersion = 25.0.1
-- compile sdk version = 25
-- Target sdk version = 25
-- Min sdk version = 16
-- gradle-wrapper.properties = 2.14.1
-- com.android.tools.build:gradle : 2.2.3
-
-
-## Library version info
-
-- Dependencies
-    - [Android support library version](https://developer.android.com/topic/libraries/support-library/revisions.html) : 25.0.1
-
-    - [ButterKnife](http://jakewharton.github.io/butterknife/) : 8.4.0
-
-    - [kotlin](https://kotlinlang.org/docs/tutorials/kotlin-android.html) : 1.0.5-2
-    - [th-base](https://github.com/taehwandev/AndroidBase) : 1.0.4
-
 ## License
 
 ```
