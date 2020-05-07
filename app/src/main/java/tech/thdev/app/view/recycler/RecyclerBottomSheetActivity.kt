@@ -48,6 +48,7 @@ class RecyclerBottomSheetActivity : AppCompatActivity() {
             setItem(BottomData("LinkedIn", R.drawable.icon_05))
             setItem(BottomData("Twitter", R.drawable.icon_06))
         }
+        findViewById<View>(R.id.container).setPadding(0, getStatusBarHeight(), 0, 0)
         findViewById<RecyclerView>(R.id.recycler_view).adapter = adapter
 
         findViewById<Button>(R.id.btn_show).setOnClickListener {
@@ -93,5 +94,14 @@ class RecyclerBottomSheetActivity : AppCompatActivity() {
         } else {
             super.onBackPressed()
         }
+    }
+
+    private fun getStatusBarHeight(): Int {
+        var result = 0
+        val resourceId = resources.getIdentifier("status_bar_height", "dimen", "android")
+        if (resourceId > 0) {
+            result = resources.getDimensionPixelSize(resourceId)
+        }
+        return result
     }
 }

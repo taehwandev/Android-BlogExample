@@ -8,7 +8,6 @@
         android:id="@+id/tv_title"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-
         android:gravity="center_vertical"
         android:padding="15dp"
         android:text="@string/basic_sample_bottom_title"
