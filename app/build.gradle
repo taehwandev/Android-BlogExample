@@ -3,19 +3,19 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion '25.0.1'
+    compileSdkVersion compileSdkVersionInfo
+    buildToolsVersion buildToolsVersionInfo
 
     defaultConfig {
-        applicationId "tech.thdev.app"
-        minSdkVersion 16
-        targetSdkVersion 25
+        applicationId "tech.thdev.androidrecyclerview"
+        minSdkVersion minSdkVerisonInfo
+        targetSdkVersion targetSdkVersionInfo
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -23,31 +23,30 @@ android {
         }
     }
 
-    sourceSets {
-        main.java.srcDirs += 'src/main/kotlin'
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    viewBinding {
+        enabled = true
     }
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    compile "com.android.support:appcompat-v7:$supportLibraryVersion"
-    compile "com.android.support:design:$supportLibraryVersion"
-    compile "com.android.support:recyclerview-v7:$supportLibraryVersion"
+    implementation "androidx.appcompat:appcompat:$appcompatVersion"
+    implementation "com.google.android.material:material:$materialVersion"
 
     // kotlin
-    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
-    // butterKnife
-    compile "com.jakewharton:butterknife:$butterKnifeVersion"
-    annotationProcessor "com.jakewharton:butterknife-compiler:$butterKnifeVersion"
-
-    // Thdev support base
-    compile 'tech.thdev.support:base:1.0.4'
-
-    testCompile 'junit:junit:4.12'
-
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 }
