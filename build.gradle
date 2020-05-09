@@ -2,42 +2,47 @@
 
 buildscript {
     repositories {
-        jcenter()
         mavenCentral()
+        google()
+        jcenter()
     }
 
     ext {
-        // Build SDK version
-        buildToolsVersion = '25.0.1'
+        compileSdkVersionInfo = 29
+        buildToolsVersionInfo = "29.0.3"
+        minSdkVerisonInfo = 24
+        targetSdkVersionInfo = 29
 
-        kotlin_version = '1.0.5-2'
-        supportLibraryVersion = '25.0.1'
+        kotlin_version = '1.3.72'
 
-        butterKnifeVersion = '8.4.0'
+        appcompatVersion = '1.1.0'
+        activityVersion = '1.2.0-alpha04'
+        materialVersion = '1.1.0'
+        constraintLayoutVersion = '1.1.3'
+
+        coreKtx = '1.2.0'
+        lifecycleExtensions = '2.2.0'
 
         // Rx
-        // https://github.com/ReactiveX/RxAndroid/tree/2.x
-        rxandroidVersion = '2.0.1'
-        // https://github.com/ReactiveX/RxJava/tree/2.x
-        rxjavaVersion = '2.0.1'
-
-        // Image loader
-        // https://github.com/bumptech/glide
-        glideVersion = '3.7.0'
+        rxandroidVersion = '3.0.0'
+        rxjavaVersion = '3.0.3'
 
         // Retrofit
         // https://github.com/square/retrofit
-        retrofitVersion = '2.1.0'
-        // Retrofit rxAdapter
-        // https://github.com/JakeWharton/retrofit2-rxjava2-adapter
-        retrofitRxAdapter = '1.0.0'
+        retrofitVersion = '2.8.1'
+        retrofitRxJavaAdapter = '3.0.0'
 
         // OkHttp
         // https://github.com/square/okhttp
-        okhttpVersion = '3.5.0'
+        okhttpVersion = '4.6.0'
+
+        // Image loader
+        // https://github.com/bumptech/glide
+        glideVersion = '4.11.0'
     }
+
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.2.3'
+        classpath 'com.android.tools.build:gradle:3.6.3'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
         // NOTE: Do not place your application dependencies here; they belong
@@ -45,15 +50,17 @@ buildscript {
     }
 }
 
-// FlickrAPI key는 local.properties에 "flickrApiKey="생성한 키""를 등록하면 됩니다
+// Kobis API key는 local.properties에 "kobisApiKey="생성한 키""를 등록하면 됩니다
 ext {
     Properties properties = new Properties()
     properties.load(project.rootProject.file('local.properties').newDataInputStream())
-    kobisApiKey = properties.getProperty('kobis_api_key', "\"\"")
+    kobisApiKey = properties.getProperty('kobisApiKey', "\"\"")
 }
 
 allprojects {
     repositories {
+        mavenCentral()
+        google()
         jcenter()
     }
 }

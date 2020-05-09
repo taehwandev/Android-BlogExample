@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#C2185B</color>
-    <color name="colorPrimaryDark">#880E4F</color>
-    <color name="colorAccent">#1A237E</color>
+    <color name="purple200">#BB86FC</color>
+    <color name="purple500">#6200EE</color>
+    <color name="purple700">#3700B3</color>
+    <color name="teal200">#03DAC5</color>
+    <color name="background">#37474F</color>
 
     <color name="navigation_item_color">#51032d</color>
 </resources>
