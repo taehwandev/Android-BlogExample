@@ -1,7 +1,7 @@
-package tech.thdev.app.ui.main
+package tech.thdev.app.ui.second
 
 import androidx.lifecycle.ViewModel
 
-class MainViewModel : ViewModel() {
+class SecondViewModel : ViewModel() {
     // TODO: Implement the ViewModel
 }

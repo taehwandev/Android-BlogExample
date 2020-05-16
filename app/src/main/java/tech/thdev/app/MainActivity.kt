@@ -1,11 +1,10 @@
 package tech.thdev.app
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.main_activity.*
-import tech.thdev.app.ui.main.MainFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -13,12 +12,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
         setSupportActionBar(toolbar)
-
-        if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction()
-                    .replace(R.id.container, MainFragment.newInstance())
-                    .commitNow()
-        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
