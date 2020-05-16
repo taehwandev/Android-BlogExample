@@ -13,27 +13,34 @@ buildscript {
         targetSdkVersionInfo = 29
         minSdkVerisonInfo = 23
 
+        // kotlin
         kotlin_version = '1.3.72'
         coroutines_version = '1.3.3'
 
-        coroutineExtensionsVersion = '1.3.1'
+        // library
+        appcompatVersion = '1.2.0-rc01'
 
-        lifecycleExtensionVersion = '2.2.0'
-        lifecycleViewModelKtxVersion = '2.2.0'
-
-        appcompatVersion = '1.1.0'
-        activityVersion = '1.2.0-alpha04'
-
+        // UI
         materialVersion = '1.1.0'
-        constraintLayoutVersion = '2.0.0-beta5'
+        constraintLayoutVersion = '2.0.0-beta6'
 
-        lifecycleExtensions = '2.2.0'
-        coreKtxVersion = '1.2.0'
-        fragmentKtxVersion = '1.2.4'
+        // ktx
+        coreKtxVersion = '1.3.0-rc01'
+        activityVersion = '1.2.0-alpha04'
+        fragmentKtxVersion = '1.3.0-alpha04'
 
+        // lifecycle
+        lifecycleExtensionVersion = '2.3.0-alpha02'
+
+        // navigation
+        navigationVersion = '2.3.0-alpha06'
+
+        // Retrofit and okhttp - Network
         retrofitVersion = '2.8.1'
-        okhttp3Version = '4.6.0'
+        okhttpVersion = '4.6.0'
 
+        // ImageLoader
+        glideVersion = '4.11.0'
         glideVersion = '4.11.0'
     }
 
