@@ -5,7 +5,8 @@
 
 # Blog
 관련 포스트는 다음의 블로그를 통해 확인 할 수 있습니다.
-- [블로그 링크 : thdev.tech](http://thdev.tech)
+
+- [안드로이드 6.0 Marshmallow 권한 획득하기 API 사용하기](https://thdev.net/634)
 
 
 # Etc
@@ -15,51 +16,10 @@
 - [MediaCodecExample](https://github.com/taehwandev/MediaCodecExample)
 
 
-## Build info
-
-- Android studio 3.3+
-
-- compile sdk version = 28
-- Target sdk version = 28
-- Min sdk version = Depending on the module.
-
-
-## Library version info
-
-- Dependencies
-    - Android Support
-        - [Support library legacy](https://developer.android.com/topic/libraries/support-library/revisions)
-        - [Jetpack AndroidX](https://developer.android.com/jetpack/androidx)
-        - [Jetpack architecture](https://developer.android.com/topic/libraries/architecture/adding-components)
-
-    - UI
-        - [constraint layout](https://developer.android.com/training/constraint-layout/)
-
-    - ImageLoader
-        - [Glide](https://github.com/bumptech/glide)
-
-    - Network
-        - [Retrofit](https://square.github.io/retrofit/)
-        - [OkHttp](https://github.com/square/okhttp)
-
-    - ReactiveX
-        - [RxJava](https://github.com/ReactiveX/RxJava)
-        - [RxAndroid](https://github.com/ReactiveX/RxAndroid)
-        - [RxKotlin](https://github.com/ReactiveX/RxKotlin)
-
-    - Kotlin
-        - [kotlin](https://github.com/JetBrains/kotlin)
-        - [kotlinx.coroutines](https://github.com/Kotlin/kotlinx.coroutines)
-
-    - thdev support library
-        - [LifecycleExtensions](https://thdev.tech/LifecycleExtensions/)
-        - [CoroutinesUIExtensions](https://thdev.tech/CoroutinesUIExtensions/)
-
-
 ## License
 
 ```
-Copyright 2016 Tae-hwan
+Copyright 2015-2020 Tae-hwan
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
