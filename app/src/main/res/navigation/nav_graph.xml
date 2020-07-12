@@ -29,16 +29,16 @@
 
         <action
             android:id="@+id/action_next_activitySharedViewModel_to_ChildFragmentViewModelFragment"
-            app:destination="@id/ChildFragmentViewModelFragment" />
+            app:destination="@id/ParentFragmentSharedViewModelSampleFragment" />
     </fragment>
     <fragment
-        android:id="@+id/ChildFragmentViewModelFragment"
-        android:name="tech.thdev.app.ui.second.SecondFragment"
+        android:id="@+id/ParentFragmentSharedViewModelSampleFragment"
+        android:name="tech.thdev.app.ui.parent_fragment_shared.ParentFragmentSharedViewModelSampleFragment"
         android:label="@string/second_fragment_label"
-        tools:layout="@layout/second_fragment">
+        tools:layout="@layout/child_shared_fragment">
 
         <action
-            android:id="@+id/action_previous_activitySharedViewModel_to_DefaultViewModelFragment"
-            app:destination="@id/DefaultViewModelSampleFragment" />
+            android:id="@+id/action_previous_ParentFragmentSharedViewModel_to_ActivitySharedViewModelFragment"
+            app:destination="@id/ActivitySharedViewModelSampleFragment" />
     </fragment>
 </navigation>

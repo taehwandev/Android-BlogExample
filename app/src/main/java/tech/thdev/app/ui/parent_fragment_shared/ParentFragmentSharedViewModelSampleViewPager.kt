@@ -1,11 +1,11 @@
-package tech.thdev.app.ui.first
+package tech.thdev.app.ui.parent_fragment_shared
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
 
-class SampleViewPager(fragmentManager: FragmentManager, lifecycle: Lifecycle) : FragmentStateAdapter(fragmentManager, lifecycle) {
+class ParentFragmentSharedViewModelSampleViewPager(fragmentManager: FragmentManager, lifecycle: Lifecycle) : FragmentStateAdapter(fragmentManager, lifecycle) {
 
     private val fragmentList = mutableListOf<Fragment>()
 

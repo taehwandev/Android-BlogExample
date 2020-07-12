@@ -15,6 +15,8 @@
 
     <string name="activity_shared_view_model_fragment_label">Activity sharedViewModel Fragment</string>
 
+    <string name="insert_coin_parent_fragment_view_model">Plus coin ParentFragmentViewModel</string>
+
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 </resources>

@@ -64,7 +64,7 @@ class ActivitySharedViewModelSampleFragment : Fragment() {
         }
 
         btnNext.setOnClickListener {
-
+            findNavController().navigate(R.id.action_next_activitySharedViewModel_to_ChildFragmentViewModelFragment)
         }
         btnPrevious.setOnClickListener {
             findNavController().navigate(R.id.action_previous_activitySharedViewModel_to_DefaultViewModelFragment)
