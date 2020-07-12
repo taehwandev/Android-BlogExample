@@ -45,7 +45,6 @@ dependencies {
 
     // kotlin
     implementation rootProject.ext.kotlin
-    implementation rootProject.ext.kotlinCoroutinesAndroid
 
     // library
     implementation rootProject.ext.appCompat
@@ -55,35 +54,9 @@ dependencies {
 
     // ktx
     implementation rootProject.ext.coreKtx
-    implementation rootProject.ext.activityKtx
     implementation rootProject.ext.fragmentKtx
-
-    // lifecycle
-    implementation rootProject.ext.lifecycleLiveDataKtx
-    implementation rootProject.ext.lifecycleViewModelKtx
 
     // navigation
     implementation rootProject.ext.navigationFragment
     implementation rootProject.ext.navigationUiKtx
-
-    // Retrofit
-    implementation rootProject.ext.retrofit
-    implementation rootProject.ext.retrofitGson
-
-    // OkHttp
-    implementation rootProject.ext.okhttp
-    implementation rootProject.ext.oktthLogging
-
-    // Image loader
-    implementation rootProject.ext.glide
-    kapt rootProject.ext.glideCompiler
-
-    // Unit test
-    testImplementation rootProject.ext.junit
-
-    // UI test
-    androidTestImplementation rootProject.ext.uiTestJunit
-    androidTestImplementation rootProject.ext.testRunner
-    androidTestImplementation rootProject.ext.testRules
-    androidTestImplementation rootProject.ext.espressoCore
 }
