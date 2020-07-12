@@ -7,17 +7,15 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.navigation.fragment.findNavController
-import tech.thdev.app.R
-import tech.thdev.app.databinding.FirstFragmentBinding
+import tech.thdev.app.databinding.SecondFragmentBinding
 import tech.thdev.app.ui.second.SecondFragment
 
-class FirstFragment : Fragment() {
+class FirstSharedFragment : Fragment() {
 
-    private var _binding: FirstFragmentBinding? = null
-    private val binding: FirstFragmentBinding get() = _binding!!
+    private var _binding: SecondFragmentBinding? = null
+    private val binding: SecondFragmentBinding get() = _binding!!
 
-    private val viewModel: FirstViewModel by viewModels<FirstViewModel>()
+    private val parentViewModel: FirstViewModel by viewModels<FirstViewModel>(ownerProducer = { requireParentFragment() })
 
     private val pagerAdapter: SampleViewPager by lazy {
         SampleViewPager(fragmentManager = parentFragmentManager, lifecycle = lifecycle)
@@ -27,7 +25,7 @@ class FirstFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return FirstFragmentBinding.inflate(inflater).also {
+        return SecondFragmentBinding.inflate(inflater, container, false).also {
             _binding = it
         }.root
     }
@@ -35,22 +33,18 @@ class FirstFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.updateViewItem.observe(viewLifecycleOwner, Observer {
-            binding.tvMessage.text = "Add update $it"
+        pagerAdapter.addItem(SecondFragment())
+
+        parentViewModel.updateViewItem.observe(viewLifecycleOwner, Observer {
+            binding.textviewSecond.text = it
         })
-
-        viewModel.load()
-
-        pagerAdapter.addItem(FirstSharedFragment())
-        pagerAdapter.addItem(FirstSharedFragment())
-        pagerAdapter.addItem(FirstSharedFragment())
-
-        binding.viewPager.adapter = pagerAdapter
+        binding.buttonSecond.setOnClickListener {
+            parentViewModel.load()
+        }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-
         _binding = null
     }
 }
