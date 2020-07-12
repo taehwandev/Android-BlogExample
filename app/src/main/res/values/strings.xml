@@ -9,9 +9,9 @@
     <string name="activity_message_view">Now ActivityViewModel count is %,d</string>
     <string name="insert_coin_fragment_view_model">Plus coin fragmentViewModel</string>
     <string name="insert_coin_activity_view_model">Plus ActivitySharedViewModel</string>
+    <string name="default_message_view">Now ViewModel count is %,d</string>
 
     <string name="default_title">Sample - Basic ViewModel example</string>
-    <string name="default_message_view">Now ViewModel count is %,d</string>
 
     <string name="activity_shared_view_model_fragment_label">Activity sharedViewModel Fragment</string>
 

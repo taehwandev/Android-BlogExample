@@ -26,11 +26,9 @@
         android:minWidth="120dp"
         android:minHeight="60dp"
         android:text="@string/insert_coin_fragment_view_model"
-        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_title"
-        tools:visibility="visible" />
+        app:layout_constraintTop_toBottomOf="@id/tv_title" />
 
     <Button
         android:id="@+id/btn_insert_coin_activity"
@@ -40,11 +38,9 @@
         android:minWidth="120dp"
         android:minHeight="60dp"
         android:text="@string/insert_coin_activity_view_model"
-        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_insert_coin_fragment"
-        tools:visibility="visible" />
+        app:layout_constraintTop_toBottomOf="@id/btn_insert_coin_fragment" />
 
     <TextView
         android:id="@+id/tv_message"
