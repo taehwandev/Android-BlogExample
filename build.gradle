@@ -8,55 +8,58 @@ buildscript {
     }
 
     ext {
-        buildToolsVersionInfo = "29.0.3"
-        compileSdkVersionInfo = 29
-        targetSdkVersionInfo = 29
+        buildToolsVersionInfo = "30.0.1"
+        compileSdkVersionInfo = 30
+        targetSdkVersionInfo = 30
         minSdkVerisonInfo = 23
 
         // kotlin
         // https://github.com/JetBrains/kotlin
         kotlin_version = '1.3.72'
-        coroutines_version = '1.3.3'
+        // https://github.com/Kotlin/kotlinx.coroutines
+        coroutines_version = '1.3.7'
 
         // library
         // https://developer.android.com/jetpack/androidx/releases/appcompat
-        appcompatVersion = '1.2.0-rc01'
-        browserVersion = '1.2.0'
+        appcompatVersion = '1.3.0-alpha01'
+        // https://developer.android.com/jetpack/androidx/releases/browser
+        browserVersion = '1.3.0-alpha04'
 
         // UI
         // https://github.com/material-components/material-components-android
         // https://material.io/develop/android/docs/getting-started/
         // https://mvnrepository.com/artifact/com.google.android.material/material
-        materialVersion = '1.2.0-alpha06'
+        materialVersion = '1.3.0-alpha01'
         // https://developer.android.com/jetpack/androidx/releases/constraintlayout
-        constraintLayoutVersion = '2.0.0-beta6'
+        constraintLayoutVersion = '2.0.0-beta8'
 
         // ktx
         // https://developer.android.com/jetpack/androidx/releases/core
-        coreKtxVersion = '1.3.0-rc01'
+        coreKtxVersion = '1.4.0-alpha01'
         // https://developer.android.com/jetpack/androidx/releases/activity
-        activityVersion = '1.2.0-alpha04'
+        activityVersion = '1.2.0-alpha06'
         // https://developer.android.com/jetpack/androidx/releases/fragment
-        fragmentKtxVersion = '1.3.0-alpha04'
+        fragmentKtxVersion = '1.3.0-alpha06'
 
         // lifecycle
         // https://developer.android.com/jetpack/androidx/releases/lifecycle
-        lifecycleExtensionVersion = '2.3.0-alpha02'
+        lifecycleExtensionVersion = '2.3.0-alpha05'
 
         // navigation
-        navigationVersion = '2.3.0-alpha06'
+        // https://developer.android.com/jetpack/androidx/releases/navigation
+        navigationVersion = '2.3.0'
 
         // Retrofit and okhttp - Network
         // http://square.github.io/retrofit/
-        retrofitVersion = '2.8.1'
+        retrofitVersion = '2.9.0'
         // https://github.com/square/okhttp
-        okhttpVersion = '4.6.0'
+        okhttpVersion = '4.8.0'
 
         // RxJava
         // https://github.com/akarnokd/RxJavaRetrofitAdapter
         retrofitRxJavaAdapterVersion = '3.0.0'
         // https://github.com/ReactiveX/RxJava
-        rxjavaVersion = '3.0.3'
+        rxjavaVersion = '3.0.4'
         // https://github.com/ReactiveX/RxAndroid
         rxAndroidVersion = '3.0.0'
 
@@ -144,7 +147,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.6.3'
+        classpath "com.android.tools.build:gradle:4.0.0"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
         // NOTE: Do not place your application dependencies here; they belong
