@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="tech.thdev.app.SampleAdapterSelectViewModel" />
+
+        <variable
+            name="item"
+            type="tech.thdev.app.SampleAdapterSelectViewModel.SelectItem.Item" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="60dp"
+        android:paddingStart="50dp"
+        android:paddingEnd="20dp">
+
+        <include
+            layout="@layout/sample_adapter_select_merge_item_view"
+            app:select="@{item.select}"
+            app:showSelected="@{item.showSelected}"
+            app:title="@{item.title}" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

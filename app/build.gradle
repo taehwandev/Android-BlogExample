@@ -34,7 +34,7 @@ android {
         jvmTarget = '1.8'
     }
 
-    viewBinding {
+    dataBinding {
         enabled = true
     }
 }
@@ -44,7 +44,6 @@ dependencies {
 
     // kotlin
     implementation rootProject.ext.kotlin
-    implementation rootProject.ext.kotlinCoroutinesAndroid
 
     // library
     implementation rootProject.ext.appCompat
@@ -60,22 +59,6 @@ dependencies {
     // lifecycle
     implementation rootProject.ext.lifecycleLiveDataKtx
     implementation rootProject.ext.lifecycleViewModelKtx
-
-    // navigation
-    implementation rootProject.ext.navigationFragment
-    implementation rootProject.ext.navigationUiKtx
-
-    // Retrofit
-    implementation rootProject.ext.retrofit
-    implementation rootProject.ext.retrofitGson
-
-    // OkHttp
-    implementation rootProject.ext.okhttp
-    implementation rootProject.ext.oktthLogging
-
-    // Image loader
-    implementation rootProject.ext.glide
-    kapt rootProject.ext.glideCompiler
 
     // Unit test
     testImplementation rootProject.ext.junit

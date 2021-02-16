@@ -7,4 +7,6 @@
     <color name="teel_700">#018786</color>
     <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
+
+    <color name="grey_border">#DCDCDC</color>
 </resources>
