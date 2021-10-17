@@ -20,16 +20,29 @@ class FirstFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return FirstFragmentBinding.inflate(inflater).also {
-            binding = it
-        }.root
+        return FirstFragmentBinding.inflate(inflater, container, false)
+            .also {
+                it.lifecycleOwner = viewLifecycleOwner
+                it.viewModel = viewModel
+
+                binding = it
+            }.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.buttonFirst.setOnClickListener {
-            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+        // binding에서 click event 처리 시
+//        binding.buttonFirst.setOnClickListener {
+//            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+//        }
+
+        // viewModel의 이벤트를 받아서 처리 시
+        viewModel.clickEvent.observe(viewLifecycleOwner) {
+            if (it) {
+                findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+                viewModel.eventEnd()
+            }
         }
     }
 }

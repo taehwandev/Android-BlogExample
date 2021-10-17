@@ -9,27 +9,43 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import tech.thdev.app.R
 import tech.thdev.app.databinding.SecondFragmentBinding
+import tech.thdev.library.OnClickEventControl
+import tech.thdev.library.OnClickEventControlImpl
+import tech.thdev.library.ViewAccess
+import tech.thdev.library.ViewAccessImpl
 
 class SecondFragment : Fragment() {
 
     private lateinit var binding: SecondFragmentBinding
 
-    private val viewModel: SecondViewModel by viewModels<SecondViewModel>()
+    private val viewModel: SecondViewModel by viewModels()
+
+    private lateinit var viewController: OnClickEventControl
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         return SecondFragmentBinding.inflate(inflater).also {
+            it.lifecycleOwner = viewLifecycleOwner
+            it.viewModel = viewModel
+
             binding = it
+            val viewAccess: ViewAccess = ViewAccessImpl(it)
+            viewController = OnClickEventControlImpl(viewAccess)
         }.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.buttonSecond.setOnClickListener {
-            findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
+        viewModel.load(viewController)
+
+        viewModel.clickEvent.observe(viewLifecycleOwner) {
+            if (it) {
+                findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
+                viewModel.eventEnd()
+            }
         }
     }
 }

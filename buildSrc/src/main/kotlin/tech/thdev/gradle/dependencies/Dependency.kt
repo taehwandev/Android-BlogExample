@@ -20,6 +20,7 @@ object Dependency {
         // https://github.com/Kotlin/kotlinx.coroutines
         const val version: String = "1.5.2"
 
+        const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version"
         const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version"
     }
 
@@ -72,6 +73,14 @@ object Dependency {
 
         // https://developer.android.com/jetpack/androidx/releases/webkit
         const val webkit = "androidx.webkit:webkit:1.4.0"
+    }
+
+    object Databinding {
+        const val version = "7.0.3"
+
+        const val runtime = "androidx.databinding:databinding-runtime:$version"
+        const val common = "androidx.databinding:databinding-common:$version"
+        const val adapters = "androidx.databinding:databinding-adapters:$version"
     }
 
     object Google {
