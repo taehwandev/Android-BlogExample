@@ -22,6 +22,9 @@ object Dependency {
 
         const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version"
         const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version"
+
+        const val test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:$version"
+        const val turbine = "app.cash.turbine:turbine:0.6.1"
     }
 
     object AndroidX {
@@ -113,6 +116,8 @@ object Dependency {
         private const val androidXTestVersion = "1.4.0"
         const val androidxCore = "androidx.test:core:$androidXTestVersion"
         const val androidxRunner = "androidx.test:runner:$androidXTestVersion"
+
+        const val coreTesting = "androidx.arch.core:core-testing:2.1.0"
 
         const val androidxJunit = "androidx.test.ext:junit:1.1.3"
 

@@ -39,6 +39,10 @@ android {
     buildFeatures {
         dataBinding = true
     }
+
+    testOptions {
+        unitTests.isReturnDefaultValues = true
+    }
 }
 
 dependencies {
@@ -46,29 +50,38 @@ dependencies {
 
     implementation(Dependency.Google.material)
 
-    implementation(Dependency.AndroidX.coreKtx)
-    implementation(Dependency.AndroidX.appCompat)
-    implementation(Dependency.AndroidX.activity)
-    implementation(Dependency.AndroidX.constraintLayout)
-    implementation(Dependency.AndroidX.vectorDrawable)
-    implementation(Dependency.AndroidX.navigationFragmentKtx)
-    implementation(Dependency.AndroidX.navigationUiKtx)
-    implementation(Dependency.AndroidX.liveDataKtx)
+    Dependency.AndroidX.run {
+        implementation(coreKtx)
+        implementation(appCompat)
+        implementation(activity)
+        implementation(constraintLayout)
+        implementation(vectorDrawable)
+        implementation(navigationFragmentKtx)
+        implementation(navigationUiKtx)
+        implementation(liveDataKtx)
+    }
 
     implementation(Dependency.Image.glide)
     kapt(Dependency.Image.glideCompiler)
 
-    implementation(Dependency.Network.retrofit)
-    implementation(Dependency.Network.okhttp)
-    implementation(Dependency.Network.okhttpLogging)
-
-    Dependency.AndroidTest.run {
-        testImplementation(junit5)
-        testImplementation(mockito)
-        testImplementation(mockitoKotlin)
-        testRuntimeOnly(engine)
-        testRuntimeOnly(vintage)
+    Dependency.Network.run {
+        implementation(retrofit)
+        implementation(okhttp)
+        implementation(okhttpLogging)
     }
 
+    Dependency.AndroidTest.run {
+        testImplementation(androidxCore)
+        testImplementation(androidxRunner)
+        testImplementation(mockito)
+        testImplementation(mockitoKotlin)
+        testImplementation(coreTesting)
+    }
+
+    Dependency.Coroutines.run {
+        testImplementation(test)
+        testImplementation(turbine)
+    }
     implementation(project(":library"))
+    testImplementation(project(":library-test"))
 }

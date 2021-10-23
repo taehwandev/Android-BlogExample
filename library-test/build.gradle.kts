@@ -2,7 +2,6 @@ import tech.thdev.gradle.dependencies.Dependency
 
 plugins {
     id("com.android.library")
-
     kotlin("android")
 }
 
@@ -13,7 +12,6 @@ android {
     defaultConfig {
         minSdk = Dependency.Base.minSdk
         targetSdk = Dependency.Base.targetSdk
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -45,9 +43,5 @@ android {
 dependencies {
     implementation(Dependency.Kotlin.stdLib)
     implementation(Dependency.Coroutines.core)
-
-    implementation(Dependency.AndroidX.appCompat)
-    compileOnly(Dependency.AndroidX.annotation)
-
-    implementation(Dependency.Databinding.runtime)
+    implementation(project(":library"))
 }
