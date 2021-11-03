@@ -59,6 +59,7 @@ dependencies {
         implementation(navigationFragmentKtx)
         implementation(navigationUiKtx)
         implementation(liveDataKtx)
+        implementation(lifecycleCommonJava8)
     }
 
     implementation(Dependency.Image.glide)

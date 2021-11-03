@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import tech.thdev.app.R
 import tech.thdev.app.databinding.SecondFragmentBinding
@@ -18,7 +17,7 @@ class SecondFragment : Fragment() {
 
     private lateinit var binding: SecondFragmentBinding
 
-    private val viewModel: SecondViewModel by viewModels()
+    private lateinit var viewModel: SecondViewModel
 
     private lateinit var viewController: OnClickEventControl
 
@@ -27,19 +26,20 @@ class SecondFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         return SecondFragmentBinding.inflate(inflater).also {
-            it.lifecycleOwner = viewLifecycleOwner
-            it.viewModel = viewModel
 
-            binding = it
             val viewAccess: ViewAccess = ViewAccessImpl(it)
             viewController = OnClickEventControlImpl(viewAccess)
+            viewModel = SecondViewModel(viewController)
+            lifecycle.addObserver(viewModel)
+
+            it.lifecycleOwner = viewLifecycleOwner
+            it.viewModel = viewModel
+            binding = it
         }.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        viewModel.load(viewController)
 
         viewModel.clickEvent.observe(viewLifecycleOwner) {
             if (it) {

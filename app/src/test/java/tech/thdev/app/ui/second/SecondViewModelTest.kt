@@ -16,8 +16,8 @@ import tech.thdev.library.test.TestOnClickEvent
 import kotlin.time.ExperimentalTime
 
 internal class SecondViewModelTest {
-
-    private val viewModel = SecondViewModel()
+    private val mockEvent = TestOnClickEvent()
+    private val viewModel = SecondViewModel(mockEvent)
 
     // LiveData 이용을 위한 처리 - core-testing 함께 사용
     @get:Rule
@@ -39,8 +39,7 @@ internal class SecondViewModelTest {
     @ExperimentalTime
     @Test
     fun testFlowButtonSecond() = runBlocking {
-        val mockEvent = TestOnClickEvent()
-        viewModel.flowButtonSecond(mockEvent)
+        viewModel.flowButtonSecond()
             .test {
                 mockEvent.click()
                 Assert.assertTrue(awaitItem())
@@ -51,8 +50,7 @@ internal class SecondViewModelTest {
     @ExperimentalTime
     @Test
     fun testFlowButtonPlusCount() = runBlocking {
-        val mockEvent = TestOnClickEvent()
-        viewModel.flowButtonPlusCount(mockEvent)
+        viewModel.flowButtonPlusCount()
             .test {
                 mockEvent.click()
                 Assert.assertTrue(awaitItem())

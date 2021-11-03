@@ -58,6 +58,8 @@ object Dependency {
         private const val lifecycleVersion = "2.3.1"
         const val liveDataKtx = "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
         const val lifecycleRuntimeKtx = "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion"
+        // alternately - if using Java8, use the following instead of lifecycle-compiler
+        const val lifecycleCommonJava8 = "androidx.lifecycle:lifecycle-common-java8:$lifecycleVersion"
 
         // https://developer.android.com/jetpack/androidx/releases/annotation
         const val annotation = "androidx.annotation:annotation:1.2.0"
