@@ -1,0 +1,4 @@
+<resources>
+    <string name="previous">Previous</string>
+    <string name="hello_second_fragment">Hello second fragment. Count: %,d</string>
+</resources>

@@ -34,10 +34,6 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
 
-    buildFeatures {
-        dataBinding = true
-    }
-
     // buildconfig 생성하지 않기
     libraryVariants.all {
         generateBuildConfigProvider.configure {
@@ -47,10 +43,13 @@ android {
 }
 
 dependencies {
+    implementation(project(":library"))
+
     implementation(Dependency.Kotlin.stdLib)
     implementation(Dependency.Coroutines.core)
 
-    implementation(Dependency.AndroidX.annotation)
+    implementation(Dependency.AndroidX.appCompat)
+    compileOnly(Dependency.AndroidX.annotation)
 
     implementation(Dependency.Databinding.runtime)
 }

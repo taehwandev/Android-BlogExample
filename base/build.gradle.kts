@@ -1,5 +1,4 @@
 import tech.thdev.gradle.dependencies.Dependency
-
 plugins {
     id("com.android.library")
 
@@ -34,10 +33,6 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
 
-    buildFeatures {
-        dataBinding = true
-    }
-
     // buildconfig 생성하지 않기
     libraryVariants.all {
         generateBuildConfigProvider.configure {
@@ -47,10 +42,13 @@ android {
 }
 
 dependencies {
+    implementation(project(":library"))
+    api(project(":library-impl"))
+
     implementation(Dependency.Kotlin.stdLib)
     implementation(Dependency.Coroutines.core)
+    implementation(Dependency.AndroidX.lifecycleCommonJava8)
 
-    implementation(Dependency.AndroidX.annotation)
-
-    implementation(Dependency.Databinding.runtime)
+    implementation(Dependency.AndroidX.appCompat)
+    compileOnly(Dependency.AndroidX.annotation)
 }

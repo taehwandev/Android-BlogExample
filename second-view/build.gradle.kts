@@ -1,7 +1,7 @@
 import tech.thdev.gradle.dependencies.Dependency
 
 plugins {
-    id("com.android.application")
+    id("com.android.library")
 
     kotlin("android")
     kotlin("kapt")
@@ -14,7 +14,6 @@ android {
     defaultConfig {
         minSdk = Dependency.Base.minSdk
         targetSdk = Dependency.Base.targetSdk
-        vectorDrawables.useSupportLibrary = true
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -46,30 +45,18 @@ android {
 }
 
 dependencies {
+    implementation(project(":library")) // ViewController 사용
+    testImplementation(project(":library-test")) // ViewController test 사용
+    implementation(project(":base")) // Base 코드 접근
+
     implementation(Dependency.Kotlin.stdLib)
-
-    implementation(Dependency.Google.material)
-
-    Dependency.AndroidX.run {
-        implementation(coreKtx)
-        implementation(appCompat)
-        implementation(activity)
-        implementation(constraintLayout)
-        implementation(vectorDrawable)
-        implementation(navigationFragmentKtx)
-        implementation(navigationUiKtx)
-        implementation(liveDataKtx)
-        implementation(lifecycleCommonJava8)
-    }
-
-    implementation(Dependency.Image.glide)
-    kapt(Dependency.Image.glideCompiler)
-
-    Dependency.Network.run {
-        implementation(retrofit)
-        implementation(okhttp)
-        implementation(okhttpLogging)
-    }
+    implementation(Dependency.Coroutines.core)
+    implementation(Dependency.AndroidX.lifecycleCommonJava8)
+    implementation(Dependency.AndroidX.liveDataKtx)
+    implementation(Dependency.AndroidX.coreKtx)
+    implementation(Dependency.AndroidX.appCompat)
+    implementation(Dependency.AndroidX.constraintLayout)
+    implementation(Dependency.AndroidX.navigationFragmentKtx)
 
     Dependency.AndroidTest.run {
         testImplementation(androidxCore)
@@ -83,9 +70,4 @@ dependencies {
         testImplementation(test)
         testImplementation(turbine)
     }
-    implementation(project(":library"))
-    implementation(project(":library-impl"))
-    implementation(project(":base"))
-    implementation(project(":second-view"))
-    testImplementation(project(":library-test"))
 }
