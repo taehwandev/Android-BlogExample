@@ -57,6 +57,16 @@ dependencies {
     implementation(Dependency.AndroidX.appCompat)
     implementation(Dependency.AndroidX.constraintLayout)
     implementation(Dependency.AndroidX.navigationFragmentKtx)
+    implementations(
+        Dependency.Kotlin.stdLib,
+        Dependency.Coroutines.core,
+        Dependency.AndroidX.lifecycleCommonJava8,
+        Dependency.AndroidX.liveDataKtx,
+        Dependency.AndroidX.coreKtx,
+        Dependency.AndroidX.appCompat,
+        Dependency.AndroidX.constraintLayout,
+        Dependency.AndroidX.navigationFragmentKtx,
+    )
 
     Dependency.AndroidTest.run {
         testImplementation(androidxCore)
@@ -69,5 +79,11 @@ dependencies {
     Dependency.Coroutines.run {
         testImplementation(test)
         testImplementation(turbine)
+    }
+}
+
+fun DependencyHandlerScope.implementations(vararg argument: String) {
+    argument.forEach {
+        "implementation"(it)
     }
 }
