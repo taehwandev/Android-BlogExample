@@ -11,14 +11,14 @@ object Dependency {
 
     object Kotlin {
         // https://github.com/JetBrains/kotlin
-        const val version: String = "1.5.21"
+        const val version: String = "1.6.21"
 
         const val stdLib = "org.jetbrains.kotlin:kotlin-stdlib:$version"
     }
 
     object Coroutines {
         // https://github.com/Kotlin/kotlinx.coroutines
-        const val version: String = "1.5.2"
+        const val version: String = "1.6.1"
 
         const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version"
         const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version"
@@ -26,25 +26,25 @@ object Dependency {
 
     object AndroidX {
         // https://developer.android.com/jetpack/androidx/releases/core
-        const val coreKtx = "androidx.core:core-ktx:1.6.0"
+        const val coreKtx = "androidx.core:core-ktx:1.9.0-alpha03"
 
         // https://developer.android.com/jetpack/androidx/releases/appcompat
-        const val appCompat = "androidx.appcompat:appcompat:1.3.1"
+        const val appCompat = "androidx.appcompat:appcompat:1.6.0-alpha03"
 
         // https://developer.android.com/jetpack/androidx/releases/activity
-        const val activity = "androidx.activity:activity-ktx:1.3.1"
+        const val activity = "androidx.activity:activity-ktx:1.6.0-alpha03"
 
         // https://developer.android.com/jetpack/androidx/releases/constraintlayout
-        const val constraintLayout = "androidx.constraintlayout:constraintlayout:2.1.1"
+        const val constraintLayout = "androidx.constraintlayout:constraintlayout:2.1.3"
 
         // https://developer.android.com/jetpack/androidx/releases/coordinatorlayout
-        const val coordinatorlayout = "androidx.coordinatorlayout:coordinatorlayout:1.1.0"
+        const val coordinatorlayout = "androidx.coordinatorlayout:coordinatorlayout:1.2.0"
 
         // https://developer.android.com/jetpack/androidx/releases/vectordrawable
-        const val vectorDrawable = "androidx.vectordrawable:vectordrawable:1.1.0"
+        const val vectorDrawable = "androidx.vectordrawable:vectordrawable:1.2.0-beta01"
 
         // https://developer.android.com/jetpack/androidx/releases/navigation
-        private const val navigationVersion = "2.3.5"
+        private const val navigationVersion = "2.5.0-beta01"
         const val navigationFragment = "androidx.navigation:navigation-fragment:$navigationVersion"
         const val navigationRuntime = "androidx.navigation:navigation-runtime:$navigationVersion"
         const val navigationFragmentKtx = "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
@@ -52,31 +52,31 @@ object Dependency {
         const val navigationUiKtx = "androidx.navigation:navigation-ui-ktx:$navigationVersion"
 
         // https://developer.android.com/jetpack/androidx/releases/lifecycle
-        private const val lifecycleVersion = "2.3.1"
+        private const val lifecycleVersion = "2.5.0-beta01"
         const val liveDataKtx = "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
         const val lifecycleRuntimeKtx = "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion"
 
         // https://developer.android.com/jetpack/androidx/releases/annotation
-        const val annotation = "androidx.annotation:annotation:1.2.0"
+        const val annotation = "androidx.annotation:annotation:1.4.0-alpha02"
 
         // https://developer.android.com/jetpack/androidx/releases/recyclerview
-        const val recyclerView = "androidx.recyclerview:recyclerview:1.2.1"
+        const val recyclerView = "androidx.recyclerview:recyclerview:1.3.0-alpha02"
 
         // https://developer.android.com/jetpack/androidx/releases/swiperefreshlayout
-        const val swiperefreshlayout = "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
+        const val swiperefreshlayout = "androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-alpha01"
 
         // https://developer.android.com/jetpack/androidx/releases/browser
-        const val browser = "androidx.browser:browser:1.3.0"
+        const val browser = "androidx.browser:browser:1.4.0"
 
         // https://developer.android.com/jetpack/androidx/releases/viewpager2
-        const val viewPager2 = "androidx.viewpager2:viewpager2:1.0.0"
+        const val viewPager2 = "androidx.viewpager2:viewpager2:1.1.0-beta01"
 
         // https://developer.android.com/jetpack/androidx/releases/webkit
         const val webkit = "androidx.webkit:webkit:1.4.0"
     }
 
     object DataBinding {
-        const val version = "7.0.3"
+        const val version = "7.2.0"
 
         const val runtime = "androidx.databinding:databinding-runtime:$version"
         const val common = "androidx.databinding:databinding-common:$version"
@@ -85,12 +85,12 @@ object Dependency {
 
     object Google {
         // https://github.com/material-components/material-components-android/releases
-        const val material = "com.google.android.material:material:1.4.0"
+        const val material = "com.google.android.material:material:1.6.0"
     }
 
     object Image {
         // https://github.com/bumptech/glide
-        private const val version: String = "4.12.0"
+        private const val version: String = "4.13.2"
 
         const val glide = "com.github.bumptech.glide:glide:$version"
         const val glideCompiler = "com.github.bumptech.glide:compiler:$version"
@@ -98,7 +98,7 @@ object Dependency {
 
     object Network {
         // https://square.github.io/okhttp/
-        const val okhttpVersion = "4.9.0"
+        const val okhttpVersion = "4.9.3"
         const val okhttp = "com.squareup.okhttp3:okhttp:$okhttpVersion"
         const val okhttpLogging = "com.squareup.okhttp3:logging-interceptor:$okhttpVersion"
 
@@ -110,21 +110,18 @@ object Dependency {
 
     object AndroidTest {
         // https://developer.android.com/jetpack/androidx/releases/test
-        private const val androidXTestVersion = "1.4.0"
+        private const val androidXTestVersion = "1.4.1-alpha06"
         const val androidxCore = "androidx.test:core:$androidXTestVersion"
         const val androidxRunner = "androidx.test:runner:$androidXTestVersion"
 
-        const val androidxJunit = "androidx.test.ext:junit:1.1.3"
-
-        const val espresso = "androidx.test.espresso:espresso-core:3.4.0"
-
-        const val mockito = "org.mockito:mockito-core:4.0.0"
+        const val androidxJunit = "androidx.test.ext:junit:1.1.4-alpha06"
 
         // https://github.com/mockito/mockito-kotlin
+        const val mockito = "org.mockito:mockito-core:4.0.0"
         const val mockitoKotlin = "org.mockito.kotlin:mockito-kotlin:4.0.0"
 
         // https://github.com/mannodermaus/android-junit5
-        private const val junit5Version = "5.8.0"
+        private const val junit5Version = "5.8.2"
         const val engine = "org.junit.jupiter:junit-jupiter-engine:$junit5Version"
         const val vintage = "org.junit.vintage:junit-vintage-engine:$junit5Version"
         const val junit5 = "org.junit.jupiter:junit-jupiter-api:$junit5Version"

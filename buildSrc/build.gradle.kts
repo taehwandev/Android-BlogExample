@@ -7,7 +7,7 @@ repositories {
     mavenCentral()
 }
 
-val kotlinVersion = "1.5.21"
+val kotlinVersion = "1.6.21"
 
 val compileKotlin: org.jetbrains.kotlin.gradle.tasks.KotlinCompile by tasks
 compileKotlin.kotlinOptions {
