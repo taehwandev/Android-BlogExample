@@ -5,7 +5,9 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import tech.thdev.app.databinding.MainActivityBinding
+import tech.thdev.ksp.sample.annotation.GenerateAnnotation
 
+@GenerateAnnotation
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: MainActivityBinding

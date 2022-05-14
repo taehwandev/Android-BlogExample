@@ -1,7 +1,7 @@
 import tech.thdev.gradle.dependencies.Dependency
 
 plugins {
-    id("com.android.application")
+    id("com.android.library")
     id("com.google.devtools.ksp")
 
     kotlin("android")
@@ -45,7 +45,7 @@ android {
         viewBinding = true
         dataBinding = true
     }
-    namespace = "tech.thdev.app"
+    namespace = "tech.thdev.other"
 
     buildTypes {
         sourceSets.getByName("debug") {
@@ -62,31 +62,9 @@ dependencies {
 
     implementation(Dependency.Google.material)
 
-    implementation(Dependency.AndroidX.coreKtx)
     implementation(Dependency.AndroidX.appCompat)
     implementation(Dependency.AndroidX.activity)
-    implementation(Dependency.AndroidX.constraintLayout)
-    implementation(Dependency.AndroidX.vectorDrawable)
-    implementation(Dependency.AndroidX.navigationFragmentKtx)
-    implementation(Dependency.AndroidX.navigationUiKtx)
-    implementation(Dependency.AndroidX.liveDataKtx)
-
-    implementation(Dependency.Image.glide)
-    kapt(Dependency.Image.glideCompiler)
-
-    implementation(Dependency.Network.retrofit)
-    implementation(Dependency.Network.okhttp)
-    implementation(Dependency.Network.okhttpLogging)
-
-    Dependency.AndroidTest.run {
-        testImplementation(junit5)
-        testImplementation(mockito)
-        testImplementation(mockitoKotlin)
-        testRuntimeOnly(engine)
-        testRuntimeOnly(vintage)
-    }
 
     ksp(project(":ksp-sample"))
     implementation(projects.kspSampleAnnotation)
-    implementation(project(":other-module"))
 }
