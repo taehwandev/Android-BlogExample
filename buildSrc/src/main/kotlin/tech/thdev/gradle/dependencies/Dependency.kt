@@ -11,17 +11,9 @@ object Dependency {
 
     object Kotlin {
         // https://github.com/JetBrains/kotlin
-        const val version: String = "1.6.21"
+        private const val version: String = "1.7.10"
 
         const val stdLib = "org.jetbrains.kotlin:kotlin-stdlib:$version"
-    }
-
-    object Coroutines {
-        // https://github.com/Kotlin/kotlinx.coroutines
-        const val version: String = "1.6.1"
-
-        const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version"
-        const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version"
     }
 
     object AndroidX {
@@ -37,50 +29,20 @@ object Dependency {
         // https://developer.android.com/jetpack/androidx/releases/constraintlayout
         const val constraintLayout = "androidx.constraintlayout:constraintlayout:2.1.3"
 
-        // https://developer.android.com/jetpack/androidx/releases/coordinatorlayout
-        const val coordinatorlayout = "androidx.coordinatorlayout:coordinatorlayout:1.2.0"
-
         // https://developer.android.com/jetpack/androidx/releases/vectordrawable
         const val vectorDrawable = "androidx.vectordrawable:vectordrawable:1.2.0-beta01"
 
         // https://developer.android.com/jetpack/androidx/releases/navigation
         private const val navigationVersion = "2.5.0-beta01"
-        const val navigationFragment = "androidx.navigation:navigation-fragment:$navigationVersion"
-        const val navigationRuntime = "androidx.navigation:navigation-runtime:$navigationVersion"
         const val navigationFragmentKtx = "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
-        const val navigationUi = "androidx.navigation:navigation-ui:$navigationVersion"
         const val navigationUiKtx = "androidx.navigation:navigation-ui-ktx:$navigationVersion"
 
         // https://developer.android.com/jetpack/androidx/releases/lifecycle
         private const val lifecycleVersion = "2.5.0-beta01"
         const val liveDataKtx = "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
-        const val lifecycleRuntimeKtx = "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion"
 
         // https://developer.android.com/jetpack/androidx/releases/annotation
         const val annotation = "androidx.annotation:annotation:1.4.0-alpha02"
-
-        // https://developer.android.com/jetpack/androidx/releases/recyclerview
-        const val recyclerView = "androidx.recyclerview:recyclerview:1.3.0-alpha02"
-
-        // https://developer.android.com/jetpack/androidx/releases/swiperefreshlayout
-        const val swiperefreshlayout = "androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-alpha01"
-
-        // https://developer.android.com/jetpack/androidx/releases/browser
-        const val browser = "androidx.browser:browser:1.4.0"
-
-        // https://developer.android.com/jetpack/androidx/releases/viewpager2
-        const val viewPager2 = "androidx.viewpager2:viewpager2:1.1.0-beta01"
-
-        // https://developer.android.com/jetpack/androidx/releases/webkit
-        const val webkit = "androidx.webkit:webkit:1.4.0"
-    }
-
-    object DataBinding {
-        const val version = "7.2.0"
-
-        const val runtime = "androidx.databinding:databinding-runtime:$version"
-        const val common = "androidx.databinding:databinding-common:$version"
-        const val adapters = "androidx.databinding:databinding-adapters:$version"
     }
 
     object Google {
@@ -98,24 +60,16 @@ object Dependency {
 
     object Network {
         // https://square.github.io/okhttp/
-        const val okhttpVersion = "4.9.3"
+        private const val okhttpVersion = "4.9.3"
         const val okhttp = "com.squareup.okhttp3:okhttp:$okhttpVersion"
         const val okhttpLogging = "com.squareup.okhttp3:logging-interceptor:$okhttpVersion"
 
         // https://github.com/square/retrofit
-        const val retrofitVersion = "2.9.0"
+        private const val retrofitVersion = "2.9.0"
         const val retrofit = "com.squareup.retrofit2:retrofit:$retrofitVersion"
-        const val moshiConverter = "com.squareup.retrofit2:converter-moshi:$retrofitVersion"
     }
 
     object AndroidTest {
-        // https://developer.android.com/jetpack/androidx/releases/test
-        private const val androidXTestVersion = "1.4.1-alpha06"
-        const val androidxCore = "androidx.test:core:$androidXTestVersion"
-        const val androidxRunner = "androidx.test:runner:$androidXTestVersion"
-
-        const val androidxJunit = "androidx.test.ext:junit:1.1.4-alpha06"
-
         // https://github.com/mockito/mockito-kotlin
         const val mockito = "org.mockito:mockito-core:4.0.0"
         const val mockitoKotlin = "org.mockito.kotlin:mockito-kotlin:4.0.0"
@@ -125,6 +79,5 @@ object Dependency {
         const val engine = "org.junit.jupiter:junit-jupiter-engine:$junit5Version"
         const val vintage = "org.junit.vintage:junit-vintage-engine:$junit5Version"
         const val junit5 = "org.junit.jupiter:junit-jupiter-api:$junit5Version"
-        const val params = "org.junit.jupiter:junit-jupiter-params:$junit5Version"
     }
 }

@@ -17,3 +17,6 @@ class OtherActivity : AppCompatActivity() {
         setSupportActionBar(binding.toolbar)
     }
 }
+
+@GenerateAnnotation
+class ClassTest
