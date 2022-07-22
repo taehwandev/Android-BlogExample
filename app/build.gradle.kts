@@ -62,25 +62,15 @@ dependencies {
 
     implementation(Dependency.Google.material)
 
-    implementation(Dependency.AndroidX.coreKtx)
     implementation(Dependency.AndroidX.appCompat)
     implementation(Dependency.AndroidX.activity)
     implementation(Dependency.AndroidX.constraintLayout)
     implementation(Dependency.AndroidX.vectorDrawable)
     implementation(Dependency.AndroidX.navigationFragmentKtx)
     implementation(Dependency.AndroidX.navigationUiKtx)
-    implementation(Dependency.AndroidX.liveDataKtx)
-
-    implementation(Dependency.Image.glide)
-    kapt(Dependency.Image.glideCompiler)
-
-    implementation(Dependency.Network.retrofit)
-    implementation(Dependency.Network.okhttp)
-    implementation(Dependency.Network.okhttpLogging)
 
     Dependency.AndroidTest.run {
         testImplementation(junit5)
-        testImplementation(mockito)
         testImplementation(mockitoKotlin)
         testRuntimeOnly(engine)
         testRuntimeOnly(vintage)

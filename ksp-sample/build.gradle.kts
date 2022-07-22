@@ -6,7 +6,7 @@ plugins {
 
 dependencies {
     implementation(Dependency.Kotlin.stdLib)
-    implementation("com.google.devtools.ksp:symbol-processing-api:1.6.21-1.0.5")
-    implementation("com.squareup:kotlinpoet:1.11.0")
+    implementation("com.google.devtools.ksp:symbol-processing-api:1.7.10-1.0.6")
+    implementation("com.squareup:kotlinpoet:1.12.0")
     api(projects.kspSampleAnnotation)
 }
