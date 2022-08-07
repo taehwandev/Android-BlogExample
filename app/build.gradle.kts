@@ -1,23 +1,12 @@
-import tech.thdev.gradle.dependencies.Dependency
+@file:Suppress("UnstableApiUsage")
 
 plugins {
-    id("com.android.application")
-
-    kotlin("android")
+    id("kotlin-android")
     kotlin("kapt")
 }
 
 android {
-    compileSdk = Dependency.Base.compileVersion
-    buildToolsVersion = Dependency.Base.buildToolsVersion
-
-    defaultConfig {
-        minSdk = Dependency.Base.minSdk
-        targetSdk = Dependency.Base.targetSdk
-        vectorDrawables.useSupportLibrary = true
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-    }
+    namespace = "tech.thdev.app"
 
     buildTypes {
         getByName("debug") {
@@ -31,48 +20,29 @@ android {
         }
     }
 
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
-
-    kotlinOptions {
-        jvmTarget = "11"
-    }
-
     buildFeatures {
         viewBinding = true
         dataBinding = true
     }
-    namespace = "tech.thdev.app"
 }
 
 dependencies {
-    implementation(Dependency.Kotlin.stdLib)
+    implementation(libs.kotlin.stdlib)
 
-    implementation(Dependency.Google.material)
+    implementation(libs.google.material)
 
-    implementation(Dependency.AndroidX.coreKtx)
-    implementation(Dependency.AndroidX.appCompat)
-    implementation(Dependency.AndroidX.activity)
-    implementation(Dependency.AndroidX.constraintLayout)
-    implementation(Dependency.AndroidX.vectorDrawable)
-    implementation(Dependency.AndroidX.navigationFragmentKtx)
-    implementation(Dependency.AndroidX.navigationUiKtx)
-    implementation(Dependency.AndroidX.liveDataKtx)
+    implementation(libs.androidx.coreKtx)
+    implementation(libs.androidx.appCompat)
+    implementation(libs.androidx.activity)
+    implementation(libs.androidx.constraintLayout)
+    implementation(libs.androidx.vectorDrawable)
+    implementation(libs.androidx.navigationFragment)
+    implementation(libs.androidx.navigationUi)
+    implementation(libs.androidx.liveData)
 
-    implementation(Dependency.Image.glide)
-    kapt(Dependency.Image.glideCompiler)
+    implementation(libs.image.coil)
 
-    implementation(Dependency.Network.retrofit)
-    implementation(Dependency.Network.okhttp)
-    implementation(Dependency.Network.okhttpLogging)
-
-    Dependency.AndroidTest.run {
-        testImplementation(junit5)
-        testImplementation(mockito)
-        testImplementation(mockitoKotlin)
-        testRuntimeOnly(engine)
-        testRuntimeOnly(vintage)
-    }
+    implementation(libs.network.retrofit)
+    implementation(libs.network.okhttp)
+    implementation(libs.network.okhttpLogging)
 }
