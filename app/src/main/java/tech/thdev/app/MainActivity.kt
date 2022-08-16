@@ -3,6 +3,8 @@ package tech.thdev.app
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Button
+import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import tech.thdev.app.databinding.MainActivityBinding
 
@@ -14,6 +16,7 @@ class MainActivity : AppCompatActivity() {
         binding = MainActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
+        val button = binding.root.findViewById<Button>(R.id.button_first)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
