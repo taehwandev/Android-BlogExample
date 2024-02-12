@@ -1,8 +1,5 @@
 @file:Suppress("UnstableApiUsage")
 
-import gradle.kotlin.dsl.accessors._f82e5dc3df811e1e4e3f8827ab987ccc.testImplementation
-import gradle.kotlin.dsl.accessors._f82e5dc3df811e1e4e3f8827ab987ccc.testRuntimeOnly
-
 plugins {
     id("com.android.application")
     kotlin("android")
@@ -25,20 +22,20 @@ android {
     }
 
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = "17"
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 }
 
 dependencies {
-    testImplementation(libs.findLibrary("test.mockito").get())
-    testImplementation(libs.findLibrary("test.mockitoKotlin").get())
+    "testImplementation"(libs.findLibrary("test.mockito").get())
+    "testImplementation"(libs.findLibrary("test.mockitoKotlin").get())
 
-    testImplementation(libs.findLibrary("test.junit5").get())
-    testRuntimeOnly(libs.findLibrary("test.junit5.engine").get())
-    testRuntimeOnly(libs.findLibrary("test.junit5.vintage").get())
+    "testImplementation"(libs.findLibrary("test.junit5").get())
+    "testRuntimeOnly"(libs.findLibrary("test.junit5.engine").get())
+    "testRuntimeOnly"(libs.findLibrary("test.junit5.vintage").get())
 }
