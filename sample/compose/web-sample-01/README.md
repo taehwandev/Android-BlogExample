@@ -5,9 +5,10 @@ Compose Navigation WebView Example
 
 Navigation에서 WebView를 처음부터 재 생성하지 않고 사용한 결과 차이
 
-|           Before            |           After           |
-|:---------------------------:|:-------------------------:|
-| ![before](image/before.gif) | ![after](image/after.gif) |
+- Before
+  ![before](image/before.png)
+- After
+  ![after](image/after.png)
 
 ## License
 
