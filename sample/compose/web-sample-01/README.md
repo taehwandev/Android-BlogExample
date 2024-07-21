@@ -1,7 +1,9 @@
 # Summary
 Compose Navigation WebView Example
 
-## Image
+## Preview
+
+Navigation에서 WebView를 처음부터 재 생성하지 않고 사용한 결과 차이
 
 |           Before            |           After           |
 |:---------------------------:|:-------------------------:|
