@@ -55,7 +55,7 @@ dependencies {
     implementation(libs.compose.runtime)
     implementation(libs.compose.uiToolingPreview)
     implementation(libs.compose.animation)
-    testImplementation(libs.compose.uiTooling)
+    debugRuntimeOnly(libs.compose.uiTooling)
 
     implementation(libs.compose.navigation)
 
