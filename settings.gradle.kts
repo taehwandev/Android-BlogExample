@@ -15,4 +15,8 @@ dependencyResolutionManagement {
 
 rootProject.name = "My Application"
 include(":app")
-include(":sample:compose:web-sample-01")
+
+include(
+    ":sample:compose:web-sample-01",
+    ":sample:compose:compose-example-01",
+)
