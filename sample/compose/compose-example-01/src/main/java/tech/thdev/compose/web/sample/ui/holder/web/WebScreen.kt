@@ -1,5 +1,6 @@
 package tech.thdev.compose.web.sample.ui.holder.web
 
+import android.util.Log
 import android.view.ViewGroup
 import android.webkit.WebSettings
 import android.webkit.WebView
@@ -94,7 +95,9 @@ internal fun WebScreen() {
             AndroidView(
                 factory = {
                     val parentLayout = FrameLayout(context).apply {
+                        Log.i("TEMP", "webView $webView")
                         val web = webView ?: WebView(context)
+
 
                         web.apply {
                             this.layoutParams = layoutParams
