@@ -62,53 +62,27 @@ internal fun HomeScreenOne() {
                             var changeItem by remember { mutableStateOf(item) }
                             TextField(
                                 value = changeItem.text,
-                                onValueChange = { new ->
-                                    changeItem = changeItem.copy(
-                                        text = new,
-                                    )
-                                },
+                                onValueChange = { new -> },
                                 modifier = Modifier
                                     .fillMaxWidth()
                             )
 
                             Row {
                                 Button(
-                                    onClick = {
-                                        listItem = listItem.copy(
-                                            items = listItem.items.map { listItem ->
-                                                if (listItem.index == item.index) {
-                                                    changeItem.copy(
-                                                        editMode = false,
-                                                    )
-                                                } else {
-                                                    listItem
-                                                }
-                                            },
-                                        )
-                                    },
+                                    onClick = { },
                                     modifier = Modifier
                                         .weight(1f)
                                 ) {
-                                    Text(
-                                        text = "Save",
-                                    )
+                                    Text(text = "Save")
                                 }
 
                                 Button(
-                                    onClick = {
-                                        listItem = listItem.copy(
-                                            items = listItem.items.toMutableList().also { newList ->
-                                                newList.remove(item)
-                                            },
-                                        )
-                                    },
+                                    onClick = { },
                                     modifier = Modifier
                                         .weight(1f)
                                         .padding(start = 10.dp)
                                 ) {
-                                    Text(
-                                        text = "X",
-                                    )
+                                    Text(text = "X")
                                 }
                             }
                         }
@@ -128,43 +102,20 @@ internal fun HomeScreenOne() {
                                 )
 
                                 IconButton(
-                                    onClick = {
-                                        listItem = listItem.copy(
-                                            items = listItem.items.toMutableList().also { newList ->
-                                                newList.remove(item)
-                                            },
-                                        )
-                                    },
+                                    onClick = { },
                                 ) {
-                                    Icon(
-                                        painter = painterResource(id = R.drawable.baseline_close_24),
-                                        contentDescription = "remove",
-                                    )
+                                    Icon(painter = painterResource(id = R.drawable.baseline_close_24), contentDescription = "remove")
                                 }
                             }
 
                             Button(
-                                onClick = {
-                                    listItem = listItem.copy(
-                                        items = listItem.items.map { listItem ->
-                                            if (listItem == item) {
-                                                listItem.copy(
-                                                    editMode = true,
-                                                )
-                                            } else {
-                                                listItem
-                                            }
-                                        },
-                                    )
-                                },
+                                onClick = { },
                                 modifier = Modifier
                                     .fillMaxWidth()
                                     .padding(horizontal = 16.dp)
                                     .padding(top = 10.dp, bottom = 16.dp)
                             ) {
-                                Text(
-                                    text = "edit",
-                                )
+                                Text(text = "edit")
                             }
                         }
                     }
@@ -173,25 +124,11 @@ internal fun HomeScreenOne() {
         }
 
         Button(
-            onClick = {
-                listItem = listItem.copy(
-                    items = listItem.items.toMutableList().also { list ->
-                        list.add(
-                            ListItem.Item(
-                                index = list.size,
-                                text = "",
-                                editMode = true,
-                            )
-                        )
-                    },
-                )
-            },
+            onClick = {},
             modifier = Modifier
                 .padding(20.dp)
         ) {
-            Text(
-                text = "New",
-            )
+            Text(text = "New")
         }
     }
 }

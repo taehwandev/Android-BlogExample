@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
@@ -20,10 +19,11 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import tech.thdev.compose.web.sample.R
+import tech.thdev.compose.web.sample.ui.design.system.button.ExampleButton
 import tech.thdev.compose.web.sample.ui.model.ListItem
 
 @Composable
-internal fun HomeItemView(
+internal fun TwoHomeItemView(
     item: ListItem.Item,
     onRemove: () -> Unit,
     onEditMode: () -> Unit,
@@ -54,28 +54,25 @@ internal fun HomeItemView(
             }
         }
 
-        Button(
+        ExampleButton(
+            text = "edit",
             onClick = onEditMode,
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp)
                 .padding(top = 10.dp, bottom = 16.dp)
-        ) {
-            Text(
-                text = "edit",
-            )
-        }
+        )
     }
 }
 
 @Preview(showBackground = true)
 @Composable
-private fun PreviewHomeItemView() {
+private fun PreviewTwoHomeItemView() {
     var item by remember {
         mutableStateOf(ListItem.Item.NEW.copy(text = "message~!!!!\naaaa"))
     }
 
-    HomeItemView(
+    TwoHomeItemView(
         item = item,
         onRemove = {
             // Do nothing

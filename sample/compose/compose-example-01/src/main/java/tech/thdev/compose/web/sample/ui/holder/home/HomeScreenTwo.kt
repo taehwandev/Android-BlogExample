@@ -24,6 +24,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import tech.thdev.compose.web.sample.R
@@ -37,6 +38,10 @@ import tech.thdev.compose.web.sample.ui.model.ListItem
  * 5. stateful 코드 추가
  * 6. stateless 코드 정의 및 프리뷰 정의
  * 7. 컴포넌트 분리
+ */
+/**
+ * Step 2.
+ * Split screen
  */
 @Composable
 internal fun HomeScreenTwo() {
@@ -117,9 +122,10 @@ private fun HomeScreenTwo(
                                     onClick = {
                                         onEvent(
                                             listItem.copy(
-                                                items = listItem.items.toMutableList().also { newList ->
-                                                    newList.remove(item)
-                                                },
+                                                items = listItem.items.toMutableList()
+                                                    .also { newList ->
+                                                        newList.remove(item)
+                                                    },
                                             )
                                         )
                                     },
@@ -152,9 +158,10 @@ private fun HomeScreenTwo(
                                     onClick = {
                                         onEvent(
                                             listItem.copy(
-                                                items = listItem.items.toMutableList().also { newList ->
-                                                    newList.remove(item)
-                                                },
+                                                items = listItem.items.toMutableList()
+                                                    .also { newList ->
+                                                        newList.remove(item)
+                                                    },
                                             )
                                         )
                                     },
@@ -225,6 +232,7 @@ private fun HomeScreenTwo(
 
 @Preview(
     showBackground = true,
+    device = Devices.PIXEL
 )
 @Composable
 private fun PreviewHomeScreenTwo() {

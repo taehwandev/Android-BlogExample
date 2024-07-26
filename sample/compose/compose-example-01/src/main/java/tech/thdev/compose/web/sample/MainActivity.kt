@@ -56,6 +56,10 @@ import tech.thdev.compose.web.sample.ui.holder.web.LocalWebOwner
 import tech.thdev.compose.web.sample.ui.model.NavigationSample
 import tech.thdev.compose.web.sample.ui.theme.MyApplicationTheme
 
+/**
+ * Step 1.
+ * full code
+ */
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
