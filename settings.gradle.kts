@@ -35,4 +35,5 @@ include(":app")
 include(
     ":sample:compose:web-sample-01",
     ":sample:compose:compose-example-01",
+    ":sample:view:recycler-view-ex",
 )
