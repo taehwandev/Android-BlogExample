@@ -2,6 +2,7 @@ package tech.thdev.compose.web.sample
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.webkit.WebView
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -20,7 +21,11 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -34,6 +39,7 @@ import androidx.navigation.compose.rememberNavController
 import tech.thdev.compose.web.sample.ui.holder.home.HomeScreenThree
 import tech.thdev.compose.web.sample.ui.holder.web.LocalWebOwner
 import tech.thdev.compose.web.sample.ui.holder.web.WebScreen
+import tech.thdev.compose.web.sample.ui.model.ListItem
 import tech.thdev.compose.web.sample.ui.model.NavigationSample
 import tech.thdev.compose.web.sample.ui.theme.MyApplicationTheme
 
@@ -70,11 +76,23 @@ private fun MainScreen(
     navController: NavHostController = rememberNavController(),
 ) {
     val context = LocalContext.current
+    var listItem by remember { mutableStateOf(ListItem(emptyList())) }
+    SideEffect {
+        Log.i("TEMP", "side effect - before compositionLocalProvider")
+        // screen event.
+    }
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
     CompositionLocalProvider(
         LocalWebOwner provides WebView(context)
     ) {
-        val navBackStackEntry by navController.currentBackStackEntryAsState()
+        SideEffect {
+            Log.i("TEMP", "side effect - after compositionLocalProvider")
+        }
+
         val currentDestination = navBackStackEntry?.destination
+        SideEffect {
+            Log.i("TEMP", "side effect - navBackStackEntry")
+        }
         Scaffold(
             topBar = {
                 TopAppBar(
@@ -132,7 +150,12 @@ private fun MainScreen(
                     exitTransition = { ExitTransition.None },
                 ) {
                     composable(route = NavigationSample.Trigger.HOME.name) {
-                        HomeScreenThree()
+                        HomeScreenThree(
+                            listItem = listItem,
+                            onEvent = {
+                                listItem = it
+                            },
+                        )
                     }
 
                     composable(route = NavigationSample.Trigger.WEB.name) {

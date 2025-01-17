@@ -32,23 +32,23 @@ import tech.thdev.compose.web.sample.ui.model.ListItem
  * 6. stateless 코드 정의 및 프리뷰 정의
  * 7. 컴포넌트 분리
  */
-@Composable
-internal fun HomeScreenThree() {
-    var listItem by remember { mutableStateOf(ListItem(emptyList())) }
-
-    HomeScreenThree(
-        listItem = listItem,
-        onEvent = {
-            listItem = it
-        }
-    )
-}
+//@Composable
+//internal fun HomeScreenThree() {
+//
+//
+//    HomeScreenThree(
+//        listItem = listItem,
+//        onEvent = {
+//            listItem = it
+//        }
+//    )
+//}
 
 /**
  * stateless
  */
 @Composable
-private fun HomeScreenThree(
+internal fun HomeScreenThree(
     listItem: ListItem,
     onEvent: (listItem: ListItem) -> Unit,
 ) {

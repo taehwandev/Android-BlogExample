@@ -1,5 +1,4 @@
 afterEvaluate {
-
     val tests = mutableListOf<String>()
     val lints = mutableListOf<String>()
     if (plugins.hasPlugin("java-library") || plugins.hasPlugin("java") || plugins.hasPlugin("kotlin")) {
@@ -7,7 +6,12 @@ afterEvaluate {
         tests.add("test")
     } else {
         // test and lint
-        tests.add("testDebugUnitTest")
+        if (project.name == "app") {
+            // 앱 모듈만 flavor 옵션이 있어 devDebug 빌드타입으로 unit test 실행
+            tests.add("testDevDebugUnitTest")
+        } else {
+            tests.add("testDebugUnitTest")
+        }
         lints.add("lintDebug")
     }
 

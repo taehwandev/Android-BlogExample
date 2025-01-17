@@ -1,21 +1,19 @@
-@Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
-    id("kotlin-android")
-    kotlin("kapt")
+    alias(libs.plugins.tech.thdev.android.application)
 }
 
 android {
-    namespace = "tech.thdev.app"
+    val (majorVersion, minorVersion, patchVersion, code) = getVersionInfo()
 
-    buildTypes {
-        getByName("debug") {
-            isMinifyEnabled = false
-        }
-
-        getByName("release") {
-            isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-        }
+    defaultConfig {
+        applicationId = "tech.thdev.app"
+        minSdk = libs.versions.minSdk.get().toInt()
+        targetSdk = libs.versions.targetSdk.get().toInt()
+        vectorDrawables.useSupportLibrary = true
+        versionCode = code
+        versionName = "$majorVersion.$minorVersion.$patchVersion"
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled = true
     }
 
     buildFeatures {
@@ -24,12 +22,19 @@ android {
     }
 }
 
+setNamespace("app")
+
+ksp {
+    arg("moduleName", project.name)
+    arg("rootDir", rootDir.absolutePath)
+}
+
 dependencies {
     implementation(libs.kotlin.stdlib)
 
     implementation(libs.google.material)
 
-    implementation(libs.androidx.coreKtx)
+    implementation(libs.androidx.core)
     implementation(libs.androidx.appCompat)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintLayout)
@@ -42,5 +47,9 @@ dependencies {
 
     implementation(libs.network.retrofit)
     implementation(libs.network.okhttp)
-    implementation(libs.network.okhttpLogging)
+    implementation(libs.network.okhttp.logging)
+
+    implementation(libs.compose.navigation)
+
+    testImplementation(libs.test.coroutines)
 }

@@ -20,6 +20,11 @@ import tech.thdev.app.ui.holder.other.OtherSampleScreen
 import tech.thdev.app.ui.holder.web.LocalWebOwner
 import tech.thdev.app.ui.holder.web.WebSampleScreen
 
+object SamplA {
+
+    const val A = "a"
+}
+
 @Composable
 internal fun MainScreen(
     navController: NavHostController = rememberNavController(),

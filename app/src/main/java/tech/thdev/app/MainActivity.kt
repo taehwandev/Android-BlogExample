@@ -3,17 +3,22 @@ package tech.thdev.app
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import tech.thdev.app.databinding.MainActivityBinding
+import tech.thdev.app.ui.SampleScreen
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: MainActivityBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = MainActivityBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        setSupportActionBar(binding.toolbar)
+        setContent {
+            SampleScreen()
+        }
+//        binding = MainActivityBinding.inflate(layoutInflater)
+//        setContentView(binding.root)
+//        setSupportActionBar(binding.toolbar)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
