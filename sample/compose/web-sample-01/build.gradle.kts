@@ -20,6 +20,8 @@ android {
 }
 
 dependencies {
+    implementation(libs.google.material)
+
     implementation(libs.compose.navigation)
 
     implementation(libs.image.coil.compose)

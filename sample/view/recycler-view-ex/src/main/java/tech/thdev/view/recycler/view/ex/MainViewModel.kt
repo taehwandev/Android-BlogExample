@@ -32,7 +32,7 @@ class MainViewModel : ViewModel() {
             val item = listOne.value[position]
             _trashList.update { list ->
                 list.toMutableList().also { newList ->
-                    newList.add(item.copy(trash = true, time = 5))
+                    newList.add(item.copy(trash = true, time = 10))
                 }
             }
 
@@ -65,7 +65,7 @@ class MainViewModel : ViewModel() {
 
         _listOne.update { list ->
             list.toMutableList().also { newList ->
-                newList.add(item.copy(trash = false, time = 5)) // 복구
+                newList.add(item.copy(trash = false, time = 10)) // 복구
             }
         }
     }

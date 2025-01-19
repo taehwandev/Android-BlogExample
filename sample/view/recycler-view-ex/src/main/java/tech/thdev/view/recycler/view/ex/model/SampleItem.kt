@@ -7,7 +7,7 @@ data class SampleItem(
     val id: Int,
     val message: String,
     @DrawableRes val icon: Int,
-    val time: Int = 5,
+    val time: Int = 10,
     val trash: Boolean = false,
 ) {
 
