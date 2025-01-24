@@ -7,7 +7,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class FlowInteraction @Inject constructor() : FlowInteractionStream, LocalTriggerEvent {
+class FlowInteraction @Inject constructor() : FlowInteractionStream, FlowComposeInteractionTrigger {
 
     private val _event = MutableSharedFlow<MainEffect>(
         extraBufferCapacity = 1,
@@ -16,7 +16,7 @@ class FlowInteraction @Inject constructor() : FlowInteractionStream, LocalTrigge
 
     override val event = _event.asSharedFlow()
 
-    override fun onEvent(event: MainEffect) {
+    override fun action(event: MainEffect) {
         _event.tryEmit(event)
     }
 }
