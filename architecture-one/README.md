@@ -9,15 +9,15 @@ Maybe MVI?
 
 ### Default
 
-![images/sample_01.png]
+![sample_01](image/sample_01.png)
 
 ### ShowAlert
 
-![images/sample_02.png]
+![sample_02](image/sample_02.png)
 
 ### Show Snackbar
 
-![images/sample_03.png]
+![sample_03](image/sample_03.png)
 
 ## License
 
