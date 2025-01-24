@@ -6,7 +6,7 @@ import tech.thdev.architecture.app.alert.repository.api.model.AlertItem
 
 interface AlertRepository {
 
-    fun awaitShowAlert(
-        alertItem: AlertItem,
+    fun awaitShow(
+        item: AlertItem,
     ): Flow<AlertEndEvent>
 }

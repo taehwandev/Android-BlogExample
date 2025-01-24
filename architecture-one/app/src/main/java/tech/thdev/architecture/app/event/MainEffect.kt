@@ -4,5 +4,7 @@ sealed interface MainEffect {
 
     data object ShowAlert : MainEffect
 
+    data object ShowAlertAndSnackbar : MainEffect
+
     data object None : MainEffect
 }

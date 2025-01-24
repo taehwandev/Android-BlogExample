@@ -19,4 +19,8 @@ class FlowInteraction @Inject constructor() : FlowInteractionStream, FlowCompose
     override fun action(event: MainEffect) {
         _event.tryEmit(event)
     }
+
+    override fun nextEvent(event: MainEffect) {
+        action(event)
+    }
 }

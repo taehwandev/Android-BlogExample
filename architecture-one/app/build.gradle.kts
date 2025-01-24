@@ -28,7 +28,9 @@ ksp {
 dependencies {
     implementation(libs.compose.navigation)
     implementation(libs.google.material)
-    
+
     implementation(projects.architectureOne.coreData.repository.alertRepository)
     implementation(projects.architectureOne.coreData.repository.alertRepositoryApi)
+    implementation(projects.architectureOne.coreData.repository.snackbarRepository)
+    implementation(projects.architectureOne.coreData.repository.snackbarRepositoryApi)
 }

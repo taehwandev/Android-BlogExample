@@ -15,20 +15,20 @@ import javax.inject.Inject
 class AlertRepositoryImpl @Inject constructor() : InternalAlertRepository, AlertRepository {
 
     @VisibleForTesting
-    val channelAlertShow = Channel<AlertItem>(Channel.BUFFERED)
+    val channelShow = Channel<AlertItem>(Channel.BUFFERED)
 
     @VisibleForTesting
-    val channelAlertEndEvent = Channel<AlertEndEvent>(Channel.BUFFERED)
+    val channelEndEvent = Channel<AlertEndEvent>(Channel.BUFFERED)
 
-    override fun showAlert(): Flow<AlertItem> =
-        channelAlertShow.receiveAsFlow()
+    override fun show(): Flow<AlertItem> =
+        channelShow.receiveAsFlow()
 
-    override fun awaitShowAlert(alertItem: AlertItem): Flow<AlertEndEvent> {
-        channelAlertShow.trySend(alertItem)
-        return channelAlertEndEvent.receiveAsFlow()
+    override fun awaitShow(item: AlertItem): Flow<AlertEndEvent> {
+        channelShow.trySend(item)
+        return channelEndEvent.receiveAsFlow()
     }
 
     override fun endEvent(alertEndEvent: AlertEndEvent) {
-        channelAlertEndEvent.trySend(alertEndEvent)
+        channelEndEvent.trySend(alertEndEvent)
     }
 }

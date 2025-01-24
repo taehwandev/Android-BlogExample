@@ -34,6 +34,8 @@ include(
     ":architecture-one:app",
     ":architecture-one:core-data:repository:alert-repository",
     ":architecture-one:core-data:repository:alert-repository-api",
+    ":architecture-one:core-data:repository:snackbar-repository",
+    ":architecture-one:core-data:repository:snackbar-repository-api",
 )
 
 include(

@@ -1,4 +1,4 @@
-package tech.thdev.architecture.app.common.alert.compose
+package tech.thdev.architecture.app.common.alert
 
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Text
@@ -9,7 +9,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
-import tech.thdev.architecture.app.common.alert.AlertDialogViewModel
 import tech.thdev.architecture.app.common.alert.model.AlertDialogUiState
 
 @Composable
@@ -18,9 +17,9 @@ fun AlertDialogScreen(
 ) {
     val alertDialogUiState by alertDialogViewModel.alertDialogUiState.collectAsStateWithLifecycle()
 
-    if (alertDialogUiState.show) {
+    alertDialogUiState?.let {
         AlertDialogScreen(
-            alertDialogUiState = alertDialogUiState,
+            alertDialogUiState = it,
             onDismissRequest = alertDialogViewModel::actionDismiss,
             onConfirmation = alertDialogViewModel::actionConfirm,
         )

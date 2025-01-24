@@ -8,7 +8,6 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.flow.update
 import tech.thdev.architecture.app.alert.repository.api.InternalAlertRepository
 import tech.thdev.architecture.app.alert.repository.api.model.AlertEndEvent
 import tech.thdev.architecture.app.common.alert.model.AlertDialogUiState
@@ -19,10 +18,10 @@ class AlertDialogViewModel @Inject constructor(
     private val internalAlertRepository: InternalAlertRepository,
 ) : ViewModel() {
 
-    private val _alertDialogUiState = MutableStateFlow(AlertDialogUiState.Default)
+    private val _alertDialogUiState = MutableStateFlow<AlertDialogUiState?>(null)
     val alertDialogUiState = _alertDialogUiState.asStateFlow()
 
-    private val flowShowAlert = internalAlertRepository.showAlert()
+    private val flowShow = internalAlertRepository.show()
         .map {
             AlertDialogUiState(
                 title = it.title,
@@ -37,25 +36,17 @@ class AlertDialogViewModel @Inject constructor(
         }
 
     fun load() {
-        flowShowAlert
+        flowShow
             .launchIn(viewModelScope)
     }
 
     fun actionDismiss() {
-        _alertDialogUiState.update {
-            it.copy(
-                show = false,
-            )
-        }
-        internalAlertRepository.endEvent(AlertEndEvent.DISMISS)
+        _alertDialogUiState.value = null
+        internalAlertRepository.endEvent(AlertEndEvent.Dismiss)
     }
 
     fun actionConfirm() {
-        _alertDialogUiState.update {
-            it.copy(
-                show = false,
-            )
-        }
-        internalAlertRepository.endEvent(AlertEndEvent.CONFIRM)
+        _alertDialogUiState.value = null
+        internalAlertRepository.endEvent(AlertEndEvent.Confirm)
     }
 }
