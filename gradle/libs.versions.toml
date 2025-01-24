@@ -141,6 +141,7 @@ ksp-kotlinPoet = { module = "com.squareup:kotlinpoet", version.ref = "kotlinPoet
 dagger-javaxInject = { module = "javax.inject:javax.inject", version.ref = "dagger-javaxInject" }
 dagger-baseApi = { module = "com.google.dagger:dagger", version.ref = "android-dagger" }
 dagger-baseCompiler = { module = "com.google.dagger:dagger-compiler", version.ref = "android-dagger" }
+dagger-hilt-core = { module = "com.google.dagger:hilt-core", version.ref = "android-dagger" }
 dagger-hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "android-dagger" }
 dagger-hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "android-dagger" }
 

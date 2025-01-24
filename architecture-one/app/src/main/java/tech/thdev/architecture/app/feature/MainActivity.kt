@@ -11,9 +11,9 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import dagger.hilt.android.AndroidEntryPoint
+import tech.thdev.architecture.app.common.alert.compose.AlertDialogScreen
 import tech.thdev.architecture.app.event.FlowComposeInteractionTrigger
 import tech.thdev.architecture.app.event.LocalComposeEventTriggerOwner
 import tech.thdev.architecture.app.event.MainEffect
@@ -32,9 +32,13 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
+        mainViewModel.flowLoad()
+
         setContent {
             MyApplicationTheme {
                 CompositionLocalProvider(LocalComposeEventTriggerOwner provides flowComposeInteractionTrigger) {
+                    AlertDialogScreen()
+
                     Scaffold {
                         Box(
                             modifier = Modifier
@@ -51,10 +55,6 @@ class MainActivity : ComponentActivity() {
                                 )
                             }
                         }
-                    }
-
-                    LaunchedEffect(Unit) { // 실행을 위함
-                        mainViewModel.flowLoad()
                     }
                 }
             }

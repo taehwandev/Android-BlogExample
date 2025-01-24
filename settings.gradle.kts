@@ -32,6 +32,8 @@ include(":app")
 
 include(
     ":architecture-one:app",
+    ":architecture-one:core-data:repository:alert-repository",
+    ":architecture-one:core-data:repository:alert-repository-api",
 )
 
 include(
