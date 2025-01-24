@@ -21,8 +21,6 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        maven("https://jitpack.io")
-        maven("https://repo1.maven.org/maven2/")
     }
 }
 
@@ -31,6 +29,10 @@ enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 rootProject.name = "thdev-example"
 
 include(":app")
+
+include(
+    ":architecture-one:app",
+)
 
 include(
     ":sample:compose:web-sample-01",

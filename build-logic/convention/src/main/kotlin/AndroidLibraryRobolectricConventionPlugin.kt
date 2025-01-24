@@ -1,8 +1,8 @@
-import tech.thdev.gradle.extensions.androidExtension
-import tech.thdev.gradle.extensions.findLibrary
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
+import tech.thdev.gradle.extensions.androidExtension
+import tech.thdev.gradle.extensions.findLibrary
 
 /**
  * Robolectric 사용시 juni4의 @Test 어노테이션을 사용해야 정상 동작합니다.

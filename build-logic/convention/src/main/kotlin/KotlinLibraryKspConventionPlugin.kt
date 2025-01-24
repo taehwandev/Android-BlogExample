@@ -1,8 +1,8 @@
 import com.google.devtools.ksp.gradle.KspExtension
-import tech.thdev.gradle.configureKspSourceSets
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
+import tech.thdev.gradle.configureKspSourceSets
 
 class KotlinLibraryKspConventionPlugin : Plugin<Project> {
 

@@ -1,6 +1,6 @@
-import tech.thdev.gradle.configureKotlinJvm
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import tech.thdev.gradle.configureKotlinJvm
 
 class KotlinLibraryConventionPlugin : Plugin<Project> {
 
@@ -12,7 +12,6 @@ class KotlinLibraryConventionPlugin : Plugin<Project> {
                 apply("tech.thdev.android.library.unit.test")
 
                 apply("tech.thdev.kotlin.library.verify.detekt")
-                apply("tech.thdev.kotlin.library.verify.jacoco")
                 apply("tech.thdev.kotlin.library.verify.test")
             }
 

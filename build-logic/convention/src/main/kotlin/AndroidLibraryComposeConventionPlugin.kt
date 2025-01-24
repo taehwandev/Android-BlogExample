@@ -1,8 +1,7 @@
-import tech.thdev.gradle.configureComposeAndroid
-import tech.thdev.gradle.configureComposeFeature
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.gradle.kotlin.dsl.dependencies
+import tech.thdev.gradle.configureComposeAndroid
+import tech.thdev.gradle.configureComposeFeature
 
 class AndroidLibraryComposeConventionPlugin : Plugin<Project> {
 

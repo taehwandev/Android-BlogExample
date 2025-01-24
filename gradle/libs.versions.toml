@@ -34,6 +34,11 @@ kotlinPoet = "2.0.0"
 # https://github.com/tschuchortdev/kotlin-compile-testing
 kspTestVersion = "1.6.0"
 
+## Dagger
+# https://github.com/google/dagger
+android-dagger = "2.55"
+dagger-javaxInject = "1"
+
 ## AndroidX
 # https://developer.android.com/jetpack/androidx/releases/annotation
 androidx-annotation = "1.9.1"
@@ -131,6 +136,13 @@ coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-androi
 ## KSP
 ksp = { module = "com.google.devtools.ksp:symbol-processing-api", version.ref = "ksp" }
 ksp-kotlinPoet = { module = "com.squareup:kotlinpoet", version.ref = "kotlinPoet" }
+
+## Dagger hilt
+dagger-javaxInject = { module = "javax.inject:javax.inject", version.ref = "dagger-javaxInject" }
+dagger-baseApi = { module = "com.google.dagger:dagger", version.ref = "android-dagger" }
+dagger-baseCompiler = { module = "com.google.dagger:dagger-compiler", version.ref = "android-dagger" }
+dagger-hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "android-dagger" }
+dagger-hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "android-dagger" }
 
 ## AndroidX
 androidx-annotation = { module = "androidx.annotation:annotation", version.ref = "androidx-annotation" }
@@ -244,6 +256,7 @@ kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
+android-dagger-hilt = { id = "com.google.dagger.hilt.android", version.ref = "android-dagger" }
 
 # Plugins defined by this project
 tech-thdev-android-application = { id = "tech.thdev.android.application", version = "unspecified" }
@@ -254,9 +267,11 @@ tech-thdev-android-library-compose-navigation-api = { id = "tech.thdev.android.l
 tech-thdev-android-library-compose-navigation = { id = "tech.thdev.android.library.compose.navigation", version = "unspecified" }
 tech-thdev-android-library = { id = "tech.thdev.android.library", version = "unspecified" }
 tech-thdev-android-library-robolectric = { id = "tech.thdev.android.library.robolectric", version = "unspecified" }
+tech-thdev-android-library-hilt = { id = "tech.thdev.android.library.hilt", version = "unspecified" }
 
 tech-thdev-kotlin-library = { id = "tech.thdev.kotlin.library", version = "unspecified" }
 tech-thdev-kotlin-library-serialization = { id = "tech.thdev.kotlin.library.serialization", version = "unspecified" }
 tech-thdev-kotlin-library-verify-detekt = { id = "tech.thdev.kotlin.library.verify.detekt", version = "unspecified" }
 tech-thdev-kotlin-library-verify-jacoco = { id = "tech.thdev.kotlin.library.verify.jacoco", version = "unspecified" }
 tech-thdev-kotlin-library-verify-test = { id = "tech.thdev.kotlin.library.verify.test", version = "unspecified" }
+tech-thdev-kotlin-library-hilt = { id = "tech.thdev.kotlin.library.hilt", version = "unspecified" }

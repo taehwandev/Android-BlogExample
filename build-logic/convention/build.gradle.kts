@@ -61,10 +61,6 @@ gradlePlugin {
             id = "tech.thdev.android.application"
             implementationClass = "AndroidApplicationConventionPlugin"
         }
-        register("androidApplicationVerifyJacoco") {
-            id = "tech.thdev.android.application.verify.jacoco"
-            implementationClass = "AndroidApplicationVerifyJacocoConventionPlugin"
-        }
 
         /**
          * Library 관련
@@ -89,9 +85,9 @@ gradlePlugin {
             id = "tech.thdev.android.library.unit.test"
             implementationClass = "AndroidLibraryUnitTestConventionPlugin"
         }
-        register("androidLibraryVerifyJacoco") {
-            id = "tech.thdev.android.library.verify.jacoco"
-            implementationClass = "AndroidLibraryVerifyJacocoConventionPlugin"
+        register("androidLibaryHilt") {
+            id = "tech.thdev.android.library.hilt"
+            implementationClass = "AndroidLibraryHiltConventionPlugin"
         }
 
         /**
@@ -113,9 +109,9 @@ gradlePlugin {
             id = "tech.thdev.kotlin.library.verify.detekt"
             implementationClass = "KotlinLibraryVerifyDetektConventionPlugin"
         }
-        register("kotlinLibraryVerifyJacoco") {
-            id = "tech.thdev.kotlin.library.verify.jacoco"
-            implementationClass = "KotlinLibraryVerifyJacocoConventionPlugin"
+        register("kotlinLibraryHilt") {
+            id = "tech.thdev.kotlin.library.hilt"
+            implementationClass = "KotlinLibraryHiltConventionPlugin"
         }
     }
 }

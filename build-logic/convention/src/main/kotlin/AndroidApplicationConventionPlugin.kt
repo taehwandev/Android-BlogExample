@@ -17,7 +17,6 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
 
                 apply("org.jetbrains.kotlin.plugin.serialization")
 
-                apply("tech.thdev.android.application.verify.jacoco")
                 apply("tech.thdev.kotlin.library.verify.detekt")
                 apply("tech.thdev.kotlin.library.verify.test")
             }
