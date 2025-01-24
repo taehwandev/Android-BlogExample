@@ -19,7 +19,7 @@ internal fun Project.configureDaggerHilt() {
 
 internal fun Project.configureDaggerKotlin() {
     dependencies {
-        implementation(findLibrary("dagger-hilt-android"))
+        implementation(findLibrary("dagger-hilt-core"))
         "ksp"(findLibrary("dagger-hilt-android-compiler"))
     }
 }
